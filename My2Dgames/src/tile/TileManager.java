@@ -29,22 +29,22 @@ public class TileManager {
     public void getTileImage(){
         try{
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new File("My2Dgames/res/tile/ice.png"));//change your willing tile file here
+            tile[0].image = ImageIO.read(new File("res/tile/ice.png"));//change your willing tile file here
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new File("My2Dgames/res/tile/path.png"));//same here
+            tile[1].image = ImageIO.read(new File("res/tile/path.png"));//same here
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new File("My2Dgames/res/tile/water1.png"));//so as here
+            tile[2].image = ImageIO.read(new File("res/tile/water1.png"));//so as here
             tile[2].collision = true; //remember if the tile YOU want to be collided, move this code to the that tile, AND REMEMBER TO CHANGE the number in tile[...]
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new File("My2Dgames/res/tile/wall.png"));
+            tile[3].image = ImageIO.read(new File("res/tile/wall.png"));
             tile[3].collision = true;//So as this one
 
+            
 
-
-
+            
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -86,24 +86,22 @@ public class TileManager {
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-            if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-                    worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-                    worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-                    worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
+            if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX && 
+               worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+               worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
+               worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
 
-                g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-            }
-
+                    g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+                }
+            
             worldCol++;
-
+        
             if(worldCol == gp.maxWorldCol){
                 worldCol = 0;
-
+                
                 worldRow++;
-
+                
             }
         }
     }
 }
-
-

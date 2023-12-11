@@ -38,14 +38,14 @@ public class Player extends Entity {
     }
     public void getPlayerImage() {
         try {
-            up1= ImageIO.read(new File("My2Dgames/res/player/FroGi_up1.png"));
-            up2=ImageIO.read(new File("My2Dgames/res/player/FroGi_up2.png"));
-            down1=ImageIO.read(new File("My2Dgames/res/player/FroGi_down1.png"));
-            down2=ImageIO.read(new File("My2Dgames/res/player/FroGi_down2.png"));
-            left1=ImageIO.read(new File("My2Dgames/res/player/FroGi_Left1.png"));
-            left2=ImageIO.read(new File("My2Dgames/res/player/FroGi_left2.png"));
-            right1=ImageIO.read(new File("My2Dgames/res/player/FroGi_right1.png"));
-            right2=ImageIO.read(new File("My2Dgames/res/player/FroGi_right2.png"));
+            up1= ImageIO.read(new File("res/player/FroGi_up1.png"));
+            up2=ImageIO.read(new File("res/player/FroGi_up2.png"));
+            down1=ImageIO.read(new File("res/player/FroGi_down1.png"));
+            down2=ImageIO.read(new File("res/player/FroGi_down2.png"));
+            left1=ImageIO.read(new File("res/player/FroGi_Left1.png"));
+            left2=ImageIO.read(new File("res/player/FroGi_left2.png"));
+            right1=ImageIO.read(new File("res/player/FroGi_right1.png"));
+            right2=ImageIO.read(new File("res/player/FroGi_right2.png"));
 
         }catch(IOException e){
             e.printStackTrace();
