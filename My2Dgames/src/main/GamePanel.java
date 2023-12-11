@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {     // JPanel is the
 
             update();
             //2 DRAW : Dreaw the screen with the updated information
-            repaint();// the how we call paint componet method
+            repaint();  // the how we call paint componet method
 
 
             try {
