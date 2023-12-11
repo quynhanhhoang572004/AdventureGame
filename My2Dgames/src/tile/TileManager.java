@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
@@ -23,28 +22,25 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/world01.txt");//text to make map
+        loadMap("maps/world01.txt"); // Text to generate the map
     }
 
     public void getTileImage(){
         try{
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new File("res/tile/ice.png"));//change your willing tile file here
+            tile[0].image = ImageIO.read(new File("res/tile/ice.png")); // Change your willing tile file here
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new File("res/tile/path.png"));//same here
+            tile[1].image = ImageIO.read(new File("res/tile/path.png")); 
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new File("res/tile/water1.png"));//so as here
-            tile[2].collision = true; //remember if the tile YOU want to be collided, move this code to the that tile, AND REMEMBER TO CHANGE the number in tile[...]
-
+            tile[2].image = ImageIO.read(new File("res/tile/water1.png"));
+            tile[2].collision = true; // This line is to prevent the player from going through the object
+                                      // Remember if the tile YOU want to be collided, move this code to the that tile, AND REMEMBER TO CHANGE the number in tile[...]
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("res/tile/wall.png"));
-            tile[3].collision = true;//So as this one
+            tile[3].collision = true; 
 
-            
-
-            
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -58,7 +54,7 @@ public class TileManager {
             int row = 0;
             while(col < gp.maxWorldCol && row < gp.maxWorldRow){
                 String line = br.readLine();
-                String numbers[] = line.split(" ");
+                String  numbers[] = line.split(" ");
                 while(col < gp.maxWorldCol){
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
