@@ -8,7 +8,7 @@ public class OBJ_Chest extends SuperObject {
     public OBJ_Chest () {
         name = "Chest";
         try {
-            image = ImageIO.read(new File("res/objects/chest.png")); // Dùng getResourceAsStream khi chạy code sẽ bị lỗi 
+            image = ImageIO.read(new File("res/objects/chest.png")); // Using getResourceAsStream when running code will get error
         } catch (IOException e) {
             e.printStackTrace();
         }

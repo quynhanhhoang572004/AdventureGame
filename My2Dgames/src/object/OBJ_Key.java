@@ -8,7 +8,7 @@ public class OBJ_Key extends SuperObject {
     public OBJ_Key () {
         name = "Key";
         try {
-            image = ImageIO.read(new File("res/objects/key.png")); // Dùng getResourceAsStream khi chạy code sẽ bị lỗi 
+            image = ImageIO.read(new File("res/objects/key.png")); // Using getResourceAsStream when running code will get error
         } catch (IOException e) {
             e.printStackTrace();
         }
