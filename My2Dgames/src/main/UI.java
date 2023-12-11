@@ -46,7 +46,7 @@ public class UI {
 			text = "Congratulations!";
 			textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
 			x = gp.screenWidth/2 - textLength/2;
-			y = gp.screenHeight/2 - (gp.tileSize*3) + 80; // Adjusted y-coordinate
+			y = gp.screenHeight/2 - (gp.tileSize * 3) + 80; // Adjusted y-coordinate
 			g2.drawString(text, x, y);
 
 			gp.gameThread = null;

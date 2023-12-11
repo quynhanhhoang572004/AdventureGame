@@ -142,8 +142,6 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
         System.out.println("Draw Time: " + passed);
         }
 
-
-
         g2.dispose();
     }
     
