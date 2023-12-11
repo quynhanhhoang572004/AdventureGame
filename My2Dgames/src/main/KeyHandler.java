@@ -3,7 +3,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyHandler  implements KeyListener {// the listener interface for receiving keyboard events (keystokes)
+public class KeyHandler  implements KeyListener {   // The listener interface for receiving keyboard events (keystokes)
     public boolean upPressed, downPressed, leftPressed, rightPressed;
 
     @Override
@@ -12,7 +12,7 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();// Returns the integer keyCode associated with the key in this event
+        int code = e.getKeyCode();  // Returns the integer keyCode associated with the key in this event
         if(code == KeyEvent.VK_W){
             upPressed = true;
         }
