@@ -1,6 +1,8 @@
 package main;
 
 import entity.Player;
+import tile.TileManager;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -15,18 +17,27 @@ public class GamePanel extends JPanel implements Runnable {// Jpanel is the subc
 
     final int scale=3;
     public final int tileSize =originalTileSize*scale;// 48x48 pixels on the screen
-    final int maxScreenCol=16;
-    final int maxScreenRow=12;
-    final int screenWidth = tileSize*maxScreenCol;// 768 pixels
-    final int screenHeight = tileSize*maxScreenRow;//576 pixels
+    public final int maxScreenCol=16;
+    public final int maxScreenRow=12;
+    public final int screenWidth = tileSize*maxScreenCol;// 768 pixels
+    public final int screenHeight = tileSize*maxScreenRow;//576 pixels
+
+    //WORLD MAP SETTING
+    public final int maxWorldCol = 40;// this is the width of the map width, if we make the map column is 40 like my prototype, its 40
+    public final int maxWorldRow = 40;// so as here
+
+    public final int worldWidth = tileSize * maxScreenCol;
+    public final int worldHeight = tileSize * maxScreenRow;
+
+
     //FPS: Frame per second
     int FPS =60;
-
+    TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
-
     Thread gameThread;
+    public CollisionChecker cChecker = new CollisionChecker(this);
     // set player's default positons
-    Player player = new Player(this,keyH);
+    public Player player = new Player(this,keyH);
     int playerX =100;
     int playerY = 100;
     int playerSpeed =4;
@@ -86,6 +97,7 @@ public class GamePanel extends JPanel implements Runnable {// Jpanel is the subc
         super.paintComponent(g);// GamePanel means the subclass of Jpanel
         Graphics2D g2 =(Graphics2D)g;//Graphics2D class extends the Graphics class to provide more sophisticated control over geometry...
         // this means we changes this graphics g to this Graphics2D class
+        tileM.draw(g2);
         player.draw(g2);
         g2.dispose();
     }
