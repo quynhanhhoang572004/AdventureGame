@@ -1,2 +1,3 @@
-FroGi_left3 và FroGi_right3 là ảnh mới 
-Có thể là FroGi_left3 sẽ thay thế cho FroGi_left1, cũng như FroGi_right3 sẽ thay thế cho FroGi_right1. Mng chú ý modify lại code để chạy dc trơn tru nhất nha.
+FroGi_left3 and FroGi_right3 are new sprites made by Bao Le
+So, pay attention that FroGi_left3 may replace FroGi_left1, and FroGi_right3 may replace FroGi_right1.
+Hence, pay attention to the diretory of the sprites in the code for the best operation.
