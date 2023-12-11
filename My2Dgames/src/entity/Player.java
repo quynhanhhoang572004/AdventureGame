@@ -1,8 +1,9 @@
 package entity;
 
-import java.awt.Color;
+
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import main.GamePanel;
@@ -30,14 +31,14 @@ public class Player extends Entity {
     }
     public void getPlayerImage() {
         try {
-            up1= ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_up1.png"));
-            up2=ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_up2.png"));
-            down1=ImageIO.read(getClass().getResourceAsStream("/player/FroGi_down1.png"));
-            down2=ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_down2.png"));
-            left1=ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_Left1.png"));
-            left2=ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_left2.png"));
-            right1=ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_right1.png"));
-            right2=ImageIO.read(getClass(). getResourceAsStream("/player/FroGi_right2.png"));
+            up1= ImageIO.read(new File("res/player/FroGi_up1.png"));
+            up2=ImageIO.read(new File("res/player/FroGi_up2.png"));
+            down1=ImageIO.read(new File("res/player/FroGi_down1.png"));
+            down2=ImageIO.read(new File("res/player/FroGi_down2.png"));
+            left1=ImageIO.read(new File("res/player/FroGi_Left1.png"));
+            left2=ImageIO.read(new File("res/player/FroGi_left2.png"));
+            right1=ImageIO.read(new File("res/player/FroGi_right1.png"));
+            right2=ImageIO.read(new File("res/player/FroGi_right2.png"));
 
         }catch(IOException e){
             e.printStackTrace();
