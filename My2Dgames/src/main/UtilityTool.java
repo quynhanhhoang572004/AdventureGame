@@ -11,4 +11,7 @@ public class UtilityTool {
         g2.dispose();
         return scaledImage;
     }
+
+    public void scaledImage(BufferedImage image, int tileSize, int tileSize2) {
+    }
 }
