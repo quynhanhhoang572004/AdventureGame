@@ -1,3 +1,0 @@
-FroGi_left3 and FroGi_right3 are new sprites made by Bao Le
-So, pay attention that FroGi_left3 may replace FroGi_left1, and FroGi_right3 may replace FroGi_right1.
-Hence, pay attention to the diretory of the sprites in the code for the best operation.
