@@ -10,12 +10,12 @@ public class Sound {
 	File soundFile[] = new File[30];
 	
 	public Sound() {
-		soundFile[0] = new File("res/sound/BlueBoyAdventure.wav");	
+		soundFile[0] = new File("My2DGame/res/sound/BlueBoyAdventure.wav");
 		// getClass().getResource will cause errors since this structure is old
-		soundFile[1] = new File("res/sound/coin.wav");
-		soundFile[2] = new File("res/sound/powerup.wav");
-		soundFile[3] = new File("res/sound/unlock.wav");
-		soundFile[4] = new File("res/sound/fanfare.wav");
+		soundFile[1] = new File("My2DGame/res/sound/coin.wav");
+		soundFile[2] = new File("My2DGame/res/sound/powerup.wav");
+		soundFile[3] = new File("My2DGame/res/sound/unlock.wav");
+		soundFile[4] = new File("My2DGame/res/sound/fanfare.wav");
 	}
 	
 	public void setFile(int i) {

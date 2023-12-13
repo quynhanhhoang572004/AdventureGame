@@ -16,7 +16,7 @@ public class OBJ_Boots extends SuperObject {
         this.uTool = new UtilityTool(); 
         name = "Boots";
         try {
-            image = ImageIO.read(new File("res/objects/boots.png")); 
+            image = ImageIO.read(new File("My2DGame/res/objects/boots.png"));
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
             // getResourceAsStream is an old structure so it may cause errors
         } catch (IOException e) {                                     

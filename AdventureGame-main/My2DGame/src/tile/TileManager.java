@@ -41,7 +41,7 @@ public class TileManager {
     
         try {
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(new File("res/tile/" + imagePath + ".png"));
+            tile[index].image = ImageIO.read(new File("My2DGame/res/tile/" + imagePath + ".png"));
             BufferedImage scaledImage = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].setImage(scaledImage);
             tile[index].collision = collision;

@@ -15,7 +15,7 @@ public class OBJ_Chest extends SuperObject {
         this.uTool = new UtilityTool();
         name = "Chest";
         try {
-            image = ImageIO.read(new File("res/objects/chest.png")); //using getResouceAsStream will cause error.
+            image = ImageIO.read(new File("My2DGame/res/objects/chest.png")); //using getResouceAsStream will cause error.
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();

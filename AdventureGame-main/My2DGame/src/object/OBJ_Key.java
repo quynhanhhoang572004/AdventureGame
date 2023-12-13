@@ -15,7 +15,7 @@ public class OBJ_Key extends SuperObject {
         this.uTool = new UtilityTool();
         name = "Key";
         try {
-            image = ImageIO.read(new File("res/objects/key.png")); // using getResourceAsStream will cause error.
+            image = ImageIO.read(new File("My2DGame/res/objects/key.png")); // using getResourceAsStream will cause error.
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
