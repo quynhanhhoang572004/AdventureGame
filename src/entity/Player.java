@@ -61,16 +61,44 @@ public class Player extends Entity {
         // So in every frame it get called and increase this counter by 1
         if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true||keyH.rightPressed == true){
             if(keyH.upPressed == true){
-                direction = "up";  
+                direction = "up";
+                speed = 4;
+                if(keyH.shiftPressed == true){
+                    speed = 6;
+                }
+                if(keyH.controlPressed == true){
+                    speed = 2;
+                } 
             }
             else if (keyH.downPressed == true){
-                direction = "down";  
+                direction = "down";
+                speed = 4;
+                if(keyH.shiftPressed == true){
+                    speed = 6;
+                }
+                if(keyH.controlPressed == true){
+                    speed = 2;
+                }  
             }
             else if (keyH.leftPressed == true){
                 direction = "left";
+                speed = 4;
+                if(keyH.shiftPressed == true){
+                    speed = 6;
+                }
+                if(keyH.controlPressed == true){
+                    speed = 2;
+                }
             }
             else if (keyH.rightPressed == true){
                 direction = "right";
+                }
+                speed = 4;
+                if(keyH.shiftPressed == true){
+                    speed = 6;
+                }
+                if(keyH.controlPressed == true){
+                    speed = 2;
                 }
 
             // CHECK TILE COLLISION
