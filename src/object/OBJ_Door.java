@@ -4,11 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import main.GamePanel;
+import main.UtilityTool;
+
 public class OBJ_Door extends SuperObject {
-    public OBJ_Door () {
+    GamePanel gp;
+    UtilityTool uTool;
+    public OBJ_Door (GamePanel gp) {
+        this.gp = gp;
+        this.uTool = new UtilityTool();
         name = "Door";
         try {
-            image = ImageIO.read(new File("res/objects/door.png")); // Using getResourceAsStream when running code will get error
+            image = ImageIO.read(new File("res/objects/door.png")); // Dùng getResourceAsStream khi chạy code sẽ bị lỗi 
+            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
