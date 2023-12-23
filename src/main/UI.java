@@ -56,15 +56,17 @@ public class UI {
 	}
 	// THIS LINE IS FOR DIALOUGE STATE
 	public void drawTitleScreen() {
-		g2.setColor(new Color (153,153,255));
+		g2.setColor(new Color (0,0,0));
 		g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
 		//TITLE NAME
 		//why the text is not in center 
-		g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));//NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
-		String text ="FrostKing Adventure"; // GAME TITLE
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,55F));//NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
+		String text ="Frost King Adventure"; // GAME TITLE
 		int x=getXforCenteredObject(text);
 		int y= gp.tileSize*3;
-
+		// SHADOW
+		g2.setColor(Color.gray);
+		g2.drawString(text,x+2,y+2);
 		//MAIN COLOR
 		g2.setColor(Color.white);
 		g2.drawString(text,x,y);
