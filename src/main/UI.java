@@ -15,6 +15,7 @@ public class UI {
 	int messageCounter = 0;
 	public boolean gameFinished = false;
 	private Graphics2D g2;
+	public int commandNum=0;
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -61,7 +62,6 @@ public class UI {
 		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
 		// TITLE NAME
-		// why the text is not in center
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 55F));// NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
 		String text = "Frost King Adventure"; // GAME TITLE
 		int x = getXforCenteredObject(text);
@@ -85,20 +85,32 @@ public class UI {
 
 		text = "NEW GAME";
 		x=getXforCenteredObject(text);
-		y+= gp.tileSize*4;
+		y+= gp.tileSize*3.5;
 		g2.drawString(text, x, y);
+
+		if(commandNum == 0){
+			g2.drawString(">",x-gp.tileSize,y);//we can use drawImage instead of draw String if we want
+		}
 
 		
 		text = "LOAD GAME";
 		x=getXforCenteredObject(text);
 		y+= gp.tileSize;
 		g2.drawString(text, x, y);
+		if(commandNum == 1){
+			g2.drawString(">",x-gp.tileSize,y);//we can use drawImage instead of draw String if we want
+		}
+
 
 		
 		text = "QUIT";
 		x=getXforCenteredObject(text);
 		y+= gp.tileSize;
 		g2.drawString(text, x, y);
+		if(commandNum == 2){
+			g2.drawString(">",x-gp.tileSize,y);//we can use drawImage instead of draw String if we want
+		}
+
 
 	}
 

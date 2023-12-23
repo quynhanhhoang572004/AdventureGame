@@ -17,9 +17,27 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
     public void keyTyped(KeyEvent e) {
     }
 
+    
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();// Returns the integer keyCode associated with the key in this event
+
+        //TITLE STATE
+        if(gp.gameState == gp.titleState){
+             if(code == KeyEvent.VK_W){
+                gp.ui.commandNum--;// move upward
+                if(gp.ui.commandNum<0){
+                    gp.ui.commandNum=2;// when you move the cursor more than new game it return to quit
+                }
+        }
+        if(code == KeyEvent.VK_S){
+           gp.ui.commandNum++;// move downward
+           if(gp.ui.commandNum>2){
+            gp.ui.commandNum=0;// when you move the cursor lower than quit it return to new game
+           }
+        }
+        }
+        // PLAY STATE
         if(code == KeyEvent.VK_W){
             upPressed = true;
         }
