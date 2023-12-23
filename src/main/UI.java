@@ -56,7 +56,7 @@ public class UI {
 	}
 	// THIS LINE IS FOR DIALOUGE STATE
 	public void drawTitleScreen() {
-		g2.setColor(new Color (70,120,80));
+		g2.setColor(new Color (153,153,255));
 		g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
 		//TITLE NAME
 		//why the text is not in center 
@@ -64,6 +64,8 @@ public class UI {
 		String text ="FrostKing Adventure"; // GAME TITLE
 		int x=getXforCenteredObject(text);
 		int y= gp.tileSize*3;
+
+		//MAIN COLOR
 		g2.setColor(Color.white);
 		g2.drawString(text,x,y);
 	}
