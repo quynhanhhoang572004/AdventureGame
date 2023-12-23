@@ -9,13 +9,15 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 
 public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
+    //public int hasKey = 0;
+    public String hasKey;
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -42,63 +44,43 @@ public class Player extends Entity {
 
     }
     public void getPlayerImage() {
-        try {
-            up1 = ImageIO.read(new File("res/player/FroGi_up1.png"));
-            up2 = ImageIO.read(new File("res/player/FroGi_up2.png"));
-            down1 = ImageIO.read(new File("res/player/FroGi_down1.png"));
-            down2 = ImageIO.read(new File("res/player/FroGi_down2.png"));
-            left1 = ImageIO.read(new File("res/player/FroGi_left3.png"));
-            left2 = ImageIO.read(new File("res/player/FroGi_left2.png"));
-            right1 = ImageIO.read(new File("res/player/FroGi_right3.png"));
-            right2 = ImageIO.read(new File("res/player/FroGi_right2.png"));
+            up1 = setup("FroGi_up1");
+            up2 = setup("FroGi_up2");
+            down1 = setup("FroGi_down1");
+            down2 = setup("FroGi_down2");
+            left1 = setup("FroGi_Left1");
+            left2 = setup("FroGi_left2");
+            right1 = setup("FroGi_right1");
+            right2 = setup("FroGi_right2");
+    }
 
-        } catch(IOException e) {
+    public BufferedImage setup(String imageName) {
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+        
+        try {
+            image = ImageIO.read(new File("res/player/" + imageName+".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        }catch(IOException e) {
             e.printStackTrace();
         }
+        return image;
     }
 
     public void update(){ // This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
         if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true||keyH.rightPressed == true){
             if(keyH.upPressed == true){
-                direction = "up";
-                speed = 4;
-                if(keyH.shiftPressed == true){
-                    speed = 6;
-                }
-                if(keyH.controlPressed == true){
-                    speed = 2;
-                } 
+                direction = "up";  
             }
             else if (keyH.downPressed == true){
-                direction = "down";
-                speed = 4;
-                if(keyH.shiftPressed == true){
-                    speed = 6;
-                }
-                if(keyH.controlPressed == true){
-                    speed = 2;
-                }  
+                direction = "down";  
             }
             else if (keyH.leftPressed == true){
                 direction = "left";
-                speed = 4;
-                if(keyH.shiftPressed == true){
-                    speed = 6;
-                }
-                if(keyH.controlPressed == true){
-                    speed = 2;
-                }
             }
             else if (keyH.rightPressed == true){
                 direction = "right";
-                }
-                speed = 4;
-                if(keyH.shiftPressed == true){
-                    speed = 6;
-                }
-                if(keyH.controlPressed == true){
-                    speed = 2;
                 }
 
             // CHECK TILE COLLISION
@@ -141,37 +123,7 @@ public class Player extends Entity {
     
     public void pickupObject(int i) {
         if (i != 999) {
-            String objectName = gp.obj[i].name;
-            
-            switch (objectName) {
-                case "Key":
-                	gp.playSE(1);
-                    hasKey++;
-                    gp.obj[i] = null;
-                    gp.ui.showMessage("You picked up a key!");
-                    break;
-                case "Door":
-                    if (hasKey > 0) {
-                    	gp.playSE(3);
-                        gp.obj[i] = null;
-                        hasKey--;
-                        gp.ui.showMessage("You opened a door!");
-                    } else {
-                    	gp.ui.showMessage("You need a key to open this door!");
-                    }
-                    break;
-                case "Boots":
-                	gp.playSE(2);
-                	speed += 2;
-                	gp.obj[i] = null;
-                	gp.ui.showMessage("You picked up a speed boost!");
-                	break;
-                case "Chest":
-                	gp.ui.gameFinished = true;
-                	gp.stopMusic();
-                	gp.playSE(4);
-                	break;
-            }            
+           
         }
     }
   

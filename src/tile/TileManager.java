@@ -1,6 +1,7 @@
 package tile;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 
 import main.GamePanel;
+import main.UtilityTool;
 
 public class TileManager {
     GamePanel gp;
@@ -22,29 +24,39 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/world01.txt"); // Text to generate the map
+        loadMap("maps/world01.txt");//text to make map
     }
 
     public void getTileImage(){
-        try{
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new File("res/tile/ice.png")); // Change your willing tile file here
+        // Change your willing tile file here
+        // Scale the image to improve rendering performance
+        setup(0, "ice", false);
+        setup(1, "path", false);
+        setup(2, "water", true);
+        setup(3, "wall", true);
+        setup(4, "pinetree_snowpath", true);
+        setup(7, "new_bottomleft", true);
+        setup(8, "new_bottomright", true);
+        setup(5, "new_topleft", true);
+        setup(6, "new_topright", true);
+        setup(7, "rock1", true);
+    }
 
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new File("res/tile/path.png")); 
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new File("res/tile/water1.png"));
-            tile[2].collision = true; // This line is to prevent the player from going through the object
-                                      // Remember if the tile YOU want to be collided, move this code to the that tile, AND REMEMBER TO CHANGE the number in tile[...]
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new File("res/tile/wall.png"));
-            tile[3].collision = true; 
-
-        }catch(IOException e){
+    public void setup(int index, String imagePath, boolean collision) {
+        UtilityTool uTool = new UtilityTool();
+    
+        try {
+            tile[index] = new Tile();
+            //nhớ sửa lại cho đúng form của team
+            tile[index].image = ImageIO.read(new File("res/tile/" + imagePath + ".png"));
+            BufferedImage scaledImage = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].setImage(scaledImage);
+            tile[index].collision = collision;
+        } catch(IOException e) {
             e.printStackTrace();
         }
     }
+    
 
     public void loadMap(String filePath){
         try{
