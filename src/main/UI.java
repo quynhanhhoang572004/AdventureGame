@@ -80,11 +80,31 @@ public class UI {
 		y += gp.tileSize * 2;
 		g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
+		//MENU
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,35F));// NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
+
+		text = "NEW GAME";
+		x=getXforCenteredObject(text);
+		y+= gp.tileSize*4;
+		g2.drawString(text, x, y);
+
+		
+		text = "LOAD GAME";
+		x=getXforCenteredObject(text);
+		y+= gp.tileSize;
+		g2.drawString(text, x, y);
+
+		
+		text = "QUIT";
+		x=getXforCenteredObject(text);
+		y+= gp.tileSize;
+		g2.drawString(text, x, y);
+
 	}
 
 	public int getXforCenteredObject(String text) {
 		int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-		int x = gp.screenHeight / 2 - length / 2 ;
+		int x = (gp.screenWidth - length) / 2 ;
 		return x;
 	}
 
