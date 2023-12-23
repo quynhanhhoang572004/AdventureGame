@@ -34,6 +34,10 @@ public class UI {
 
 		g2.setFont(arial_40);
 		g2.setColor(Color.yellow);
+		// TITLE STATE 
+		if(gp.gameState == gp.titleState){
+			drawTitleScreen();
+		}
 
 		if(gp.gameState == gp.playState) {
 			//play state
@@ -49,6 +53,17 @@ public class UI {
 
 
 		g2.drawString(text, x, y);
+	}
+	// THIS LINE IS FOR DIALOUGE STATE
+	public void drawTitleScreen() {
+		//TITLE NAME
+		//why the text is not in center 
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));//NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
+		String text ="FrostKing Adventure"; // GAME TITLE
+		int x=getXforCenteredObject(text);
+		int y= gp.tileSize*3;
+		g2.setColor(Color.white);
+		g2.drawString(text,x,y);
 	}
 	public int getXforCenteredObject(String text) {
 		int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
