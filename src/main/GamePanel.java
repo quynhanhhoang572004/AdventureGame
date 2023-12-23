@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-// @SuppressWarnings("serial")
 // This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
 public class GamePanel extends JPanel implements Runnable { // JPanel is the subclass of GamePanel
 	
@@ -33,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     //FPS: Frame per second
     int FPS = 60;
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -50,6 +49,11 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     // Set objects' default positions (the inventory bar)
     public SuperObject obj[] = new SuperObject[10]; 
 
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+
+
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight)); // set the size for the class (JPanel)
         this.setBackground(Color.black);
@@ -62,6 +66,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     public void setupGame () {
         aSetter.setObject();
         playMusic(0);
+        gameState = 1;
     }
 
     public void startGameThread(){
@@ -93,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
                 //  This thread doesn't need to sleep since we already used to allocated time
                 Thread.sleep((long) remainingTime); // "Long" only accept mili second
 
-                nextDrawTime += drawInterval;    // A new "drawtime" will be repetitied after an interval
+                nextDrawTime += drawInterval;// Sau khi sau 1 chu kỳ nó sẽ tự lặp lại 1 cái drawtime mới
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +106,14 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
         }
     }
     public void update(){
-        player.update();
+        if (gameState == playState) {
+            player.update();
+        }
+        if (gameState == pauseState){
+            // Do nothing
+        }
+
+        
     }
 
     @Override
@@ -161,3 +173,4 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     	se.play();
     }
 }
+

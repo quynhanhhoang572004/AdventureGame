@@ -1,13 +1,17 @@
 package main;
 
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler  implements KeyListener {// the listener interface for receiving keyboard events (keystokes)
-    public boolean upPressed, downPressed, leftPressed, rightPressed, shiftPressed, controlPressed;
+    GamePanel gp;
+    public boolean upPressed, downPressed, leftPressed, rightPressed;
     //DEBUG
     public static boolean checkDrawTime = false;
+
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -27,12 +31,6 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
         }
         if(code == KeyEvent.VK_D){
             rightPressed = true;
-        }
-        if(code == KeyEvent.VK_SHIFT){
-            shiftPressed = true;
-        }
-        if(code == KeyEvent.VK_CONTROL){
-            controlPressed = true;
         }
         //DEBUG
         if(code == KeyEvent.VK_T){
@@ -60,11 +58,14 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
         if(code == KeyEvent.VK_D){
             rightPressed = false;
         }
-        if(code == KeyEvent.VK_SHIFT){
-            shiftPressed = false;
-        }
-        if(code == KeyEvent.VK_CONTROL){
-            controlPressed = false;
+        //Press P to pause
+        if(code == KeyEvent.VK_P){
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            }
+            else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
         }
     }
 }
