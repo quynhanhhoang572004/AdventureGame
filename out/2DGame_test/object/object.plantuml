@@ -1,0 +1,67 @@
+@startuml object
+
+class SuperObject {
+    +image: BufferedImage
+    +name: String
+    +collision: boolean
+    +worldX: int
+    +worldY: int
+    +solidArea: Rectangle
+    +solidAreaDefaultX: int
+    +solidAreaDefaultY: int
+    +uTool: UtilityTool
+    +draw(g2: Graphics2D, gp: GamePanel): void
+}
+
+class OBJ_Boots {
+    -gp: GamePanel
+    -uTool: UtilityTool
+    +OBJ_Boots(gp: GamePanel)
+}
+
+class OBJ_Chest {
+    -gp: GamePanel
+    -uTool: UtilityTool
+    +OBJ_Chest(gp: GamePanel)
+}
+
+class OBJ_Door {
+    -gp: GamePanel
+    -uTool: UtilityTool
+    +OBJ_Door(gp: GamePanel)
+}
+
+class OBJ_Key {
+    -gp: GamePanel
+    -uTool: UtilityTool
+    +OBJ_Key(gp: GamePanel)
+}
+
+class GamePanel {
+  // Assuming GamePanel class exists
+}
+
+class UtilityTool {
+  // Assuming UtilityTool class exists
+}
+
+BufferedImage --|> Object
+
+OBJ_Boots --|> SuperObject
+OBJ_Chest --|> SuperObject
+OBJ_Door --|> SuperObject
+OBJ_Key --|> SuperObject
+
+OBJ_Boots -- GamePanel
+OBJ_Boots -- UtilityTool
+
+OBJ_Chest -- GamePanel
+OBJ_Chest -- UtilityTool
+
+OBJ_Door -- GamePanel
+OBJ_Door -- UtilityTool
+
+OBJ_Key -- GamePanel
+OBJ_Key -- UtilityTool
+
+@enduml
