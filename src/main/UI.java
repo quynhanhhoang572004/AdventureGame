@@ -56,6 +56,8 @@ public class UI {
 	}
 	// THIS LINE IS FOR DIALOUGE STATE
 	public void drawTitleScreen() {
+		g2.setColor(new Color (70,120,80));
+		g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
 		//TITLE NAME
 		//why the text is not in center 
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));//NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
