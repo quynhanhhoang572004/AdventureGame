@@ -36,6 +36,18 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
             gp.ui.commandNum=0;// when you move the cursor lower than quit it return to new game
            }
         }
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.commandNum == 0){
+                gp.gameState = gp.playState;
+                gp.playMusic(0);
+            }
+            if(gp.ui.commandNum==1){
+                // add later 
+            }
+            if(gp.ui.commandNum==2){
+                System.exit(0);
+            }
+        }
         }
         // PLAY STATE
         if(code == KeyEvent.VK_W){
