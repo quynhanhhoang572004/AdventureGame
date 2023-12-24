@@ -16,6 +16,7 @@ public class UI {
 	public boolean gameFinished = false;
 	private Graphics2D g2;
 	public int commandNum=0;
+	public int titleScreenState=0;//0: is the first screen,1: is the second screen.
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -58,7 +59,10 @@ public class UI {
 
 	// THIS LINE IS FOR DIALOUGE STATE
 	public void drawTitleScreen() {
-		g2.setColor(new Color(0, 0, 0));
+
+		if(titleScreenState == 0){
+
+			g2.setColor(new Color(0, 0, 0));
 		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
 		// TITLE NAME
@@ -100,15 +104,59 @@ public class UI {
 		if(commandNum == 1){
 			g2.drawString(">",x-gp.tileSize,y);//we can use drawImage instead of draw String if we want
 		}
-
-
-		
 		text = "QUIT";
 		x=getXforCenteredObject(text);
 		y+= gp.tileSize;
 		g2.drawString(text, x, y);
 		if(commandNum == 2){
 			g2.drawString(">",x-gp.tileSize,y);//we can use drawImage instead of draw String if we want
+		}
+
+		}
+		// CLASS SELECTION SCREEN
+		else if(titleScreenState==1){
+			// CLASS SELECTION SCREEN
+			g2.setColor(Color.white);
+			g2.setFont(g2.getFont().deriveFont(30F));
+
+			String text ="Select your class";
+			int x=getXforCenteredObject(text);
+			int y=gp.tileSize*3;
+			g2.drawString(text,x,y);
+
+			text="Fighter";
+			x=getXforCenteredObject(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==0){
+				g2.drawString(">", x-gp.tileSize, y);
+			}
+
+				text="Thief";
+			x=getXforCenteredObject(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==1){
+				g2.drawString(">", x-gp.tileSize, y);
+			}
+
+
+				text="Sorcerer";
+			x=getXforCenteredObject(text);
+			y+=gp.tileSize;
+			g2.drawString(text,x,y);
+			if(commandNum==2){
+				g2.drawString(">", x-gp.tileSize, y);
+			}
+
+				text="Back";
+			x=getXforCenteredObject(text);
+			y+=gp.tileSize*2;
+			g2.drawString(text,x,y);
+			if(commandNum==3){
+				g2.drawString(">", x-gp.tileSize, y);
+			}
+
 		}
 
 
