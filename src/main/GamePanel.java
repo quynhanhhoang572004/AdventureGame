@@ -50,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     public SuperObject obj[] = new SuperObject[10]; 
 
     public int gameState;
+    public final int titleState=0;
     public final int playState = 1;
     public final int pauseState = 2;
 
@@ -65,8 +66,8 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
 
     public void setupGame () {
         aSetter.setObject();
-        playMusic(0);
-        gameState = 1;
+        //playMusic(0);
+        gameState = titleState;
     }
 
     public void startGameThread(){
@@ -129,7 +130,13 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
         drawStart = System.nanoTime();
         }
 
-        // TILE
+         //TITLE SCREEN
+        if(gameState == titleState){
+            ui.draw(g2);
+        }
+        // OTHERS
+        else{
+             // TILE
         tileM.draw(g2);
 
         // OBJECT
@@ -138,6 +145,8 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
                 obj[i].draw(g2, this);
             }
         }
+
+        //CODE NPC IN THIS LINE INSIDE ELSE
         
         // PLAYER
         player.draw(g2);
@@ -145,6 +154,10 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
         // UI
         ui.draw(g2);
         
+            
+        }
+
+       
         //DEBUG
         if (KeyHandler.checkDrawTime == true) {
         long drawEnd = System.nanoTime();

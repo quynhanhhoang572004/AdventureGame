@@ -35,11 +35,7 @@ public class TileManager {
         setup(2, "water", true);
         setup(3, "wall", true);
         setup(4, "pinetree_snowpath", true);
-        setup(7, "new_bottomleft", true);
-        setup(8, "new_bottomright", true);
-        setup(5, "new_topleft", true);
-        setup(6, "new_topright", true);
-        setup(7, "rock1", true);
+        setup(5, "rock1", true);
     }
 
     public void setup(int index, String imagePath, boolean collision) {
