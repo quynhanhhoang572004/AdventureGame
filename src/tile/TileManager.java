@@ -47,7 +47,6 @@ public class TileManager {
     
         try {
             tile[index] = new Tile();
-            //nhớ sửa lại cho đúng form của team
             tile[index].image = ImageIO.read(new File("res/tile/" + imagePath + ".png"));
             BufferedImage scaledImage = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].setImage(scaledImage);
