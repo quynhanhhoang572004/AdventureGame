@@ -24,7 +24,9 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
 
         //TITLE STATE
         if(gp.gameState == gp.titleState){
-             if(code == KeyEvent.VK_W){
+            
+            if(gp.ui.titleScreenState==0){
+                  if(code == KeyEvent.VK_W){
                 gp.ui.commandNum--;// move upward
                 if(gp.ui.commandNum<0){
                     gp.ui.commandNum=2;// when you move the cursor more than new game it return to quit
@@ -38,8 +40,7 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
         }
         if(code == KeyEvent.VK_ENTER){
             if(gp.ui.commandNum == 0){
-                gp.gameState = gp.playState;
-                gp.playMusic(0);
+                gp.ui.titleScreenState=1;
             }
             if(gp.ui.commandNum==1){
                 // add later 
@@ -48,6 +49,45 @@ public class KeyHandler  implements KeyListener {// the listener interface for r
                 System.exit(0);
             }
         }
+            }
+
+        else if(gp.ui.titleScreenState==1){
+            if(code == KeyEvent.VK_W){
+                gp.ui.commandNum--;// move upward
+                if(gp.ui.commandNum<0){
+                    gp.ui.commandNum=3;// when you move the cursor more than new game it return to quit
+                }
+        }
+        if(code == KeyEvent.VK_S){
+           gp.ui.commandNum++;// move downward
+           if(gp.ui.commandNum>3){
+            gp.ui.commandNum=0;// when you move the cursor lower than quit it return to new game
+           }
+        }
+        if(code == KeyEvent.VK_ENTER){
+            if(gp.ui.commandNum == 0){
+                System.out.println("Do some fighter specific stuff");
+                gp.gameState=gp.playState;
+                gp.playMusic(0);
+            }
+            if(gp.ui.commandNum==1){
+                System.out.println("Do some thief specific stuff");
+                 gp.gameState=gp.playState;
+                 gp.playMusic(0);
+            }
+            if(gp.ui.commandNum==2){
+             System.out.println("Do some sorcerer specific stuff");
+                 gp.gameState=gp.playState;
+                 gp.playMusic(0);
+            }
+
+            if(gp.ui.commandNum==3){
+                gp.ui.titleScreenState=0;
+            }
+        }
+            }
+
+
         }
         // PLAY STATE
         if(code == KeyEvent.VK_W){
