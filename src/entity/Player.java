@@ -3,24 +3,18 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 
 public class Player extends Entity {
-    GamePanel gp;
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    //public int hasKey = 0;
     public String hasKey;
+    int standCounter = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
-        this.gp = gp;
+    	super(gp);
         this.keyH = keyH;
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
@@ -43,28 +37,16 @@ public class Player extends Entity {
         direction="down";
 
     }
+    
     public void getPlayerImage() {
-            up1 = setup("FroGi_up1");
-            up2 = setup("FroGi_up2");
-            down1 = setup("FroGi_down1");
-            down2 = setup("FroGi_down2");
-            left1 = setup("FroGi_Left1");
-            left2 = setup("FroGi_left2");
-            right1 = setup("FroGi_right1");
-            right2 = setup("FroGi_right2");
-    }
-
-    public BufferedImage setup(String imageName) {
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-        
-        try {
-            image = ImageIO.read(new File("res/player/" + imageName+".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
-        return image;
+            up1 = setup("res/player/FroGi_up1"); 
+            up2 = setup("res/player/FroGi_up2");
+            down1 = setup("res/player/FroGi_down1");
+            down2 = setup("res/player/FroGi_down2");
+            left1 = setup("res/player/FroGi_left3");
+            left2 = setup("res/player/FroGi_left2");
+            right1 = setup("res/player/FroGi_right3");
+            right2 = setup("res/player/FroGi_right2");
     }
 
     public void update(){ // This update method gets called 60 times per second
@@ -91,6 +73,10 @@ public class Player extends Entity {
             int objIndex = gp.cChecker.checkObject(this, true);
             pickupObject(objIndex);
 
+            // CHECK NPC COLLISION
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+            
             // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
             if(collisionOn == false){
                 switch(direction){
@@ -122,8 +108,13 @@ public class Player extends Entity {
     }
     
     public void pickupObject(int i) {
-        if (i != 999) {
-           
+        if (i != 999) {           
+        }
+    }
+    
+    public void interactNPC(int i) {
+    	if (i != 999) {  
+    		gp.gameState = gp.dialogueState;
         }
     }
   
