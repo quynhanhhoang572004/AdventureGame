@@ -1,5 +1,6 @@
 package main;
 
+import entity.Entity;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 // This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
+@SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable { // JPanel is the subclass of GamePanel
 	
 	// GAME SETTING
@@ -48,11 +50,16 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
 
     // Set objects' default positions (the inventory bar)
     public SuperObject obj[] = new SuperObject[10]; 
+    
+    // Set the NPC 
+    public Entity npc[] = new Entity[10];
 
+    // Game state
     public int gameState;
-    public final int titleState=0;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
 
 
     public GamePanel(){
@@ -66,22 +73,20 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
 
     public void setupGame () {
         aSetter.setObject();
-        //playMusic(0);
+        aSetter.setNPC();
+        // playMusic(0);
         gameState = titleState;
     }
 
     public void startGameThread(){
         gameThread = new Thread(this); // Passing game panel to this thread constructor
         gameThread.start();
-
     }
 
     @Override
     public void run() {
-
         double drawInterval = 1000000000 / FPS; // this means we draw the screen every 0.016 seconds so we can draw the screen 60 times per second
         double nextDrawTime = System.nanoTime() + drawInterval; // the next drawtime will be plus this drawInterval
-
         while(gameThread!=null){
             //System.out.println("The game loop is running");
             //1 UPDATE: Update information such as character positions
@@ -91,30 +96,38 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
 
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime=remainingTime/1000000; // Convert from nano to mili
+                remainingTime = remainingTime / 1000000; // Convert from nano to mili
 
                 if ( remainingTime < 0){
                     remainingTime = 0;
                 }
                 //  This thread doesn't need to sleep since we already used to allocated time
-                Thread.sleep((long) remainingTime); // "Long" only accept mili second
+                Thread.sleep((long) remainingTime); // "Long" only accept milisecond
 
-                nextDrawTime += drawInterval;// Sau khi sau 1 chu kỳ nó sẽ tự lặp lại 1 cái drawtime mới
-
+                nextDrawTime += drawInterval;
+                // A new drawtime will be repeated after a period
             } catch (InterruptedException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
+    
     public void update(){
-        if (gameState == playState) {
+        if (gameState == playState) {        	
+        	// PLAYER
             player.update();
+            
+            // NPC
+            for (int i = 0; i < npc.length; i++) {
+            	if(npc[i] != null) {
+            		npc[i].update();
+            	}
+            }
         }
+        
         if (gameState == pauseState){
             // Do nothing
         }
-
-        
     }
 
     @Override
@@ -131,12 +144,14 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
         }
 
          //TITLE SCREEN
-        if(gameState == titleState){
+        if (gameState == titleState){
             ui.draw(g2);
         }
+        
         // OTHERS
-        else{
-             // TILE
+        else {
+        	
+        // TILE
         tileM.draw(g2);
 
         // OBJECT
@@ -146,17 +161,20 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
             }
         }
 
-        //CODE NPC IN THIS LINE INSIDE ELSE
+        // NPC
+        for (int i = 0; i < npc.length; i++) {
+        	if(npc[i] != null) {
+        		npc[i].draw(g2, this);
+        	}
+        }
         
         // PLAYER
         player.draw(g2);
         
         // UI
         ui.draw(g2);
-        
-            
+                    
         }
-
        
         //DEBUG
         if (KeyHandler.checkDrawTime == true) {
@@ -173,7 +191,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     }
     
     // MUSIC AND SOUND PLAYING
-    public void playMusic (int i) {	// Background music
+    public void playMusic (int i) {		// Background music
     	music.setFile(i);
     	music.play();
     	music.loop();    	    	
@@ -181,7 +199,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     public void stopMusic() {
     	music.stop();
     }
-    public void playSE (int i) {	// SFX
+    public void playSE (int i) {		// SFX
     	se.setFile(i);
     	se.play();
     }
