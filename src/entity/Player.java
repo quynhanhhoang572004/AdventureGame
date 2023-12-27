@@ -34,7 +34,7 @@ public class Player extends Entity {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 22;
         speed = 4;
-        direction="down";
+        direction = "down";
 
     }
     
@@ -49,7 +49,8 @@ public class Player extends Entity {
             right2 = setup("res/player/FroGi_right2");
     }
 
-    public void update(){ // This update method gets called 60 times per second
+    public void update(){ 
+    	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
         if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true||keyH.rightPressed == true){
             if(keyH.upPressed == true){
@@ -114,8 +115,12 @@ public class Player extends Entity {
     
     public void interactNPC(int i) {
     	if (i != 999) {  
-    		gp.gameState = gp.dialogueState;
+    		if (gp.keyH.enterPressed == true) {
+        		gp.gameState = gp.dialogueState;
+        		gp.npc[i].speak();
+    		}
         }
+    	gp.keyH.enterPressed = false;
     }
   
     public void draw (Graphics2D g2){

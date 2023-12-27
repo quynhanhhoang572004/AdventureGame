@@ -15,7 +15,8 @@ public class OBJ_Door extends SuperObject {
         this.uTool = new UtilityTool();
         name = "Door";
         try {
-            image = ImageIO.read(new File("res/objects/door.png")); // Dùng getResourceAsStream khi chạy code sẽ bị lỗi 
+            image = ImageIO.read(new File("res/objects/door.png")); 
+            // getResourceAsStream will cause errors when compiling the code due to the outdated syntaxes
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();

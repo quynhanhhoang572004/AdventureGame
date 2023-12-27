@@ -11,8 +11,10 @@ public class NPC_Santa extends Entity {
 		direction = "down" ;
 		speed = 1;		
 		getImage();
+		setDialogue();
 	}
 	
+	// Get the sprite of the NPC
     public void getImage() {
         up1 = setup("res/npc/santa_up1");
         up2 = setup("res/npc/santa_up2");
@@ -25,7 +27,11 @@ public class NPC_Santa extends Entity {
     }
     
     public void setDialogue() {
-    	dialogue[0] = "";	// Input the dialogue between the parentheses
+    	// Input the dialogue between the quotes
+    	dialogues[0] = "Hello.";	
+    	dialogues[1] = "So you've come to this snowy land to find the treasure.";
+    	dialogues[2] = "I am Great Santa, who will guide you and give you quests in order to achieve the treasure.";
+    	dialogues[3] = "Good luck to you, that's the end for now.";    	
     }
     
     public void setAction () {
@@ -49,4 +55,9 @@ public class NPC_Santa extends Entity {
 	    	actionLockCounter = 0;
 	    }
 	}
+    
+    public void speak () {
+    	// Specific stuff
+    	super.speak();
+    }
 }

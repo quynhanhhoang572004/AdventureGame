@@ -15,7 +15,8 @@ public class OBJ_Chest extends SuperObject {
         this.uTool = new UtilityTool();
         name = "Chest";
         try {
-            image = ImageIO.read(new File("res/objects/chest.png")); // Dùng getResourceAsStream khi chạy code sẽ bị lỗi 
+            image = ImageIO.read(new File("res/objects/chest.png")); 
+            // getResourceAsStream will cause errors when compiling the code due to the outdated syntaxes
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();

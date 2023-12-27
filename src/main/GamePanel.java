@@ -13,15 +13,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-// This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
+// @SuppressWarnings("serial"): This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements Runnable { // JPanel is the subclass of GamePanel
+public class GamePanel extends JPanel implements Runnable {  // JPanel is the subclass of GamePanel
 	
 	// GAME SETTING
-    final int originalTileSize = 16; //16x16: Tile standard for 2d game
-
+    final int originalTileSize = 16; 						 //16x16: Tile standard for 2d game
     final int scale = 3;
-    public final int tileSize = originalTileSize * scale;// 48x48 pixels on the screen
+    public final int tileSize = originalTileSize * scale;	 // 48x48 pixels on the screen
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol;  // 768 pixels
@@ -34,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable { // JPanel is the sub
     //FPS: Frame per second
     int FPS = 60;
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
