@@ -18,7 +18,7 @@ public class OBJ_Boots extends SuperObject {
         try {
             image = ImageIO.read(new File("res/objects/boots.png")); 
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-         // getResourceAsStream will cause errors when compiling the code due to the outdated syntaxes
+         // getResourceAsStream will cause errors when compiling the code due to the outwitted syntaxes
         } catch (IOException e) {                                     
             e.printStackTrace();
         }

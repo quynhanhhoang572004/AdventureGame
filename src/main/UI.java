@@ -1,14 +1,24 @@
 package main;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+
+import object.SuperObject;
+import object.OBJ_Heart;
 
 public class UI {
 	GamePanel gp;
-	Font arial_40, arial_80B;
+	Font maruMonica, purisaB;
+	BufferedImage heart_full, heart_half, heart_blank;
 	public boolean messageOn = false;
 	public String message = "";
 	int messageCounter = 0;
@@ -22,8 +32,22 @@ public class UI {
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
-		arial_40 = new Font("Arial", Font.PLAIN, 40);
-		arial_80B = new Font("Arial", Font.BOLD, 80);
+		try {
+			// getClass().getResourceAsStream will cause errors due to its old syntaxes
+		    InputStream is = new FileInputStream("res/font/x12y16pxMaruMonica.ttf");
+		    maruMonica = Font.createFont(Font.TRUETYPE_FONT, is);
+		    is = new FileInputStream("res/font/Purisa Bold.ttf");
+		    purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
+		} catch (FontFormatException | IOException e) {
+		    e.printStackTrace();
+		}
+		
+		// CREATE OBJECT HUD
+		SuperObject heart = new OBJ_Heart(gp);
+		heart_full = heart.image;
+		heart_half = heart.image2;
+		heart_blank = heart.image3;
+		
 	}
 
 	public void showMessage(String text) {
@@ -33,7 +57,9 @@ public class UI {
 
 	public void draw(Graphics2D g2) {
 		this.g2 = g2;
-		g2.setFont(arial_40);
+		g2.setFont(maruMonica);
+	 // g2.setFont(purisaB);
+		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g2.setColor(Color.yellow);
 		// TITLE STATE
 		if (gp.gameState  ==  gp.titleState) {
@@ -41,15 +67,45 @@ public class UI {
 		}
 		// PLAY STATE
 		if (gp.gameState  ==  gp.playState) {
-			// play state stuff later
+			drawPlayerLife();
 		}
 		// PAUSE STATE
 		if (gp.gameState  ==  gp.pauseState) {
+			drawPlayerLife();
 			drawPauseScreen();
 		}
 		// DIALOGUE STATE
 		if (gp.gameState == gp.dialogueState) {
+			drawPlayerLife();
 			drawDialogueScreen();
+		}
+	}
+	
+	public void drawPlayerLife () {
+		int x = gp.tileSize / 2;
+		int y = gp.tileSize / 2;
+		int i = 0;
+		// DRAW MAX LIFE
+		while (i < gp.player.maxLife / 2) {
+			g2.drawImage(heart_blank, x, y, null);
+			i++;
+			x += gp.tileSize;
+		}
+		
+		// RESET 
+		x = gp.tileSize / 2;
+		y = gp.tileSize / 2;
+		i = 0;
+		
+		// DRAW CURRENT LIFE
+		while(i < gp.player.life) {
+			g2.drawImage(heart_half, x, y, null);
+			i++;
+			if (i < gp.player.life) {
+				g2.drawImage(heart_full, x, y, null);
+			}
+			i++;
+			x += gp.tileSize;
 		}
 	}
 

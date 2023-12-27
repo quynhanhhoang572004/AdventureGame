@@ -10,7 +10,7 @@ public class Sound {
 	File soundFile[] = new File[30];
 	
 	public Sound() {
-		soundFile[0] = new File("res/sound/BlueBoyAdventure.wav");	
+		soundFile[0] = new File("res/sound/BackgroundMusic/O' XmasTree.wav");	
 		// getClass().getResource will cause errors since this structure is old
 		soundFile[1] = new File("res/sound/coin.wav");
 		soundFile[2] = new File("res/sound/powerup.wav");
