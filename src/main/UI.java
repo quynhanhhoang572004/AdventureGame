@@ -82,6 +82,7 @@ public class UI {
 	}
 	
 	public void drawPlayerLife () {
+//		gp.player.life = 3;
 		int x = gp.tileSize / 2;
 		int y = gp.tileSize / 2;
 		int i = 0;
@@ -110,7 +111,7 @@ public class UI {
 	}
 
 	public void drawPauseScreen() {
-		String text = "PAUSE";
+		String text = "PAUSED";
 		int x = getXforCenteredObject(text);
 		int y = gp.screenHeight / 2;
 		g2.drawString(text, x, y);

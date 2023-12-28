@@ -27,8 +27,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
     
     //WORLD MAP SETTING
-    public final int maxWorldCol = 40; // Map width (equals to the X coordinate of the matrix in world01.txt)
-    public final int maxWorldRow = 40; // Map height (equals to the Y coordinate of the matrix in world01.txt)
+    public final int maxWorldCol = 50; // Map width (equals to the X coordinate of the matrix in worldV2.txt)
+    public final int maxWorldRow = 50; // Map height (equals to the Y coordinate of the matrix in worldV2.txt)
 
     //FPS: Frame per second
     int FPS = 60;
@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
 
     // Set player's default positions

@@ -24,7 +24,7 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/world01.txt");//text to make map
+        loadMap("maps/worldV2.txt");
     }
 
     public void getTileImage(){
@@ -32,15 +32,14 @@ public class TileManager {
         // Scale the image to improve rendering performance
         setup(0, "ice", false);
         setup(1, "path", false);
-        setup(2, "water", true);
+        setup(2, "water01", true);
         setup(3, "wall", true);
         setup(4, "pinetree_snowpath", true);
         setup(5, "rock1", true);
     }
 
     public void setup(int index, String imagePath, boolean collision) {
-        UtilityTool uTool = new UtilityTool();
-    
+        UtilityTool uTool = new UtilityTool();  
         try {
             tile[index] = new Tile();
             tile[index].image = ImageIO.read(new File("res/tile/" + imagePath + ".png"));
@@ -52,7 +51,6 @@ public class TileManager {
         }
     }
     
-
     public void loadMap(String filePath){
         try{
             InputStream is = new FileInputStream(new File(filePath));
@@ -93,11 +91,9 @@ public class TileManager {
                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
-
                     g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-                }
-            
-            worldCol++;
+                }            
+            	worldCol++;
         
             if(worldCol == gp.maxWorldCol){
                 worldCol = 0;
