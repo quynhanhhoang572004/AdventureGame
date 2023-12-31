@@ -55,6 +55,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     
     // Set the NPC 
     public Entity npc[] = new Entity[10];
+    
+    //Entity List
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game state

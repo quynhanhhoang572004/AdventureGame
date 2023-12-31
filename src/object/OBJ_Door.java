@@ -15,7 +15,7 @@ public class OBJ_Door extends Entity{
         collision = true;   // The player cannot go though this object
 
         solidArea.x = 0;
-        solidArea.y = 0;
+        solidArea.y = 16;
         solidArea.width = 48;
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
