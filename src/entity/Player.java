@@ -1,7 +1,10 @@
 package entity;
 
+
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.dnd.Autoscroll;
 import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
@@ -119,6 +122,14 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        //this needs to be outside of key if statment!
+        if(invincible == true){
+            invincibleCounter++;
+            if(invincibleCounter > 60){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
     
     public void pickupObject(int i) {
@@ -136,7 +147,12 @@ public class Player extends Entity {
     }
     public void contactMonster(int i){
         if(i != 999){
-            life -= 1;
+
+            if(invincible == false){
+                life -= 1;
+                invincible = true;
+            }
+            
         }
     }
     public void draw (Graphics2D g2){
@@ -177,6 +193,21 @@ public class Player extends Entity {
                 }
                 break;
         }
+        //visual effect to invincible state, like when you lose heal, you get stunned effect LOL
+        if(invincible == true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+
+        }
+
         g2.drawImage(image,screenX, screenY,gp.tileSize,gp.tileSize,null);
+
+        // RESET ALPHA
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
+
+        //DEBUG
+//        g2.setFont(new Font("Arial", Font.PLAIN, 26));
+//        g2.setColor(Color.WHITE);
+//        g2.drawString("Invincible:"+invincibleCounter, 10, 400);
     }
 }

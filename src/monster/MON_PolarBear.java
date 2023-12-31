@@ -8,7 +8,7 @@ import main.GamePanel;
 public class MON_PolarBear extends Entity{
     public MON_PolarBear(GamePanel gp){
         super(gp);
-
+        type = 2;
         name = "Polar Bear";
         getImage();
         speed = 1;
@@ -16,10 +16,10 @@ public class MON_PolarBear extends Entity{
         life = maxLife;
         
         
-        solidArea.x = 3;
+        solidArea.x = 8;
         solidArea.y = 16;
-        solidArea.width = 42;
-        solidArea.height = 26;
+        solidArea.width = 32;
+        solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
