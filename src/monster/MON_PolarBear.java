@@ -16,10 +16,10 @@ public class MON_PolarBear extends Entity{
         life = maxLife;
         
         
-        solidArea.x = 48;
-        solidArea.y = 48;
-        solidArea.width = 120;
-        solidArea.height = 120;
+        solidArea.x = 3;
+        solidArea.y = 16;
+        solidArea.width = 42;
+        solidArea.height = 26;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
