@@ -58,6 +58,18 @@ public class Player extends Entity {
             right2 = setup("res/player/FroGi_right2");
     }
 
+    public void getPlayerAttackImage(){
+        attackUp1 = setup("res/player/FroGi_attack_up1");
+        attackUp2 = setup("res/player/FroGi_attack_up1");
+        attackDown1 = setup("res/player/FroGi_attack_up1");
+        attackDown2 = setup("res/player/FroGi_attack_up1");
+        attackLeft1 = setup("res/player/FroGi_attack_up1");
+        attackLeft2 = setup("res/player/FroGi_attack_up1");
+        attackRight1 = setup("res/player/FroGi_attack_up1");
+        attackRight2 = setup("res/player/FroGi_attack_up1");
+
+    }
+
     public void update(){ 
     	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
