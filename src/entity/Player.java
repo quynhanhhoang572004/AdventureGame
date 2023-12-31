@@ -61,7 +61,8 @@ public class Player extends Entity {
     public void update(){ 
     	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
-        if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true||keyH.rightPressed == true){
+        if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true
+            ||keyH.rightPressed == true || keyH.enterPressed == true){
             if(keyH.upPressed == true){
                 direction = "up";  
             }
@@ -92,10 +93,10 @@ public class Player extends Entity {
             contactMonster(monsterIndex);
             // CHECK EVENT
             gp.eHandler.checkEvent();
-        	gp.keyH.enterPressed = false;
+        	
             
             // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
-            if(collisionOn == false){
+            if(collisionOn == false && keyH.enterPressed == false){
                 switch(direction){
                     case "up":
                         worldY -= speed; // X values increases to the right; Y values increases as they go down
@@ -111,6 +112,9 @@ public class Player extends Entity {
                         break;
                 }
             }
+
+            gp.keyH.enterPressed = false;
+            
             spriteCounter++;
             if(spriteCounter > 10){
                 if (spriteNum == 1){
