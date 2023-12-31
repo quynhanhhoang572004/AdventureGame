@@ -18,3 +18,4 @@ public class AssetSetter {
     	gp.npc[0].worldY = gp.tileSize * 21;
     }
 }
+
