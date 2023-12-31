@@ -14,6 +14,7 @@ public class NPC_Santa extends Entity {
 		setDialogue();
 	}
 	
+	
 	// Get the sprite of the NPC
     public void getImage() {
         up1 = setup("res/npc/santa_up1");

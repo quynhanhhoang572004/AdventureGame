@@ -44,17 +44,17 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
 
-    // Set player's default positions
+    // ENTITY AND OBJECTS
     public Player player = new Player(this, keyH);
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
 
     // Set objects' default positions (the inventory bar)
     public Entity obj[] = new Entity[10]; 
     
     // Set the NPC 
     public Entity npc[] = new Entity[10];
+
+    //Set the monster
+    public Entity monster[] = new Entity[20];
     
     //Entity List
     ArrayList<Entity> entityList = new ArrayList<>();
@@ -79,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public void setupGame () {
         aSetter.setObject();
         aSetter.setNPC();
+        aSetter.setMonster();
         // playMusic(0);
         gameState = titleState;
     }
@@ -128,6 +129,12 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             		npc[i].update();
             	}
             }
+            //monster
+            for(int i = 0; i < monster.length; i++){
+                if(monster[i] != null){
+                    monster[i].update();
+                }
+            }
         }
         
         if (gameState == pauseState){
@@ -171,6 +178,12 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             for(int i = 0; i < obj.length; i++){
                 if(obj[i] != null){
                     entityList.add(obj[i]);
+                }
+            }
+            //for monster
+            for(int i = 0; i < monster.length; i++){
+                if(monster[i] != null){
+                    entityList.add(monster[i]);
                 }
             }
             //SORT
