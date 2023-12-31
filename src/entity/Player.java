@@ -86,7 +86,7 @@ public class Player extends Entity {
 
             //CHECK MONSTER COLLISION
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            
+            contactMonster(monsterIndex);
             // CHECK EVENT
             gp.eHandler.checkEvent();
         	gp.keyH.enterPressed = false;
@@ -134,7 +134,11 @@ public class Player extends Entity {
     		}
         }
     }
-  
+    public void contactMonster(int i){
+        if(i != 999){
+            life -= 1;
+        }
+    }
     public void draw (Graphics2D g2){
         //g2.setColor(Color.white); 				// Sets a color to use for drawing object
         //g2.fillRect(x,y,gp.tileSize,gp.tileSize); // This method draw a rectangle on the screen
