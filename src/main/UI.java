@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
-import object.SuperObject;
+import entity.Entity;
 import object.OBJ_Heart;
 
 public class UI {
@@ -43,7 +43,7 @@ public class UI {
 		}
 		
 		// CREATE OBJECT HUD
-		SuperObject heart = new OBJ_Heart(gp);
+		Entity heart = new OBJ_Heart(gp);
 		heart_full = heart.image;
 		heart_half = heart.image2;
 		heart_blank = heart.image3;

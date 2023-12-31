@@ -1,27 +1,25 @@
 package object;
 
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
+import entity.Entity;
 import main.GamePanel;
-import main.UtilityTool;
 
-public class OBJ_Door extends SuperObject {
-    GamePanel gp;
-    UtilityTool uTool;
+
+public class OBJ_Door extends Entity{
+    
     public OBJ_Door (GamePanel gp) {
-        this.gp = gp;
-        this.uTool = new UtilityTool();
+        super(gp);
+    
         name = "Door";
-        try {
-            image = ImageIO.read(new File("res/objects/door.png")); 
-            // getResourceAsStream will cause errors when compiling the code due to the outdated syntaxes
-            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        down1 = setup("res/objects/door");
         collision = true;   // The player cannot go though this object
+
+        solidArea.x = 0;
+        solidArea.y = 0;
+        solidArea.width = 48;
+        solidArea.height = 32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
 }
 
