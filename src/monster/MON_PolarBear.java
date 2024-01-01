@@ -63,4 +63,10 @@ public class MON_PolarBear extends Entity{
 	    	actionLockCounter = 0;
 	    }
     }
+
+    //when bear gets dmg, it runs away
+    public void damageReaction(){
+        actionLockCounter = 0;
+        direction = gp.player.direction;
+    }
 }
