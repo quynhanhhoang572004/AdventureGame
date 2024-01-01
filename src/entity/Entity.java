@@ -34,12 +34,14 @@ public class Entity {
 	public boolean attacking = false;
 	public boolean alive = true;
 	public boolean dying = false;
+	public boolean hpBarOn = false;
 	
 	//COUNTER
 	public int spriteCounter = 0;
 	public int actionLockCounter = 0;
 	public int invincibleCounter = 0;
 	public int dyingCounter = 0;
+	public int hpBarcounter = 0;
 
 	//CHARACTER ATTRIBUTES
 	public int type; // like: 0 for player, 1 for monster or sth idc 
@@ -174,16 +176,41 @@ public class Entity {
 	                    image = right2;
 	                }
 	                break;
-	        }   
+	        } 
+			
+			//MONSTER HP BAR
+			if(type == 2 && hpBarOn == true){
+
+				double oneScale = (double)gp.tileSize/maxLife;
+				double hpBarValue = oneScale * life;
+				g2.setColor(new Color(35,35,35));
+				g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
+
+				g2.setColor(new Color(255, 0, 30));
+				g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
+
+				hpBarcounter++;
+
+				if(hpBarcounter > 600){
+					hpBarcounter = 0;
+					hpBarOn = false;
+				}
+			}
+			
+
+
 			if(invincible == true){
-				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+				hpBarOn = true;
+				hpBarcounter = 0;
+				changeAlpha(g2, 0.4f);
+				
 			}    
 			if(dying == true){
 				dyingAnimation(g2);
 			} 	
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
-			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+			changeAlpha(g2, 1f);
         }
 	}
 	public void dyingAnimation(Graphics2D g2){
