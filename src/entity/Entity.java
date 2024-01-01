@@ -1,8 +1,7 @@
 // This entity will be the parent class
 package entity;
 
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +18,7 @@ public class Entity {
 	public BufferedImage image, image2, image3;
     public boolean collision = false;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
 	//creating invincible time
     String dialogues[] = new String[20];
@@ -111,7 +111,7 @@ public class Entity {
             }
         }
         spriteCounter++;
-        if(spriteCounter > 10){
+        if(spriteCounter > 12){
             if (spriteNum == 1){
                 spriteNum = 2;
             }
@@ -119,6 +119,13 @@ public class Entity {
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+		if(invincible == true){
+            invincibleCounter++;
+            if(invincibleCounter > 40){
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
     
@@ -130,7 +137,7 @@ public class Entity {
             worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
             worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
             worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {        	
-	            switch (direction){
+	        switch (direction){
 	            case "up":
 	                if(spriteNum == 1) {
 	                    image = up1;
@@ -163,9 +170,14 @@ public class Entity {
 	                    image = right2;
 	                }
 	                break;
-	        }        	
-                g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-            }
+	        }   
+			if(invincible == true){
+				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+			}     	
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
 	}
 	
 	public BufferedImage setup(String imagePath, int width, int height) {
