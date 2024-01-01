@@ -72,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         this.setBackground(Color.black);
         this.setDoubleBuffered(true); // if set to true, all the drawing from this component will be done in an Offscreen Painting buffer
         this.addKeyListener(keyH);
+        this.addMouseListener(keyH);
         this.setFocusable(true); // with this, this Game Panel can be "focused" to receive key input
 
     }

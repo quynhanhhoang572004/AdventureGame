@@ -82,7 +82,7 @@ public class Player extends Entity {
     	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
         if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true
-            ||keyH.rightPressed == true || keyH.enterPressed == true){
+            ||keyH.rightPressed == true || keyH.enterPressed == true ||keyH.leftMouse == true){
             if(keyH.upPressed == true){
                 direction = "up";  
             }
@@ -116,7 +116,7 @@ public class Player extends Entity {
         	
             
             // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
-            if(collisionOn == false && keyH.enterPressed == false){
+            if(collisionOn == false && keyH.enterPressed == false && keyH.leftMouse == false){
                 switch(direction){
                     case "up":
                         worldY -= speed; // X values increases to the right; Y values increases as they go down
@@ -134,7 +134,9 @@ public class Player extends Entity {
             }
 
             gp.keyH.enterPressed = false;
+            gp.keyH.leftMouse = false;
             
+
             spriteCounter++;
             if(spriteCounter > 10){
                 if (spriteNum == 1){
@@ -207,12 +209,15 @@ public class Player extends Entity {
             if (i != 999) {  
         		gp.gameState = gp.dialogueState;
         		gp.npc[i].speak();
-    		}   
-            
+    		}  
             else{
-                    attacking = true;
-            }
-        }	
+                attacking = true;
+            } 
+        }
+        if(gp.keyH.leftMouse == true){
+            attacking = true;
+        }
+        	
     }
     public void contactMonster(int i){
         if(i != 999){

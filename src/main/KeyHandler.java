@@ -2,15 +2,52 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 //The "listener" interface for receiving keyboard events (keystrokes)
-public class KeyHandler  implements KeyListener {
+public class KeyHandler  implements KeyListener, MouseListener {
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;    
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+	public boolean leftMouse;    
     public static boolean checkDrawTime = false;
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
+
+	//STATUS: MOUSEPRESSED
+	@Override
+	public void mousePressed(MouseEvent e){
+		int code = e.getButton();
+		if (gp.gameState == gp.playState) {
+			if(code == MouseEvent.BUTTON1){
+				leftMouse = true;
+			}
+		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		int code = e.getButton();
+		if (code == MouseEvent.BUTTON1) { 
+            leftMouse = false;
+        }
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		
+	}
 
     // STATUS: KEYTYPED
     @Override
@@ -150,4 +187,8 @@ public class KeyHandler  implements KeyListener {
             rightPressed = false;
         }
     }
+
+	
 }
+
+
