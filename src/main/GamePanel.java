@@ -59,12 +59,14 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     //Entity List
     ArrayList<Entity> entityList = new ArrayList<>();
 
-    // Game state
+    // GAME STATE
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int characterState = 4;
+    
 
 
     public GamePanel(){

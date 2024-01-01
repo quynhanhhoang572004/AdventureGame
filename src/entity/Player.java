@@ -8,6 +8,8 @@ import java.awt.dnd.Autoscroll;
 import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Shield_Wood;
+import object.OBJ_Sword_Normal;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -44,11 +46,28 @@ public class Player extends Entity {
         direction = "down";
         
         // PLAYER STATUS
+        level = 1;
         maxLife = 6; 
         // 1 maxLife unit = a heart half
         // => 6 maxLife unit = 3 hearts
         life = maxLife;
-        
+        strength = 1; //the more strength player has, the more damage he can deal to mobs
+        dexterity = 1;//the more dexterity player has, the more damage he can knock the dmg from mobs
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+        currentWeapon = new OBJ_Sword_Normal(gp);
+        currentShield = new OBJ_Shield_Wood(gp);
+        attack = getAttack(); //the total attack value is decided by strength + weapon
+        defense = getDefense();//the total def value is decided by dexterity + shield
+    }
+
+    public int getAttack(){
+        return attack = strength * currentWeapon.attackValue;
+    }
+
+    public int getDefense(){
+        return defense = dexterity * currentShield.defenseValue;
     }
     
     public void getPlayerImage() {
@@ -116,7 +135,8 @@ public class Player extends Entity {
         	
             
             // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
-            if(collisionOn == false && keyH.enterPressed == false && keyH.leftMouse == false){
+            //In order not to let player moves while pressing feature key, add it in the if condition \/
+            if(collisionOn == false && keyH.enterPressed == false && keyH.leftMouse == false && keyH.FPressed == false){
                 switch(direction){
                     case "up":
                         worldY -= speed; // X values increases to the right; Y values increases as they go down
