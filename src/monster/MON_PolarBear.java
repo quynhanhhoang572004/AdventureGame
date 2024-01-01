@@ -19,6 +19,9 @@ public class MON_PolarBear extends Entity{
         speed = 1;
         maxLife = 12;
         life = maxLife;
+        attack = 2;
+        defense = 0;
+        exp = 2;
         
         
         solidArea.x = 30;

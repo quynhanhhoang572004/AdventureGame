@@ -3,6 +3,7 @@ package main;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -20,8 +21,10 @@ public class UI {
 	Font maruMonica, purisaB;
 	BufferedImage heart_full, heart_half, heart_blank;
 	public boolean messageOn = false;
-	public String message = "";
-	int messageCounter = 0;
+	//public String message = "";
+	//int messageCounter = 0;
+	ArrayList<String> message = new ArrayList<>();
+	ArrayList<Integer> messageCounter = new ArrayList<>();
 	public boolean gameFinished = false;
 	private Graphics2D g2;
 	public int commandNum = 0;
@@ -50,9 +53,9 @@ public class UI {
 		
 	}
 
-	public void showMessage(String text) {
-		message = text;
-		messageOn = true;
+	public void addMessage(String text) {
+		message.add(text);
+		messageCounter.add(0);
 	}
 
 	public void draw(Graphics2D g2) {
@@ -68,6 +71,7 @@ public class UI {
 		// PLAY STATE
 		if (gp.gameState  ==  gp.playState) {
 			drawPlayerLife();
+			drawMessage();
 		}
 		// PAUSE STATE
 		if (gp.gameState  ==  gp.pauseState) {
@@ -115,44 +119,34 @@ public class UI {
 		}
 	}
 
-	public void drawPauseScreen() {
-		String text = "PAUSED";
-		int x = getXforCenteredObject(text);
-		int y = gp.screenHeight / 2;
-		g2.drawString(text, x, y);
-	}
-
-	public void drawDialogueScreen() {
-	    // WINDOW
-	    int x = gp.tileSize * 2;
-	    int y = gp.tileSize / 2;
-	    int width = gp.screenWidth - (gp.tileSize * 4);
-	    int height = gp.tileSize * 4;
-	    drawSubWindow(x, y, width, height);
-	    // SETTING FOR THE DIALOGUE  
-	    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
-	    x += gp.tileSize;
-	    y += gp.tileSize;
-	    FontMetrics fontMetrics = g2.getFontMetrics();
-	    String[] words = currentDialogue.split("\\s+");
-	    StringBuilder line = new StringBuilder();
-	    for (String word : words) {
-	        // Check if adding the word exceeds the width of the dialogue box
-	        if (fontMetrics.stringWidth(line.toString() + word) <= width - gp.tileSize) {
-	            // Add the word to the current line
-	            line.append(word).append(" ");
-	        } else {
-	            g2.drawString(line.toString().trim(), x, y);
-	            y += 40;  // Vertical spacing
-	            line = new StringBuilder(word + " ");
-	        }
-	    }
-	    // Draw the last line
-	    g2.drawString(line.toString().trim(), x, y);
-	}
+	
 
 	
-	
+	public void drawMessage(){
+
+		int messageX = gp.tileSize; 
+		int messageY = gp.tileSize*4;
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+
+		for(int i = 0; i < message.size(); i++){
+			if(message.get(i) != null){
+				g2.setColor(Color.BLACK);
+				g2.drawString(message.get(i), messageX + 2, messageY + 2);
+				g2.setColor(Color.GRAY);
+				g2.drawString(message.get(i), messageX, messageY);
+
+				int counter = messageCounter.get(i) + 1; //messageCounter++
+				messageCounter.set(i, counter); //set counter to the array
+				messageY += 50;
+
+				if(messageCounter.get(i) >  180){
+					message.remove(i);
+					messageCounter.remove(i);
+				}
+			}
+		}
+
+	}
 	public void drawTitleScreen() {
 		if(titleScreenState  ==  0){
 			g2.setColor(new Color(0, 0, 0));
@@ -252,6 +246,42 @@ public class UI {
 				g2.drawString(">", x - gp.tileSize, y);
 			}
 		}
+	}
+
+	public void drawPauseScreen() {
+		String text = "PAUSED";
+		int x = getXforCenteredObject(text);
+		int y = gp.screenHeight / 2;
+		g2.drawString(text, x, y);
+	}
+
+	public void drawDialogueScreen() {
+	    // WINDOW
+	    int x = gp.tileSize * 2;
+	    int y = gp.tileSize / 2;
+	    int width = gp.screenWidth - (gp.tileSize * 4);
+	    int height = gp.tileSize * 4;
+	    drawSubWindow(x, y, width, height);
+	    // SETTING FOR THE DIALOGUE  
+	    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
+	    x += gp.tileSize;
+	    y += gp.tileSize;
+	    FontMetrics fontMetrics = g2.getFontMetrics();
+	    String[] words = currentDialogue.split("\\s+");
+	    StringBuilder line = new StringBuilder();
+	    for (String word : words) {
+	        // Check if adding the word exceeds the width of the dialogue box
+	        if (fontMetrics.stringWidth(line.toString() + word) <= width - gp.tileSize) {
+	            // Add the word to the current line
+	            line.append(word).append(" ");
+	        } else {
+	            g2.drawString(line.toString().trim(), x, y);
+	            y += 40;  // Vertical spacing
+	            line = new StringBuilder(word + " ");
+	        }
+	    }
+	    // Draw the last line
+	    g2.drawString(line.toString().trim(), x, y);
 	}
 
 	public void drawCharacterScreen(){

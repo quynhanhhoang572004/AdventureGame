@@ -107,6 +107,7 @@ public class EventHandler {
 			if(gp.player.life < gp.player.maxLife){
 				gp.player.life +=1 ;
 			}
+			gp.aSetter.setMonster();
 		}
 	}
 }

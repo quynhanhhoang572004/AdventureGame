@@ -19,6 +19,7 @@ public class Sound {
 		soundFile[5] = new File("res/sound/Sword/Sword.wav");
 		soundFile[6] = new File("res/sound/OOF.wav");
 		soundFile[7] = new File("res/sound/bear_polar.wav");
+		soundFile[8] = new File("res/sound/Rank_up.wav");
 	}
 	
 	public void setFile(int i) {
