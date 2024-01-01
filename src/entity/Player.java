@@ -222,7 +222,7 @@ public class Player extends Entity {
         	
     }
     public void contactMonster(int i){
-        if(i != 999){
+        if(i != 999 && direction == "up"){
 
             if(invincible == false){
                 gp.playSE(6);

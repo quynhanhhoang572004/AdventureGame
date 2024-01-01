@@ -251,6 +251,7 @@ public class Entity {
 
 
 	}
+	//we use this in order to code faster to dyingCounter, dying, alive
 	public void changeAlpha(Graphics2D g2, float alphaValue){
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
 	}
