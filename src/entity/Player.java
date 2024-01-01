@@ -32,6 +32,7 @@ public class Player extends Entity {
 
         setDefaultValues();
         getPlayerImage();
+        getPlayerAttackImage();
     }
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
@@ -48,29 +49,33 @@ public class Player extends Entity {
     }
     
     public void getPlayerImage() {
-            up1 = setup("res/player/FroGi_up1"); 
-            up2 = setup("res/player/FroGi_up2");
-            down1 = setup("res/player/FroGi_down1");
-            down2 = setup("res/player/FroGi_down2");
-            left1 = setup("res/player/FroGi_left3");
-            left2 = setup("res/player/FroGi_left2");
-            right1 = setup("res/player/FroGi_right3");
-            right2 = setup("res/player/FroGi_right2");
+            up1 = setup("res/player/FroGi_up1", gp.tileSize, gp.tileSize); 
+            up2 = setup("res/player/FroGi_up2", gp.tileSize, gp.tileSize);
+            down1 = setup("res/player/FroGi_down1", gp.tileSize, gp.tileSize);
+            down2 = setup("res/player/FroGi_down2", gp.tileSize, gp.tileSize);
+            left1 = setup("res/player/FroGi_left3", gp.tileSize, gp.tileSize);
+            left2 = setup("res/player/FroGi_left2", gp.tileSize, gp.tileSize);
+            right1 = setup("res/player/FroGi_right3", gp.tileSize, gp.tileSize);
+            right2 = setup("res/player/FroGi_right2", gp.tileSize, gp.tileSize);
     }
 
     public void getPlayerAttackImage(){
-        attackUp1 = setup("res/player/FroGi_attack_up1");
-        attackUp2 = setup("res/player/FroGi_attack_up1");
-        attackDown1 = setup("res/player/FroGi_attack_up1");
-        attackDown2 = setup("res/player/FroGi_attack_up1");
-        attackLeft1 = setup("res/player/FroGi_attack_up1");
-        attackLeft2 = setup("res/player/FroGi_attack_up1");
-        attackRight1 = setup("res/player/FroGi_attack_up1");
-        attackRight2 = setup("res/player/FroGi_attack_up1");
+        attackUp1 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
+        attackUp2 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
+        attackDown1 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
+        attackDown2 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
+        attackLeft1 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
+        attackLeft2 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
+        attackRight1 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
+        attackRight2 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
 
     }
 
     public void update(){ 
+
+        if(attacking == true){
+            attacking();
+        }
     	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
         if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true
@@ -147,19 +152,37 @@ public class Player extends Entity {
             }
         }
     }
-    
+    //showing attacking image 
+    public void attacking(){
+        spriteCounter++;
+        if(spriteCounter <=5){
+            spriteNum = 1;
+        }
+        if(spriteCounter > 5 && spriteCounter <= 25){
+            spriteNum = 2;
+        }
+        if(spriteCounter > 25){
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking = false;
+        }
+    }
     public void pickupObject(int i) {
         if (i != 999) {           
         }
     }
     
     public void interactNPC(int i) {
-    	if (i != 999) {  
-    		if (gp.keyH.enterPressed == true) {
+        if(gp.keyH.enterPressed == true){
+            if (i != 999) {  
         		gp.gameState = gp.dialogueState;
         		gp.npc[i].speak();
-    		}
-        }
+    		}   
+            
+            else{
+                    attacking = true;
+            }
+        }	
     }
     public void contactMonster(int i){
         if(i != 999){
@@ -175,38 +198,86 @@ public class Player extends Entity {
         //g2.setColor(Color.white); 				// Sets a color to use for drawing object
         //g2.fillRect(x,y,gp.tileSize,gp.tileSize); // This method draw a rectangle on the screen
         BufferedImage image = null;
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
         switch (direction){
             case "up":
-                if(spriteNum == 1) {
-                    image = up1;
+                if(attacking == false){
+                    if(spriteNum == 1) {
+                        image = up1;
+                    }
+                    if(spriteNum == 2){
+                        image = up2;
+                    }
                 }
-                if(spriteNum == 2){
-                    image = up2;
+                if(attacking == true){
+                    tempScreenY = screenY - gp.tileSize;
+                    if(spriteNum == 1) {
+                        image = attackUp1;
+                    }
+                    if(spriteNum == 2){
+                        image = attackUp2;
+                    }
                 }
+                
                 break;
             case "down":
-                if(spriteNum == 1) {
-                    image = down1;
+                if(attacking == false){
+                    if(spriteNum == 1) {
+                        image = down1;
+                    }
+                    if(spriteNum == 2){
+                        image = down2;
+                    }
                 }
-                if(spriteNum == 2){
-                    image = down2;
+                if(attacking == true){
+                    if(spriteNum == 1) {
+                        image = attackDown1;
+                    }
+                    if(spriteNum == 2){
+                        image = attackDown2;
+                    }
                 }
+                
                 break;
             case "left":
-                if(spriteNum == 1) {
-                    image = left1;
+                if(attacking == false){
+                    if(spriteNum == 1) {
+                        image = left1;
+                    }
+                    if(spriteNum == 2){
+                        image = left2;
+                    }
                 }
-                if(spriteNum == 2){
-                    image = left2;
+                if(attacking == true){
+                    tempScreenX = screenX - gp.tileSize;
+                    if(spriteNum == 1) {
+                        image = attackLeft1;
+                    }
+                    if(spriteNum == 2){
+                        image = attackLeft2;
+                    }
                 }
+                
                 break;
             case "right":
-                if(spriteNum == 1) {
-                    image = right1;
+                if(attacking == false){
+                    if(spriteNum == 1) {
+                        image = right1;
+                    }
+                    if(spriteNum == 2){
+                        image = right2;
+                    }
                 }
-                if(spriteNum == 2){
-                    image = right2;
+                if(attacking == true){
+                    if(spriteNum == 1) {
+                        image = attackRight1;
+                    }   
+                    if(spriteNum == 2){
+                        image = attackRight2;
+                    }
                 }
+                
                 break;
         }
         //visual effect to invincible state, like when you lose heal, you get stunned effect LOL
@@ -215,7 +286,7 @@ public class Player extends Entity {
 
         }
 
-        g2.drawImage(image,screenX, screenY,gp.tileSize,gp.tileSize,null);
+        g2.drawImage(image, tempScreenX, tempScreenY,null);
 
         // RESET ALPHA
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
