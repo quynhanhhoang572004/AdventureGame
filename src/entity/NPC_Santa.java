@@ -9,7 +9,13 @@ public class NPC_Santa extends Entity {
 		super(gp);
 		
 		direction = "down" ;
-		speed = 1;		
+		speed = 1;
+		solidArea.x = 8;
+        solidArea.y = 10;
+        solidArea.width = 32;
+        solidArea.height = 38;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;		
 		getImage();
 		setDialogue();
 	}

@@ -82,7 +82,7 @@ public class Player extends Entity {
     	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
         if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true
-            ||keyH.rightPressed == true || keyH.enterPressed == true ||keyH.leftMouse == true){
+            ||keyH.rightPressed == true || keyH.enterPressed == true ||keyH.leftMouse == true||keyH.FPressed == true){
             if(keyH.upPressed == true){
                 direction = "up";  
             }
@@ -135,6 +135,7 @@ public class Player extends Entity {
 
             gp.keyH.enterPressed = false;
             gp.keyH.leftMouse = false;
+            gp.keyH.FPressed = false;
             
 
             spriteCounter++;
@@ -205,15 +206,15 @@ public class Player extends Entity {
     }
     
     public void interactNPC(int i) {
-        if(gp.keyH.enterPressed == true){
+        if(gp.keyH.enterPressed == true || gp.keyH.FPressed == true){
             if (i != 999) {  
-        		gp.gameState = gp.dialogueState;
-        		gp.npc[i].speak();
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
     		}  
-            else{
-                gp.playSE(5);
-                attacking = true;
-            } 
+            //else{
+              //  gp.playSE(5);
+              //  attacking = true;
+           // } 
         }
         if(gp.keyH.leftMouse == true){
             gp.playSE(5);

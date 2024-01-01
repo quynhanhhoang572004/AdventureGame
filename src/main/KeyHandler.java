@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 //The "listener" interface for receiving keyboard events (keystrokes)
 public class KeyHandler  implements KeyListener, MouseListener {
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, FPressed;
 	public boolean leftMouse;    
     public static boolean checkDrawTime = false;
     public KeyHandler(GamePanel gp) {
@@ -24,12 +24,17 @@ public class KeyHandler  implements KeyListener, MouseListener {
 				leftMouse = true;
 			}
 		}
+		//else if (gp.gameState == gp.dialogueState) {
+	        //if(code == MouseEvent.BUTTON1) {
+	        	//gp.gameState = gp.playState;
+	        //}
+	    //}
 		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		
 	}
 
 	@Override
@@ -80,6 +85,9 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	            if(code == KeyEvent.VK_ENTER) {
             		enterPressed = true;
 	            }
+				if(code == KeyEvent.VK_F){
+					FPressed = true;
+				}
 	            
 	            // Debug
 	            if(code  ==  KeyEvent.VK_T){
@@ -100,7 +108,7 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	        }
 	        // DIALOGUE STATE
 	        else if (gp.gameState == gp.dialogueState) {
-	        	if(code == KeyEvent.VK_ENTER) {
+	        	if(code == KeyEvent.VK_ENTER || code == KeyEvent.VK_F) {
 	        		gp.gameState = gp.playState;
 	        	}
 	        }
@@ -186,6 +194,9 @@ public class KeyHandler  implements KeyListener, MouseListener {
         if(code  ==  KeyEvent.VK_D){
             rightPressed = false;
         }
+		if(code == KeyEvent.VK_F){
+			FPressed = false;
+		}
     }
 
 	
