@@ -13,7 +13,7 @@ public class MON_PolarBear extends Entity{
 
         this.gp = gp;
 
-        type = 2;
+        type = type_monster;
         name = "Polar Bear";
         getImage();
         speed = 1;

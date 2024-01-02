@@ -12,7 +12,7 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class Entity {
-	GamePanel gp;
+	public GamePanel gp;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 	public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
 	public BufferedImage image, image2, image3;
@@ -44,7 +44,7 @@ public class Entity {
 	public int hpBarcounter = 0;
 
 	//CHARACTER ATTRIBUTES
-	public int type; // like: 0 for player, 1 for monster or sth idc 
+	 
 	public String name;
 	public int speed;
 	public int maxLife;
@@ -65,7 +65,15 @@ public class Entity {
 	public int defenseValue;
 	public String description = "";
 	
-	
+	//TYPE
+	public int type;// like: 0 for player, 1 for npc, 2 for monster or sth idc, so that we can make phân loại for each type
+	public final int type_player = 0;
+	public final int type_npc = 1;
+	public final int type_monster = 2;
+	public final int type_sword = 3;
+	public final int type_axe = 4;
+	public final int type_shield = 5;
+	public final int type_consumable = 6;
 	// CHARACTER STATUS
     public Entity(GamePanel gp) {
     	this.gp = gp;
@@ -98,6 +106,10 @@ public class Entity {
     		break;
     	}
     }
+
+	public void use(Entity entity){
+		
+	}
     public void update () {
     	setAction();
     	collisionOn = false;
@@ -108,7 +120,7 @@ public class Entity {
     	boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
 
-		if(this.type == 2 && contactPlayer == true){
+		if(this.type == type_monster && contactPlayer == true){
 			if(gp.player.invincible == false){
 				//damage can be taken
 				gp.playSE(6);
