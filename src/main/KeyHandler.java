@@ -10,7 +10,7 @@ public class KeyHandler  implements KeyListener, MouseListener {
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, FPressed;
 	public boolean leftMouse;    
-    public static boolean checkDrawTime = false;
+    public static boolean showDebugText = false;
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
@@ -168,7 +168,7 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	    if(code == KeyEvent.VK_P) {
             gp.gameState = gp.pauseState;
 	    }
-		if(code == KeyEvent.VK_C){
+		if(code == KeyEvent.VK_G){
 			gp.gameState = gp.characterState;
 		}
 	    if(code == KeyEvent.VK_ENTER) {
@@ -180,13 +180,16 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	            
 	    // Debug
 	    if(code  ==  KeyEvent.VK_T){
-	        if (checkDrawTime  ==  false) {
-	        	checkDrawTime = true;
+	        if (showDebugText  ==  false) {
+	        	showDebugText = true;
 	        }
-	        else if (checkDrawTime  ==  true) {
-	            checkDrawTime = false;
+	        else if (showDebugText  ==  true) {
+	            showDebugText = false;
 	        }           
 	    }
+		if(code  ==  KeyEvent.VK_N){
+			gp.tileM.loadMap("maps/worldV2.txt");
+		}
 	}
 	public void pauseState(int code){
 		if(code == KeyEvent.VK_P){
@@ -199,8 +202,32 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	    }
 	}
 	public void characterState(int code){
-		if(code == KeyEvent.VK_C){
+		if(code == KeyEvent.VK_G){
 			gp.gameState = gp.playState;
+		}
+		if(code == KeyEvent.VK_W){
+			if(gp.ui.slotRow != 0){
+				gp.ui.slotRow--;
+			}
+			
+		}
+		if(code == KeyEvent.VK_A){
+			if(gp.ui.slotCol != 0){
+				gp.ui.slotCol--;
+			}
+			
+		}
+		if(code == KeyEvent.VK_S){
+			if(gp.ui.slotRow != 3){
+				gp.ui.slotRow++;
+			}
+			
+		}
+		if(code == KeyEvent.VK_D){
+			if(gp.ui.slotCol != 4){
+				gp.ui.slotCol++;
+			}
+			
 		}
 	}
     

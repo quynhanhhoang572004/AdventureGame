@@ -24,10 +24,10 @@ public class MON_PolarBear extends Entity{
         exp = 2;
         
         
-        solidArea.x = 30;
-        solidArea.y = 30;
-        solidArea.width = 30*2;
-        solidArea.height = 30;
+        solidArea.x = 6;
+        solidArea.y = 6;
+        solidArea.width = 6*2;
+        solidArea.height = 6;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 

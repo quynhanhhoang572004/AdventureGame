@@ -21,17 +21,16 @@ public class UI {
 	Font maruMonica, purisaB;
 	BufferedImage heart_full, heart_half, heart_blank;
 	public boolean messageOn = false;
-	//public String message = "";
-	//int messageCounter = 0;
 	ArrayList<String> message = new ArrayList<>();
 	ArrayList<Integer> messageCounter = new ArrayList<>();
 	public boolean gameFinished = false;
+	public String currentDialogue = "";
 	private Graphics2D g2;
 	public int commandNum = 0;
 	public int titleScreenState = 0;
-	// 0: is the first screen 
-	// 1: is the second screen
-	public String currentDialogue = "";
+	public int slotCol = 0;
+	public int slotRow = 0;
+	
 
 	public UI(GamePanel gp) {
 		this.gp = gp;
@@ -86,6 +85,7 @@ public class UI {
 		//CHARACTER STATE
 		if(gp.gameState == gp.characterState){
 			drawCharacterScreen();
+			drawInventory();
 
 		}
 	}
@@ -380,6 +380,44 @@ public class UI {
 		g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY - 14, null);
 	}
 
+	public void drawInventory(){
+		//FRAME
+		int frameX = gp.tileSize*9;
+		int frameY = gp.tileSize;
+		int frameWidth = gp.tileSize*6;
+		int frameHeight = gp.tileSize*5;
+		drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+		//SLOT
+		final int slotXstart = frameX + 20;
+		final int slotYstart = frameY + 20;
+		int slotX = slotXstart;
+		int slotY = slotYstart;
+
+		//DRAW PLAYER'S ITEMS
+		for(int i = 0; i < gp.player.inventory.size(); i++){
+			g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
+			slotX += gp.tileSize;
+
+			if(i == 4 || i == 9 || i == 14){
+				slotX = slotXstart;
+				slotY += gp.tileSize;
+			}
+		}
+
+
+		//CURSOR
+		int cursorX = slotXstart + (gp.tileSize * slotCol);
+		int cursorY = slotYstart + (gp.tileSize * slotRow);
+		int cursorWidth = gp.tileSize;
+		int cursorHeight = gp.tileSize;
+
+		//DRAW CURSOR
+		g2.setColor(Color.white);
+		g2.setStroke(new BasicStroke(3));
+		g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+	}
 	public void drawSubWindow(int x, int y, int width, int height) {
 		Color c = new Color(0, 0, 0, 210);	// RGB number for black
 											// 210: opacity level (this number represents the transparency degree of the dialogue box)

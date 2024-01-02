@@ -4,10 +4,14 @@ package entity;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.dnd.Autoscroll;
+
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Boots;
+import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
@@ -17,6 +21,8 @@ public class Player extends Entity {
     public final int screenY;
     public String hasKey;
     int standCounter = 0;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH){
     	super(gp);
@@ -38,6 +44,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
     }
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
@@ -61,7 +68,13 @@ public class Player extends Entity {
         attack = getAttack(); //the total attack value is decided by strength + weapon
         defense = getDefense();//the total def value is decided by dexterity + shield
     }
+    public void setItems(){
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_Boots(gp));
+        inventory.add(new OBJ_Boots(gp));
 
+    }
     public int getAttack(){
         return attack = strength * currentWeapon.attackValue;
     }
@@ -244,7 +257,6 @@ public class Player extends Entity {
     }
     public void contactMonster(int i){
         if(i != 999 && direction == "up"){
-
             if(invincible == false){
                 gp.playSE(6);
 
