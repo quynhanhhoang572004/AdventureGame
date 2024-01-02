@@ -12,6 +12,6 @@ public class OBJ_Key extends Entity {
         
         name = "Key";
         down1 = setup("res/object/ket", gp.tileSize, gp.tileSize);
-
+        description = "[" + name + "]\nA Key";
     }
 }
