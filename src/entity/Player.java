@@ -291,7 +291,7 @@ public class Player extends Entity {
         	
     }
     public void contactMonster(int i){
-        if(i != 999 && direction == "up"){
+        if(i != 999 && gp.monster[i].dying == false){
             if(invincible == false){
                 gp.playSE(6);
 
