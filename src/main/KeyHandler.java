@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 //The "listener" interface for receiving keyboard events (keystrokes)
 public class KeyHandler  implements KeyListener, MouseListener {
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, FPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, FPressed, shotKeyPressed;
 	public boolean leftMouse;    
     public static boolean showDebugText = false;
     public KeyHandler(GamePanel gp) {
@@ -178,6 +178,9 @@ public class KeyHandler  implements KeyListener, MouseListener {
 		if(code == KeyEvent.VK_F){
 			FPressed = true;
 		}
+		if(code == KeyEvent.VK_E){
+			shotKeyPressed = true;
+		}
 	            
 	    // Debug
 	    if(code  ==  KeyEvent.VK_T){
@@ -257,6 +260,9 @@ public class KeyHandler  implements KeyListener, MouseListener {
         }
 		if(code == KeyEvent.VK_F){
 			FPressed = false;
+		}
+		if(code == KeyEvent.VK_E){
+			shotKeyPressed = false;
 		}
 		
     }

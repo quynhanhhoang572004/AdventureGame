@@ -13,6 +13,7 @@ import main.KeyHandler;
 import object.OBJ_Boots;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
+import object.OBJ_Splash_Poison;
 import object.OBJ_Sword_Normal;
 
 public class Player extends Entity {
@@ -65,6 +66,7 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        projectile = new OBJ_Splash_Poison(gp);
         attack = getAttack(); //the total attack value is decided by strength + weapon
         defense = getDefense();//the total def value is decided by dexterity + shield
     }
@@ -77,8 +79,7 @@ public class Player extends Entity {
         inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
-        inventory.add(currentWeapon);
-        inventory.add(currentShield);
+        
         
 
     }
@@ -134,7 +135,7 @@ public class Player extends Entity {
         }
     	// This update method gets called 60 times per second
         // So in every frame it get called and increase this counter by 1
-        if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true
+        else if(keyH.upPressed == true||keyH.downPressed == true||keyH.leftPressed == true
             ||keyH.rightPressed == true || keyH.enterPressed == true ||keyH.leftMouse == true||keyH.FPressed == true){
             if(keyH.upPressed == true){
                 direction = "up";  
@@ -191,7 +192,7 @@ public class Player extends Entity {
             gp.keyH.leftMouse = false;
             gp.keyH.FPressed = false;
             
-
+            
             spriteCounter++;
             if(spriteCounter > 10){
                 if (spriteNum == 1){
@@ -201,6 +202,16 @@ public class Player extends Entity {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
+            }
+            if(gp.keyH.shotKeyPressed == true && projectile.alive == false){
+
+                //SET DEFAULT COORDINATE, DIRECTION AND USER
+                projectile.set(worldX, worldY, direction, true, this);
+
+                //ADD THIS TO THE LIST
+                gp.projectileList.add(projectile);
+
+                gp.playSE(13);
             }
         }
         //this needs to be outside of key if statment!
@@ -291,7 +302,7 @@ public class Player extends Entity {
         	
     }
     public void contactMonster(int i){
-        if(i != 999 && gp.monster[i].dying == false){
+        if(i != 999 && gp.monster[i].dying == false && (direction.equals(gp.monster[i].direction))){
             if(invincible == false){
                 gp.playSE(6);
 
