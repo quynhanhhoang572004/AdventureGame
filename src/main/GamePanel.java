@@ -54,12 +54,15 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public Entity npc[] = new Entity[10];
     //Set the monster
     public Entity monster[] = new Entity[20];
+    //InteractiveTile List
     public InteractiveTile iTile[] = new InteractiveTile[50];
     //Projectile List
     public ArrayList<Entity> projectileList = new ArrayList<>();     
     //Entity List
     ArrayList<Entity> entityList = new ArrayList<>();
-
+    //Particle List
+    public ArrayList<Entity> particleList = new ArrayList<>();     
+        
     // GAME STATE
     public int gameState;
     public final int titleState = 0;
@@ -77,7 +80,6 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         this.addKeyListener(keyH);
         this.addMouseListener(keyH);
         this.setFocusable(true); // with this, this Game Panel can be "focused" to receive key input
-
     }
 
     public void setupGame () {
@@ -147,7 +149,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
                     }
                 }
             }
-            for(int i = 0; i < projectileList.size(); i++){
+            
+            for(int i = 0; i < projectileList.size(); i++) {
                 if(projectileList.get(i) != null){
                     if(projectileList.get(i).alive == true){
                         projectileList.get(i).update();
@@ -157,12 +160,25 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
                     }
                 }
             }
+            
+            for(int i = 0; i < particleList.size(); i++) {
+                if(particleList.get(i) != null){
+                    if(particleList.get(i).alive == true){
+                    	particleList.get(i).update();
+                    }
+                    if(particleList.get(i).alive == false){
+                    	particleList.remove(i);
+                    }
+                }
+            }
+            
             for (int i = 0; i < iTile.length; i++) {
            	 if(iTile[i] != null) {
            		 iTile[i].update();
            	 }
            }
         }        
+        
         if (gameState == pauseState){
             // Do nothing
         }
@@ -224,6 +240,13 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
                     entityList.add(projectileList.get(i));
                 }
             }
+            //for particle
+            for(int i = 0; i < particleList.size(); i++){
+                if(particleList.get(i) != null){
+                    entityList.add(particleList.get(i));
+                }
+            }
+            
             // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
 

@@ -1,5 +1,7 @@
 package object;
 
+import java.awt.Color;
+
 import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
@@ -42,4 +44,24 @@ public class OBJ_Splash_Poison extends Projectile{
     public void substractResource(Entity user) {
     	user.mana -= useCost;    	
     }
+    
+	public Color getParticleColor () {
+		Color color = new Color(127, 0, 255); 
+		return color;
+	}
+	
+	public int getParticleSize () {
+		int size = 10;
+		return size;
+	}
+	
+	public int getParticleSpeed () {
+		int speed = 1;
+		return speed;
+	}
+	
+	public int getParticleMaxLife () {
+		int maxLife = 20;
+		return maxLife;
+	}
 }

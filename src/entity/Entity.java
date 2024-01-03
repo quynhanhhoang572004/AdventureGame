@@ -127,6 +127,44 @@ public class Entity {
     	}
     }
     
+	public Color getParticleColor () {
+		Color color = null; 
+		return color;
+	}
+	
+	public int getParticleSize () {
+		int size = 0; 	// Blueprint so dont need to clarify the value
+		return size;
+	}
+	
+	public int getParticleSpeed () {
+		int speed = 0;
+		return speed;
+	}
+	
+	public int getParticleMaxLife () {
+		int maxLife = 0;
+		return maxLife;
+	}
+    
+	public void generateParticle (Entity generator, Entity target) {
+		Color color = generator.getParticleColor();
+		int size = generator.getParticleSize();
+		int speed = generator.getParticleSpeed();
+		int maxLife = generator.getParticleMaxLife();
+		
+		Particle p1 = new Particle(gp, generator, color, size, speed, maxLife, -2, -1);	//down left
+																			//xd and yd, respectively	
+		Particle p2 = new Particle(gp, generator, color, size, speed, maxLife, 2, -1);	//up right
+		Particle p3 = new Particle(gp, generator, color, size, speed, maxLife, -2, 1);	//up left
+		Particle p4 = new Particle(gp, generator, color, size, speed, maxLife, 2, 1); 	//down right
+		gp.particleList.add(p1);
+		gp.particleList.add(p2);
+		gp.particleList.add(p3);
+		gp.particleList.add(p4);
+
+	}
+	
 	public void use(Entity entity) {		
 	}
 	
@@ -206,7 +244,7 @@ public class Entity {
             worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
             worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
             worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {        	
-	        switch (direction){
+	        switch (direction) {
 	            case "up":
 	                if(spriteNum == 1) {
 	                    image = up1;
