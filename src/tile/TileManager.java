@@ -36,6 +36,7 @@ public class TileManager {
         setup(3, "wall", true);
         setup(4, "pinetree_snowpath", true);
         setup(5, "rock1", true);
+        setup(6, "damagepit", true);
     }
 
     public void setup(int index, String imagePath, boolean collision) {

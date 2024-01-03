@@ -36,7 +36,7 @@ public class EventHandler {
 	
 	
 	public void checkEvent () {		// This function uses data from the worldV2.txt, and is a sample, can modify later 
-		//checl whether the player character is more than 1 tile away from the last event
+		//check whether the player character is more than 1 tile away from the last event
 		int xDistance = Math.abs(gp.player.worldX - previousEventX);
 		int yDistance = Math.abs(gp.player.worldY - previousEventY);
 		int distance = Math.max(xDistance, yDistance);
@@ -44,12 +44,12 @@ public class EventHandler {
 			canTouchEvent = true;
 		}
 
-		if(canTouchEvent == true){//CONCERNING: REMEMBER TO REDUCE THE COORDINATE BY 1 DUE TO THE FACT THAT THIS IS JAVA :V
-			if (hit(28,21,"any") == true) {
+		if(canTouchEvent == true){	// REMEMBER TO REDUCE THE COORDINATE BY 1 
+			if (hit(28, 21, "any") == true) {
 				damagePit(28, 21, gp.dialogueState);
 			}
 			 // (x,y): Coordinate corresponds to the coordinate in worldV2.txt
-			if (hit(36 ,15,"any") == true) {
+			if (hit(36, 15, "any") == true) {
 				healingPool(36, 15, gp.dialogueState);
 			}
 			if(hit(29, 22, "any") == true){
@@ -98,6 +98,8 @@ public class EventHandler {
 		gp.player.life -= 1;
 		//eventRect[col][row].eventDone = true; //we do this in order to make the event happen once only
 		canTouchEvent = false;
+		
+        gp.playSE(6);  
 	}
 	
 	public void healingPool(int col, int row, int gameState) {
@@ -105,10 +107,12 @@ public class EventHandler {
 			gp.gameState = gameState;
 			gp.ui.currentDialogue = "You drink the water. \n Your life and mana has been recovered.";
 			if(gp.player.life < gp.player.maxLife){
-				gp.player.life +=1 ;
+				gp.player.life += 1 ;
 			}
 			gp.player.mana = gp.player.maxMana;
 			gp.aSetter.setMonster();
+			
+	        gp.playSE(12);  
 		}
 	}
 }

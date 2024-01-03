@@ -47,19 +47,14 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
 
     // ENTITY AND OBJECTS
     public Player player = new Player(this, keyH);
-
     // Set objects' default positions (the inventory bar)
-    public Entity obj[] = new Entity[10]; 
-    
+    public Entity obj[] = new Entity[20]; 
     // Set the NPC 
     public Entity npc[] = new Entity[10];
-
     //Set the monster
     public Entity monster[] = new Entity[20];
-
     //Projectile List
-    public ArrayList<Entity> projectileList = new ArrayList<>(); 
-    
+    public ArrayList<Entity> projectileList = new ArrayList<>();     
     //Entity List
     ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -84,7 +79,6 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     }
 
     public void setupGame () {
-        aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
         // playMusic(0);
@@ -136,13 +130,15 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             		npc[i].update();
             	}
             }
-            //monster
+            
+            // MONSTER
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
                     if(monster[i].alive == true && monster[i].dying == false){
                         monster[i].update();
                     }
                     if(monster[i].alive == false){
+                    	monster[i].checkDrop();
                         monster[i] = null;
                     }
                 }

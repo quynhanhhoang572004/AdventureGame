@@ -47,6 +47,7 @@ public class Player extends Entity {
         getPlayerAttackImage();
         setItems();
     }
+    
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 22;
@@ -205,7 +206,8 @@ public class Player extends Entity {
             }
             
         }
-        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30 && projectile.haveResource(this) == true){
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30 
+        	&& projectile.haveResource(this) == true){
 
             //SET DEFAULT COORDINATE, DIRECTION AND USER
             projectile.set(worldX, worldY, direction, true, this);
@@ -215,9 +217,7 @@ public class Player extends Entity {
 
             //ADD THIS TO THE LIST
             gp.projectileList.add(projectile);
-
             shotAvailableCounter = 0;
-
             gp.playSE(13);
             }
         //this needs to be outside of key if statement!
@@ -231,8 +231,15 @@ public class Player extends Entity {
         if(shotAvailableCounter < 30){
             shotAvailableCounter++;
         }
+    	if(life > maxLife) {
+    		life = maxLife;
+    	}
+    	if(mana > maxMana) {
+    		mana = maxMana;
+    	}
     }
-    //showing attacking image 
+    
+    //Showing attacking image 
     public void attacking(){
         spriteCounter++;
         if(spriteCounter <=5){
@@ -274,24 +281,33 @@ public class Player extends Entity {
             attacking = false;
         }
     }
+    
     public void pickupObject(int i) {
         if (i != 999) {  
-
-            String text;
-
-            if(inventory.size() != maxInventorySize){
-                inventory.add(gp.obj[i]);
-                gp.playSE(1);
-                text = "Got a "+ gp.obj[i].name + "!";
-
-            }   
-            else{
-                text = "You cannot carry any more!\nGreedy -.-";
-            }  
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
+        	
+        	// PICKUP-ONLY ITEMS
+        	if (gp.obj[i].type == type_pickupOnly) {
+        		gp.obj[i].use(this);
+        		gp.obj[i] = null;
+        	}
+        	
+        	// INVENTORY ITEMS
+        	else {
+	            String text;
+	
+	            if(inventory.size() != maxInventorySize){
+	                inventory.add(gp.obj[i]);
+	                gp.playSE(1);
+	                text = "Got a "+ gp.obj[i].name + "!";	
+	            }   
+	            else {
+	                	text = "You cannot carry any more!";
+		            }  
+		            gp.ui.addMessage(text);
+		            gp.obj[i] = null;
         }
     }
+}
     
     public void interactNPC(int i) {
         if(gp.keyH.enterPressed == true || gp.keyH.FPressed == true){
@@ -354,6 +370,7 @@ public class Player extends Entity {
             }
         }
     }
+    
     public void checkLevelUp(){
         if(exp >= nextLevelExp){
             level++;
@@ -371,15 +388,10 @@ public class Player extends Entity {
     }
 
     public void selectItem(){
-
         int itemIndex = gp.ui.getItemIndexOnSlot();
-
         if(itemIndex < inventory.size()){
-
             Entity selectedItem = inventory.get(itemIndex);
-
             if(selectedItem.type == type_sword || selectedItem.type == type_axe){
-
                 currentWeapon = selectedItem;
                 attack = getAttack();
                 getPlayerAttackImage();
@@ -390,7 +402,6 @@ public class Player extends Entity {
                 defense = getDefense();
             }
             if(selectedItem.type == type_consumable){
-
                 selectedItem.use(this);
                 inventory.remove(itemIndex);
             }

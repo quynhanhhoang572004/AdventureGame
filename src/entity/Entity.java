@@ -65,13 +65,15 @@ public class Entity {
     public Projectile projectile;
 
 	//ITEM ATTRIBUTES
+    public int value;
 	public int attackValue;
 	public int defenseValue;
 	public String description = "";
 	public int useCost;
 	
 	//TYPE
-	public int type; // 0 for player, 1 for npc, 2 for monster (for example), so that we can make classifications for each type
+	public int type; 
+// 0 for player, 1 for npc, 2 for monster (for example), so that we can make classifications for each type
 	public final int type_player = 0;
 	public final int type_npc = 1;
 	public final int type_monster = 2;
@@ -79,14 +81,15 @@ public class Entity {
 	public final int type_axe = 4;
 	public final int type_shield = 5;
 	public final int type_consumable = 6;
+	public final int type_pickupOnly = 7;
+	
 	// CHARACTER STATUS
     public Entity(GamePanel gp) {
     	this.gp = gp;
     }
     
     public void setAction () {}
-	public void damageReaction(){
-		
+	public void damageReaction(){		
 	}
     public void speak () {
     	if (dialogues[dialogueIndex] == null) {
@@ -112,9 +115,21 @@ public class Entity {
     	}
     }
 
-	public void use(Entity entity){
-		
+    public void checkDrop() {}
+    public void dropItem(Entity droppedItem) {
+    	for (int i = 0; i < gp.obj.length; i++) {
+    		if (gp.obj[i] == null) {
+    			gp.obj[i] = droppedItem;
+    			gp.obj[i].worldX = worldX;	// The d3ad monster's worldX
+    			gp.obj[i].worldY = worldY;	// The d3ad monster's worldY
+    			break;
+    		}
+    	}
+    }
+    
+	public void use(Entity entity) {		
 	}
+	
     public void update () {
     	setAction();
     	collisionOn = false;
@@ -123,7 +138,6 @@ public class Entity {
 		gp.cChecker.checkEntity(this, gp.npc);
 		gp.cChecker.checkEntity(this, gp.monster);
     	boolean contactPlayer = gp.cChecker.checkPlayer(this);
-
 
 		if(this.type == type_monster && contactPlayer == true){
 			damagePlayer(attack);
@@ -167,7 +181,7 @@ public class Entity {
             shotAvailableCounter++;
         }
     }
-    
+        
     public void damagePlayer(int attack) {
 		if(gp.player.invincible == false){
 			//damage can be taken
@@ -245,8 +259,6 @@ public class Entity {
 				}
 			}
 			
-
-
 			if(invincible == true){
 				hpBarOn = true;
 				hpBarcounter = 0;
@@ -256,8 +268,7 @@ public class Entity {
 			if(dying == true){
 				dyingAnimation(g2);
 			} 	
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-
+            g2.drawImage(image, screenX, screenY, null);
 			changeAlpha(g2, 1f);
         }
 	}

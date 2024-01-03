@@ -19,6 +19,7 @@ public class OBJ_Splash_Poison extends Projectile{
         alive = false;
         getImage();
     }
+    
     public void getImage(){
         up1 = setup("res/objects/potion/splash_potion", gp.tileSize, gp.tileSize);
         up2 = setup("res/objects/potion/splash_potion_left1", gp.tileSize, gp.tileSize);

@@ -3,9 +3,12 @@ package main;
 import entity.NPC_Santa;
 import monster.MON_PolarBear;
 import object.OBJ_Axe;
+import object.OBJ_Coin_Gold;
 // import object.*;
 import object.OBJ_Door;
+import object.OBJ_Heart;
 import object.OBJ_Key;
+import object.OBJ_ManaCrystal;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Diamond;
 import object.OBJ_Shield_Metal;
@@ -16,41 +19,48 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setObject () {
+    public void setObject () {	// Maximum: 10 objects
         int i = 0;
         gp.obj[i] = new OBJ_Door(gp);
-        gp.obj[i].worldX = gp.tileSize*26;
-        gp.obj[i].worldY = gp.tileSize*26;
-        i++;
-        gp.obj[i] = new OBJ_Key(gp);
         gp.obj[i].worldX = gp.tileSize*20;
-        gp.obj[i].worldY = gp.tileSize*20;
+        gp.obj[i].worldY = gp.tileSize*23;
         i++;
         gp.obj[i] = new OBJ_Key(gp);
-        gp.obj[i].worldX = gp.tileSize*23;
-        gp.obj[i].worldY = gp.tileSize*26;
-        i++;
-        gp.obj[i] = new OBJ_Key(gp);
-        gp.obj[i].worldX = gp.tileSize*26;
+        gp.obj[i].worldX = gp.tileSize*21;
         gp.obj[i].worldY = gp.tileSize*23;
         i++;
         gp.obj[i] = new OBJ_Shield_Metal(gp);
         gp.obj[i].worldX = gp.tileSize*22;
-        gp.obj[i].worldY = gp.tileSize*20;
+        gp.obj[i].worldY = gp.tileSize*23;
         i++;
         gp.obj[i] = new OBJ_Shield_Diamond(gp);
-        gp.obj[i].worldX = gp.tileSize*24;
-        gp.obj[i].worldY = gp.tileSize*22;
+        gp.obj[i].worldX = gp.tileSize*23;
+        gp.obj[i].worldY = gp.tileSize*23;
         i++;
         gp.obj[i] = new OBJ_Axe(gp);
-        gp.obj[i].worldX = gp.tileSize*25;
-        gp.obj[i].worldY = gp.tileSize*26;
+        gp.obj[i].worldX = gp.tileSize*24;
+        gp.obj[i].worldY = gp.tileSize*23;
         i++;
         gp.obj[i] = new OBJ_Potion_Red(gp);
-        gp.obj[i].worldX = gp.tileSize*27;
-        gp.obj[i].worldY = gp.tileSize*26;
+        gp.obj[i].worldX = gp.tileSize*25;
+        gp.obj[i].worldY = gp.tileSize*23;
         i++;
-
+        gp.obj[i] = new OBJ_Coin_Gold(gp);
+        gp.obj[i].worldX = gp.tileSize*26;
+        gp.obj[i].worldY = gp.tileSize*23;
+        i++;
+        gp.obj[i] = new OBJ_Coin_Gold(gp);
+        gp.obj[i].worldX = gp.tileSize*27;
+        gp.obj[i].worldY = gp.tileSize*23;
+        i++;
+        gp.obj[i] = new OBJ_Heart(gp);
+        gp.obj[i].worldX = gp.tileSize*28;
+        gp.obj[i].worldY = gp.tileSize*23;
+        i++;
+        gp.obj[i] = new OBJ_ManaCrystal(gp);
+        gp.obj[i].worldX = gp.tileSize*29;
+        gp.obj[i].worldY = gp.tileSize*23;
+        i++;
     }
     
     public void setNPC () {
