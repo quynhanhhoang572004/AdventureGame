@@ -12,22 +12,18 @@ public class OBJ_Potion_Red extends Entity{
         this.gp = gp;
         
         type = type_consumable;
-        name = "Red Potion";
-        down1 = setup("res/objects/Potion/potion_red", gp.tileSize, gp.tileSize);
+        name = "Life Potion";
+        down1 = setup("res/objects/potion/potion_red", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nHeal your Life ++ " + value;
     }
 
     public void use(Entity entity){
-
         gp.gameState = gp.dialogueState;
-        gp.ui.currentDialogue = "You drank the " + name + "!\n" + "Life has been Recovered by" + value +  ".";
+        gp.ui.currentDialogue = "You used the " + name + " \nand restore your life by " + value + ".";
         entity.life += value;
         if(gp.player.life > gp.player.maxLife){
             gp.player.life = gp.player.maxLife; 
         }
-        gp.playSE(12);
-
-        
-    }
-    
+        gp.playSE(12);        
+    }    
 }

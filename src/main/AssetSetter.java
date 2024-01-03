@@ -7,6 +7,7 @@ import object.OBJ_Axe;
 import object.OBJ_Door;
 import object.OBJ_Key;
 import object.OBJ_Potion_Red;
+import object.OBJ_Shield_Diamond;
 import object.OBJ_Shield_Metal;
 
 public class AssetSetter {
@@ -36,6 +37,10 @@ public class AssetSetter {
         gp.obj[i] = new OBJ_Shield_Metal(gp);
         gp.obj[i].worldX = gp.tileSize*22;
         gp.obj[i].worldY = gp.tileSize*20;
+        i++;
+        gp.obj[i] = new OBJ_Shield_Diamond(gp);
+        gp.obj[i].worldX = gp.tileSize*24;
+        gp.obj[i].worldY = gp.tileSize*22;
         i++;
         gp.obj[i] = new OBJ_Axe(gp);
         gp.obj[i].worldX = gp.tileSize*25;

@@ -11,6 +11,7 @@ import main.GamePanel;
 import main.KeyHandler;
 import object.OBJ_Boots;
 import object.OBJ_Key;
+import object.OBJ_Rock;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Splash_Poison;
 import object.OBJ_Sword_Normal;
@@ -29,7 +30,7 @@ public class Player extends Entity {
         this.keyH = keyH;
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
-        //SOLIDE AREA
+        //SOLID AREA
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -66,21 +67,20 @@ public class Player extends Entity {
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Splash_Poison(gp);
+//      projectile = new OBJ_Rock(gp);
         attack = getAttack(); //the total attack value is decided by strength + weapon
         defense = getDefense();//the total def value is decided by dexterity + shield
+        maxMana = 4;
+        mana = maxMana;
+        ammo = 10;
     }
     public void setItems(){
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Boots(gp));
         inventory.add(new OBJ_Key(gp));
         
         
-
     }
     public int getAttack(){
         return attack = strength * currentWeapon.attackValue;
@@ -205,19 +205,22 @@ public class Player extends Entity {
             }
             
         }
-        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailablecounter == 30){
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30 && projectile.haveResource(this) == true){
 
             //SET DEFAULT COORDINATE, DIRECTION AND USER
             projectile.set(worldX, worldY, direction, true, this);
+            
+            // SUBSTRACT THE COST (MANA, AMMO,....)
+            projectile.substractResource(this);
 
             //ADD THIS TO THE LIST
             gp.projectileList.add(projectile);
 
-            shotAvailablecounter = 0;
+            shotAvailableCounter = 0;
 
             gp.playSE(13);
             }
-        //this needs to be outside of key if statment!
+        //this needs to be outside of key if statement!
         if(invincible == true){
             invincibleCounter++;
             if(invincibleCounter > 60){
@@ -225,8 +228,8 @@ public class Player extends Entity {
                 invincibleCounter = 0;
             }
         }
-        if(shotAvailablecounter < 30){
-            shotAvailablecounter++;
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
         }
     }
     //showing attacking image 

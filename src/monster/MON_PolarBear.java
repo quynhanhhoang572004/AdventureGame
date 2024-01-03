@@ -4,15 +4,14 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Rock;
 
-public class MON_PolarBear extends Entity{
+public class MON_PolarBear extends Entity {
     GamePanel gp;
-    
+
     public MON_PolarBear(GamePanel gp){
         super(gp);
-
         this.gp = gp;
-
         type = type_monster;
         name = "Polar Bear";
         getImage();
@@ -22,7 +21,7 @@ public class MON_PolarBear extends Entity{
         attack = 2;
         defense = 0;
         exp = 2;
-        
+        projectile = new OBJ_Rock(gp);	
         
         solidArea.x = 6;
         solidArea.y = 6;
@@ -42,32 +41,29 @@ public class MON_PolarBear extends Entity{
        left2 = setup("res/monster/Bear_left3", gp.tileSize, gp.tileSize);
        right1 = setup("res/monster/Bear_right1", gp.tileSize, gp.tileSize);
        right2 = setup("res/monster/Bear_right2", gp.tileSize, gp.tileSize);
-       
     }
 
-    public void setAction(){
+    public void setAction() {
         actionLockCounter++;
-    	if (actionLockCounter == 120) {
-	    	Random random = new Random();
-	    	int i = random.nextInt(100)+1;
-	    	// Pick up a number from 1 to 100
-	    	if (i <= 25) {
-	    		direction = "up";
-	    	}
-	    	if (i > 25 && i <= 50) {
-	    		direction = "down";
-	    	}
-	    	if (i > 50 && i <= 75) {
-	    		direction = "left";
-	    	}
-	    	if (i > 75 && i <= 100) {
-	    		direction = "right";
-	    	}
-	    	actionLockCounter = 0;
-	    }
+        if(actionLockCounter == 120) {
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;
+
+            if (i <= 25) direction = "up";
+            if (i > 25 && i <= 50) direction = "down";
+            if (i > 50 && i <= 75) direction = "left";
+            if (i > 75 && i < 100) direction = "right";
+            actionLockCounter = 0;
+        }
+        int i = new Random().nextInt(100) + 1;
+        if(i > 99 && !projectile.alive && shotAvailableCounter == 30){
+            projectile.set(worldX, worldY, direction, true, this);
+            gp.projectileList.add(projectile);
+            shotAvailableCounter = 0;
+        }
     }
 
-    //when bear gets dmg, it runs away
+    // when bear gets dmg, it runs away
     public void damageReaction(){
         actionLockCounter = 0;
         direction = gp.player.direction;

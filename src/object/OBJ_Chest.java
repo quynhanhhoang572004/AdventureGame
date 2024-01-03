@@ -8,6 +8,6 @@ public class OBJ_Chest extends Entity{
         super(gp);
 
         name = "Chest";
-        down1 = setup("res/objects/chest", gp.tileSize, gp.tileSize); 
+        down1 = setup("res/objects/mapobject/chest", gp.tileSize, gp.tileSize); 
     }
 }

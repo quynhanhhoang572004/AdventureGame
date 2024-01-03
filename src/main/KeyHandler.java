@@ -58,7 +58,6 @@ public class KeyHandler  implements KeyListener, MouseListener {
     @Override
     public void keyTyped(KeyEvent e) {
     }   
- 
     
     // STATUS: KEYPRESSED
     @Override

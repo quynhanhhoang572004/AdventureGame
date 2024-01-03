@@ -15,11 +15,12 @@ import java.awt.image.BufferedImage;
 
 import entity.Entity;
 import object.OBJ_Heart;
+import object.OBJ_ManaCrystal;
 
 public class UI {
 	GamePanel gp;
 	Font maruMonica, purisaB;
-	BufferedImage heart_full, heart_half, heart_blank;
+	BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank;
 	public boolean messageOn = false;
 	ArrayList<String> message = new ArrayList<>();
 	ArrayList<Integer> messageCounter = new ArrayList<>();
@@ -31,7 +32,6 @@ public class UI {
 	public int slotCol = 0;
 	public int slotRow = 0;
 	
-
 	public UI(GamePanel gp) {
 		this.gp = gp;
 		try {
@@ -49,7 +49,9 @@ public class UI {
 		heart_full = heart.image;
 		heart_half = heart.image2;
 		heart_blank = heart.image3;
-		
+		Entity crystal = new OBJ_ManaCrystal(gp);
+		crystal_full = crystal.image;
+		crystal_blank = crystal.image2;
 	}
 
 	public void addMessage(String text) {
@@ -117,10 +119,27 @@ public class UI {
 			i++;
 			x += gp.tileSize;
 		}
+		
+		// DRAW MAX MANA
+		x = (gp.tileSize/2)-5;
+		y = (int)(gp.tileSize*1.5);
+		i = 0;
+		while(i < gp.player.maxMana) {
+			g2.drawImage(crystal_blank, x, y, null);
+			i++;
+			x += 35;
+		}
+		
+		// DRAW MANA
+		x = (gp.tileSize/2)-5;
+		y = (int)(gp.tileSize*1.5);
+		i = 0;
+		while(i < gp.player.mana) {
+			g2.drawImage(crystal_full, x, y, null);
+			i++;
+			x += 35;
+		}
 	}
-
-	
-
 	
 	public void drawMessage(){
 
@@ -264,7 +283,6 @@ public class UI {
 	    drawSubWindow(x, y, width, height);
 	    // SETTING FOR THE DIALOGUE  
 	    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
-	    x += gp.tileSize;
 	    y += gp.tileSize;
 	    FontMetrics fontMetrics = g2.getFontMetrics();
 	    String[] words = currentDialogue.split("\\s+");
@@ -275,14 +293,18 @@ public class UI {
 	            // Add the word to the current line
 	            line.append(word).append(" ");
 	        } else {
-	            g2.drawString(line.toString().trim(), x, y);
+	            // Calculate the starting x-coordinate for the centered text
+	            int centeredX = x + (width - fontMetrics.stringWidth(line.toString().trim())) / 2;
+	            g2.drawString(line.toString().trim(), centeredX, y);
 	            y += 40;  // Vertical spacing
 	            line = new StringBuilder(word + " ");
 	        }
 	    }
 	    // Draw the last line
-	    g2.drawString(line.toString().trim(), x, y);
+	    int centeredX = x + (width - fontMetrics.stringWidth(line.toString().trim())) / 2;
+	    g2.drawString(line.toString().trim(), centeredX, y);
 	}
+
 
 	public void drawCharacterScreen(){
 		//CREATE A FRAME
@@ -304,6 +326,8 @@ public class UI {
 		g2.drawString("Level", textX, textY);
 		textY += lineHeight;
 		g2.drawString("Life", textX, textY);
+		textY += lineHeight;
+		g2.drawString("Mana", textX, textY);
 		textY += lineHeight;
 		g2.drawString("Strength", textX, textY);
 		textY += lineHeight;
@@ -336,6 +360,11 @@ public class UI {
 		textY += lineHeight;
 
 		value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
+		textX = getXforAlignToRightText(value, tailX);
+		g2.drawString(value, textX, textY);
+		textY += lineHeight;
+		
+		value = String.valueOf(gp.player.mana + "/" + gp.player.maxMana);
 		textX = getXforAlignToRightText(value, tailX);
 		g2.drawString(value, textX, textY);
 		textY += lineHeight;

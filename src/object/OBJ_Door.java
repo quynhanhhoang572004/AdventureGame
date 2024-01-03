@@ -11,7 +11,7 @@ public class OBJ_Door extends Entity{
         super(gp);
     
         name = "Door";
-        down1 = setup("res/objects/door", gp.tileSize, gp.tileSize);
+        down1 = setup("res/objects/mapobject/door", gp.tileSize, gp.tileSize);
         collision = true;   // The player cannot go though this object
 
         solidArea.x = 0;

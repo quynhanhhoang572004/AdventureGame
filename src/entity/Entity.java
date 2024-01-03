@@ -40,20 +40,18 @@ public class Entity {
 	public int spriteCounter = 0;
 	public int actionLockCounter = 0;
 	public int invincibleCounter = 0;
-	public int shotAvailablecounter = 0;
+	public int shotAvailableCounter = 0;
 	public int dyingCounter = 0;
 	public int hpBarcounter = 0;
 	
-
-
 	//CHARACTER ATTRIBUTES
-	 
 	public String name;
 	public int speed;
 	public int maxLife;
     public int life;
 	public int maxMana;
-	public int Mana;
+	public int mana;
+	public int ammo;
 	public int level;
 	public int strength;
 	public int dexterity;
@@ -73,7 +71,7 @@ public class Entity {
 	public int useCost;
 	
 	//TYPE
-	public int type;// like: 0 for player, 1 for npc, 2 for monster or sth idc, so that we can make phân loại for each type
+	public int type; // 0 for player, 1 for npc, 2 for monster (for example), so that we can make classifications for each type
 	public final int type_player = 0;
 	public final int type_npc = 1;
 	public final int type_monster = 2;
@@ -128,18 +126,7 @@ public class Entity {
 
 
 		if(this.type == type_monster && contactPlayer == true){
-			if(gp.player.invincible == false){
-				//damage can be taken
-				gp.playSE(6);
-
-				int damage = attack - gp.player.defense;
-                if(damage < 0){
-                    damage = 0;
-                }
-
-				gp.player.life -= damage;
-				gp.player.invincible = true;
-			}
+			damagePlayer(attack);
 		}
     	
         // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
@@ -176,6 +163,24 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
+        if(shotAvailableCounter < 30){
+            shotAvailableCounter++;
+        }
+    }
+    
+    public void damagePlayer(int attack) {
+		if(gp.player.invincible == false){
+			//damage can be taken
+			gp.playSE(6);
+
+			int damage = attack - gp.player.defense;
+            if(damage < 0){
+                damage = 0;
+            }
+
+			gp.player.life -= damage;
+			gp.player.invincible = true;
+		}
     }
     
 	public void draw(Graphics2D g2) {		
