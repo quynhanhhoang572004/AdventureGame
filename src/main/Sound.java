@@ -10,13 +10,13 @@ public class Sound {
 	File soundFile[] = new File[30];
 	
 	public Sound() {
-		soundFile[0] = new File("res/sound/BackgroundMusic/Cats.wav");	
 		// getClass().getResource will cause errors since this structure is old
+		soundFile[0] = new File("res/sound/BackgroundMusic/Cats.wav");	
 		soundFile[1] = new File("res/sound/coin.wav");
 		soundFile[2] = new File("res/sound/powerup.wav");
 		soundFile[3] = new File("res/sound/unlock.wav");
 		soundFile[4] = new File("res/sound/fanfare.wav");
-		soundFile[5] = new File("res/sound/Sword/ToySword.wav");
+		soundFile[5] = new File("res/sound/Sword/KatanaHit.wav");
 		soundFile[6] = new File("res/sound/OOF.wav");
 		soundFile[7] = new File("res/sound/bear_polar.wav");
 		soundFile[8] = new File("res/sound/Rank_up.wav");
@@ -26,6 +26,7 @@ public class Sound {
 		soundFile[12] = new File("res/sound/Option/Energy_boost.wav");
 		soundFile[13] = new File("res/sound/Potion/ThrowNade.wav");
 		soundFile[14] = new File("res/sound/Potion/Potion_break.wav");
+		soundFile[15] = new File("res/sound/cuttree.wav");
 	}
 	
 	public void setFile(int i) {

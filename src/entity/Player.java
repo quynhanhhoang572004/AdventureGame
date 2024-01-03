@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Axe;
 import object.OBJ_Boots;
 import object.OBJ_Key;
 import object.OBJ_Rock;
@@ -65,7 +66,8 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        currentWeapon = new OBJ_Sword_Normal(gp);
+     	currentWeapon = new OBJ_Sword_Normal(gp);
+//      currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Splash_Poison(gp);
 //      projectile = new OBJ_Rock(gp);
@@ -168,7 +170,9 @@ public class Player extends Entity {
             // CHECK EVENT
             gp.eHandler.checkEvent();
         	
-            
+            // CHECK INTERACTIVE TILE COLLISION
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+                                                                        
             // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
             //In order not to let player moves while pressing feature key, add it in the if condition \/
             if(collisionOn == false && keyH.enterPressed == false && keyH.leftMouse == false && keyH.FPressed == false 
@@ -192,7 +196,6 @@ public class Player extends Entity {
             gp.keyH.enterPressed = false;
             gp.keyH.leftMouse = false;
             gp.keyH.FPressed = false;
-            
             
             spriteCounter++;
             if(spriteCounter > 10){
@@ -268,7 +271,10 @@ public class Player extends Entity {
             //check monster collision with the updated worldX, Y, solidArea
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex, attack);
-
+            
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            damageInteractiveTile(iTileIndex);
+            
             //after checking the collison, restore the original data
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -298,7 +304,7 @@ public class Player extends Entity {
 	            if(inventory.size() != maxInventorySize){
 	                inventory.add(gp.obj[i]);
 	                gp.playSE(1);
-	                text = "Got a "+ gp.obj[i].name + "!";	
+	                text = "Got a " + gp.obj[i].name + "!";	
 	            }   
 	            else {
 	                	text = "You cannot carry any more!";
@@ -338,8 +344,7 @@ public class Player extends Entity {
 
                 life -= damage;
                 invincible = true;
-            }
-            
+            }            
         }
     }
 
@@ -363,7 +368,7 @@ public class Player extends Entity {
                     gp.playSE(7);
                     gp.monster[i].dying = true;
                     gp.ui.addMessage("Killed the " + gp.monster[i].name + "!");
-                    gp.ui.addMessage("Exp +" + gp.monster[i].exp);
+                    gp.ui.addMessage("Exp + " + gp.monster[i].exp);
                     exp += gp.monster[i].exp;
                     checkLevelUp();
                 }
@@ -375,7 +380,7 @@ public class Player extends Entity {
         if(exp >= nextLevelExp){
             level++;
             nextLevelExp = nextLevelExp*2;
-            maxLife +=2;
+            maxLife += 2;
             strength++;
             dexterity++;
             attack = getAttack();
@@ -383,10 +388,22 @@ public class Player extends Entity {
 
             gp.playSE(8);
             gp.gameState =  gp.dialogueState;
-            gp.ui.currentDialogue = "Level up: " + level +"\n Increase strength";
+            gp.ui.currentDialogue = "Level up: " + level +"\n You feel stronger";
         }
     }
 
+    public void damageInteractiveTile(int i) {
+    	if (i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true
+    		&& gp.iTile[i].invincible == false) {
+    		gp.iTile[i].life--;
+    		gp.iTile[i].playSE();
+    		gp.iTile[i].invincible = true;
+    		if(gp.iTile[i].life == 0) {
+    		gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+    	}    	    	
+    }
+}
+    
     public void selectItem(){
         int itemIndex = gp.ui.getItemIndexOnSlot();
         if(itemIndex < inventory.size()){
