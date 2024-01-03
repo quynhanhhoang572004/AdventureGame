@@ -5,10 +5,10 @@ import main.GamePanel;
 
 public class OBJ_Splash_Poison extends Projectile{
     GamePanel gp;
+
     public OBJ_Splash_Poison(GamePanel gp){
         super(gp);
         this.gp =gp;
-
         name = "Poison Splash Potion";
         speed = 5;
         maxLife = 80;
@@ -17,17 +17,16 @@ public class OBJ_Splash_Poison extends Projectile{
         useCost = 1;
         alive = false;
         getImage();
-
     }
     public void getImage(){
-        up1 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        up2 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        down1 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        down2 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        left1 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        left2 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        right1 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
-        right2 = setup("res/objects/Potion/splash_poison", gp.tileSize, gp.tileSize);
+        up1 = setup("res/objects/Potion/splash_potion", gp.tileSize, gp.tileSize);
+        up2 = setup("res/objects/Potion/splash_potion_left1", gp.tileSize, gp.tileSize);
+        down1 = setup("res/objects/Potion/splash_potion_down1", gp.tileSize, gp.tileSize);
+        down2 = setup("res/objects/Potion/splash_potion_down2", gp.tileSize, gp.tileSize);
+        left1 = setup("res/objects/Potion/splash_potion", gp.tileSize, gp.tileSize);
+        left2 = setup("res/objects/Potion/splash_potion_left1", gp.tileSize, gp.tileSize);
+        right1 = setup("res/objects/Potion/splash_potion", gp.tileSize, gp.tileSize);
+        right2 = setup("res/objects/Potion/splash_potion_left1", gp.tileSize, gp.tileSize);
         
 
     }

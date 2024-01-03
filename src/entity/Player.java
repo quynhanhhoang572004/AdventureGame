@@ -171,7 +171,8 @@ public class Player extends Entity {
             
             // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
             //In order not to let player moves while pressing feature key, add it in the if condition \/
-            if(collisionOn == false && keyH.enterPressed == false && keyH.leftMouse == false && keyH.FPressed == false){
+            if(collisionOn == false && keyH.enterPressed == false && keyH.leftMouse == false && keyH.FPressed == false 
+                && keyH.shotKeyPressed == false){
                 switch(direction){
                     case "up":
                         worldY -= speed; // X values increases to the right; Y values increases as they go down
@@ -203,17 +204,20 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-            if(gp.keyH.shotKeyPressed == true && projectile.alive == false){
-
-                //SET DEFAULT COORDINATE, DIRECTION AND USER
-                projectile.set(worldX, worldY, direction, true, this);
-
-                //ADD THIS TO THE LIST
-                gp.projectileList.add(projectile);
-
-                gp.playSE(13);
-            }
+            
         }
+        if(gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailablecounter == 30){
+
+            //SET DEFAULT COORDINATE, DIRECTION AND USER
+            projectile.set(worldX, worldY, direction, true, this);
+
+            //ADD THIS TO THE LIST
+            gp.projectileList.add(projectile);
+
+            shotAvailablecounter = 0;
+
+            gp.playSE(13);
+            }
         //this needs to be outside of key if statment!
         if(invincible == true){
             invincibleCounter++;
@@ -221,6 +225,9 @@ public class Player extends Entity {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(shotAvailablecounter < 30){
+            shotAvailablecounter++;
         }
     }
     //showing attacking image 
@@ -251,7 +258,7 @@ public class Player extends Entity {
             solidArea.height = attackArea.height;
             //check monster collision with the updated worldX, Y, solidArea
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             //after checking the collison, restore the original data
             worldX = currentWorldX;
@@ -318,7 +325,7 @@ public class Player extends Entity {
         }
     }
 
-    public void damageMonster(int i){
+    public void damageMonster(int i, int attack){
         if(i != 999){
             if(gp.monster[i].invincible == false){
                 gp.playSE(7);

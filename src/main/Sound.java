@@ -24,8 +24,8 @@ public class Sound {
 		soundFile[10] = new File("res/sound/Option/StoreOpen.wav");
 		soundFile[11] = new File("res/sound/Option/EquipAttach.wav");
 		soundFile[12] = new File("res/sound/Option/Energy_boost.wav");
-		soundFile[13] = new File("res/sound/Potion/ThrowNade.wave");
-		soundFile[14] = new File("res/sound/Potion/Potion_break.wave");
+		soundFile[13] = new File("res/sound/Potion/ThrowNade.wav");
+		soundFile[14] = new File("res/sound/Potion/Potion_break.wav");
 	}
 	
 	public void setFile(int i) {
