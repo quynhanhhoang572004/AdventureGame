@@ -1,6 +1,5 @@
 package entity;
 
-
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
