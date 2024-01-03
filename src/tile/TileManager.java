@@ -20,7 +20,6 @@ public class TileManager {
 
     public TileManager(GamePanel gp){
         this.gp = gp;
-
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
@@ -36,7 +35,6 @@ public class TileManager {
         setup(3, "wall", true);
         setup(4, "pinetree_snowpath", true);
         setup(5, "rock1", true);
-        setup(6, "damagepit", true);
     }
 
     public void setup(int index, String imagePath, boolean collision) {
@@ -97,8 +95,7 @@ public class TileManager {
             	worldCol++;
         
             if(worldCol == gp.maxWorldCol){
-                worldCol = 0;
-                
+                worldCol = 0;                
                 worldRow++;
                 
             }

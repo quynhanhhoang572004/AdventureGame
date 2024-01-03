@@ -3,6 +3,7 @@ package main;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
+import tile_interactive.InteractiveTile;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -53,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public Entity npc[] = new Entity[10];
     //Set the monster
     public Entity monster[] = new Entity[20];
+    public InteractiveTile iTile[] = new InteractiveTile[50];
     //Projectile List
     public ArrayList<Entity> projectileList = new ArrayList<>();     
     //Entity List
@@ -79,8 +81,10 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     }
 
     public void setupGame () {
+    	aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
+        aSetter.setInteractiveTile();
         // playMusic(0);
         gameState = titleState;
     }
@@ -153,15 +157,19 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
                     }
                 }
             }
-        }
-        
+            for (int i = 0; i < iTile.length; i++) {
+           	 if(iTile[i] != null) {
+           		 iTile[i].update();
+           	 }
+           }
+        }        
         if (gameState == pauseState){
             // Do nothing
         }
     }
 
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g); // GamePanel means the subclass of JPanel
         Graphics2D g2 =(Graphics2D)g; 
         //Graphics2D class extends the Graphics class to provide more sophisticated control over geometry...
@@ -179,12 +187,18 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         }
         
         // OTHERS
-        else {
-        	
+        else {        	
             // TILE
             tileM.draw(g2);
-
-            //ADD ENTITY TO THE LIST
+            
+            // INTERACTIVE TILE
+            for(int i = 0; i < iTile.length; i++) {
+            	if(iTile[i] != null) {
+            		iTile[i].draw(g2);
+            	}
+            }
+            
+            // ADD ENTITY TO THE LIST
             entityList.add(player);
             //for entity of npc
             for(int i = 0; i < npc.length; i++){
@@ -210,7 +224,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
                     entityList.add(projectileList.get(i));
                 }
             }
-            //SORT
+            // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
 
                 @Override
@@ -262,9 +276,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             g2.drawString("Draw Time: " + passed, x, y);
         
         }
-
-
-
+        
         g2.dispose();
     }
     

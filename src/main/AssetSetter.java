@@ -12,6 +12,7 @@ import object.OBJ_ManaCrystal;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Diamond;
 import object.OBJ_Shield_Metal;
+import tile_interactive.IT_DryTree;
 
 public class AssetSetter {
     GamePanel gp;
@@ -70,7 +71,6 @@ public class AssetSetter {
     }
 
     public void setMonster(){
-
         int i = 0;
         gp.monster[i] = new MON_PolarBear(gp);
         gp.monster[i].worldX = gp.tileSize * 23;
@@ -88,6 +88,18 @@ public class AssetSetter {
         gp.monster[i].worldX = gp.tileSize * 16;
         gp.monster[i].worldY = gp.tileSize * 20;
         i++;
+    }
+    
+    public void setInteractiveTile() {
+    	int i = 0;
+    	gp.iTile[i] = new IT_DryTree(gp, 25, 25); i++;
+    	gp.iTile[i] = new IT_DryTree(gp, 26, 25); i++;
+	    gp.iTile[i] = new IT_DryTree(gp, 27, 25); i++;	
+	    gp.iTile[i] = new IT_DryTree(gp, 28, 25); i++;	 
+	    gp.iTile[i] = new IT_DryTree(gp, 29, 25); i++;	
+	    gp.iTile[i] = new IT_DryTree(gp, 30, 25); i++;	
+	    gp.iTile[i] = new IT_DryTree(gp, 31, 25); i++;
+	    gp.iTile[i] = new IT_DryTree(gp, 32, 25); i++;
 
     }
 }
