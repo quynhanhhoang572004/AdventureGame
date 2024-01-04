@@ -1,0 +1,22 @@
+@startuml entity
+class Entity {
+    -worldX: int
+    -worldY: int
+    -speed: int
+    -up1: BufferedImage
+    -up2: BufferedImage
+    -down1: BufferedImage
+    -down2: BufferedImage
+    -left1: BufferedImage
+    -left2: BufferedImage
+    -right1: BufferedImage
+    -right2: BufferedImage
+    -direction: String
+    -spriteCounter: int
+    -spriteNum: int
+    -solidArea: Rectangle
+    -solidAreaDefaultX: int
+    -solidAreaDefaultY: int
+    -collisionOn: boolean
+}
+@enduml

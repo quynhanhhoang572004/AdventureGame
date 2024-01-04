@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+
 import entity.Player;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
@@ -10,6 +11,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,21 +23,29 @@ import javax.swing.JPanel;
 
 // @SuppressWarnings("serial"): This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
 @SuppressWarnings("serial")
-public class GamePanel extends JPanel implements Runnable {  // JPanel is the subclass of GamePanel
-	
-	// GAME SETTING
-    final int originalTileSize = 16; 						 //16x16: Tile standard for 2d game
+
+public class GamePanel extends JPanel implements Runnable {  // JPanel is the subclass of GamePanel	
+	// SCREEN SETTING
+    final int originalTileSize = 16; 						 // 16x16: Tile standard for 2d game
     final int scale = 3;
-    public final int tileSize = originalTileSize * scale;	 // 48x48 pixels on the screen
-    public final int maxScreenCol = 16;
+    public final int tileSize = originalTileSize * scale;	 // 48x48 tile
+    public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
-    public final int screenWidth = tileSize * maxScreenCol;  // 768 pixels
+    
+    // WINDOW MODE
+    public final int screenWidth = tileSize * maxScreenCol;  // 960 pixels
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
     
-    //WORLD MAP SETTING
+    // WORLD MAP SETTING
     public final int maxWorldCol = 50; // Map width (equals to the X coordinate of the matrix in worldV2.txt)
     public final int maxWorldRow = 50; // Map height (equals to the Y coordinate of the matrix in worldV2.txt)
 
+    // FULLSCREEN MODIFICATIONS
+    int screenWidth2 = screenWidth;
+    int screenHeight2 = screenHeight;
+    BufferedImage tempScreen;
+    Graphics2D g2;
+    
     //FPS: Frame per second
     int FPS = 60;
     TileManager tileM = new TileManager(this);
@@ -71,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public final int dialogueState = 3;
     public final int characterState = 4;
     
-
+    private boolean fullScreenOn;
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight)); // set the size for the class (JPanel)
@@ -87,45 +99,52 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
-        // playMusic(0);
+//      playMusic(0);
         gameState = titleState;
+        tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+        g2 = (Graphics2D)tempScreen.getGraphics();
+        setFullScreen();
     }
 
+    public void setFullScreen() {
+    	// GET LOCAL SCREEN DEVICE
+    	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    	GraphicsDevice gd = ge.getDefaultScreenDevice(); 
+    	gd.setFullScreenWindow(Main.window);
+    	
+    	// GET FULLSCREEN WIDTH AND HEIGHT
+    	screenWidth2 = Main.window.getWidth();
+    	screenHeight2 = Main.window.getHeight();
+    }
+    
     public void startGameThread(){
         gameThread = new Thread(this); // Passing game panel to this thread constructor
         gameThread.start();
     }
 
+    // GAME LOOP
     @Override
     public void run() {
-        double drawInterval = 1000000000 / FPS; // this means we draw the screen every 0.016 seconds so we can draw the screen 60 times per second
-        double nextDrawTime = System.nanoTime() + drawInterval; // the next drawtime will be plus this drawInterval
-        while(gameThread!=null){
-            //System.out.println("The game loop is running");
-            //1 UPDATE: Update information such as character positions
-            update();
-            //2 DRAW : Draw the screen with the updated information
-            repaint();// the how we call paint component method
+        double drawInterval = 1_000_000_000 / FPS;
+        double delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
 
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime / 1000000; // Convert from nano to mili
+        while (gameThread != null) {
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
 
-                if ( remainingTime < 0){
-                    remainingTime = 0;
-                }
-                //  This thread doesn't need to sleep since we already used to allocated time
-                Thread.sleep((long) remainingTime); // "Long" only accept milisecond
-
-                nextDrawTime += drawInterval;
-                // A new drawtime will be repeated after a period
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+            if (delta >= 1) {
+                update();
+                drawToTempScreen();
+                drawToScreen();
+                delta--;
             }
         }
     }
     
-    public void update(){
+    public void update() {
         if (gameState == playState) {        	
         	// PLAYER
             player.update();
@@ -184,24 +203,16 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         }
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g); // GamePanel means the subclass of JPanel
-        Graphics2D g2 =(Graphics2D)g; 
-        //Graphics2D class extends the Graphics class to provide more sophisticated control over geometry...
-        // This means we changes this graphics g to this Graphics2D class
-
-        //DEBUG
+    public void drawToTempScreen() {
+    	 // DEBUG
         long drawStart = 0;
         if (KeyHandler.showDebugText == true) {
         drawStart = System.nanoTime();
         }
-
-         //TITLE SCREEN
+         // TITLE SCREEN
         if (gameState == titleState){
             ui.draw(g2);
-        }
-        
+        } 
         // OTHERS
         else {        	
             // TILE
@@ -249,14 +260,11 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             
             // SORT
             Collections.sort(entityList, new Comparator<Entity>() {
-
                 @Override
                 public int compare(Entity e1, Entity e2) {
                     int result = Integer.compare(e1.worldY, e2.worldY);
-                    return result;
-                    
-                }
-                
+                    return result;                    
+                }                
             });
 
             //DRAW ENTITY
@@ -267,7 +275,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             for(int i = 0; i < entityList.size(); i++){
                 entityList.clear();
             }
-            // UI
+            //UI
             ui.draw(g2);
                     
         }
@@ -296,13 +304,16 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             g2.drawString("Row " + (player.worldY + player.solidArea.y)/tileSize, x, y);
             y += lineHeight;
 
-            g2.drawString("Draw Time: " + passed, x, y);
-        
+            g2.drawString("Draw Time: " + passed, x, y);        
         }
-        
-        g2.dispose();
     }
     
+    public void drawToScreen() {
+        Graphics g = getGraphics();   
+        g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+        g.dispose();       
+    }
+       
     // MUSIC AND SOUND PLAYING
     public void playMusic (int i) {		// Background music
     	music.setFile(i);
