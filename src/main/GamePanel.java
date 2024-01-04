@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 // @SuppressWarnings("serial"): This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
-@SuppressWarnings("serial")
+   @SuppressWarnings("serial")
 
 public class GamePanel extends JPanel implements Runnable {  // JPanel is the subclass of GamePanel	
 	// SCREEN SETTING
@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     int screenHeight2 = screenHeight;
     BufferedImage tempScreen;
     Graphics2D g2;
+    public boolean fullScreenOn = false;
     
     //FPS: Frame per second
     int FPS = 60;
@@ -82,9 +83,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int characterState = 4;
+    public final int optionsState = 5;
     
-    private boolean fullScreenOn;
-
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight)); // set the size for the class (JPanel)
         this.setBackground(Color.black);
