@@ -31,6 +31,8 @@ public class Sound {
 		soundFile[13] = new File("res/sound/Potion/ThrowNade.wav");
 		soundFile[14] = new File("res/sound/Potion/Potion_break.wav");
 		soundFile[15] = new File("res/sound/cuttree.wav");
+		soundFile[16] = new File("res/sound/gameover.wav");
+		soundFile[17] = new File("res/sound/stairs.wav");
 	}
 	
 	public void setFile(int i) {

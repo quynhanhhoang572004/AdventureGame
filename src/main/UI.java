@@ -85,14 +85,18 @@ public class UI {
 			drawPlayerLife();
 			drawDialogueScreen();
 		}
-		//CHARACTER STATE
+		// CHARACTER STATE
 		if(gp.gameState == gp.characterState){
 			drawCharacterScreen();
 			drawInventory();
 		}
-		//OPTIONS STATE
+		// OPTIONS STATE
 		if(gp.gameState == gp.optionsState){
 			drawOptionsScreen();
+		}
+		// GAME OVER STATE
+		if(gp.gameState == gp.gameOverState){
+			drawGameOverScreen();
 		}
 	}
 	
@@ -428,7 +432,6 @@ public class UI {
 		int slotY = slotYstart;
 		int slotSize = gp.tileSize;
 
-
 		//DRAW PLAYER'S ITEMS
 		for(int i = 0; i < gp.player.inventory.size(); i++){
 
@@ -447,7 +450,6 @@ public class UI {
 			}
 		}
 
-
 		//CURSOR
 		int cursorX = slotXstart + (gp.tileSize * slotCol);
 		int cursorY = slotYstart + (gp.tileSize * slotRow);
@@ -463,10 +465,9 @@ public class UI {
 		int dFrameX = frameX;
 		int dFrameY = frameY + frameHeight;
 		int dFrameWidth = frameWidth;
-		int dFrameHeight = gp.tileSize*3;
-		
+		int dFrameHeight = gp.tileSize*3;		
 
-		//DRAW  DESCRIPTION TEXT
+		//DRAW DESCRIPTION TEXT
 		int textX = dFrameX + 20;
 		int textY = dFrameY + gp.tileSize;
 		g2.setFont(g2.getFont().deriveFont(28F));
@@ -732,6 +733,46 @@ public class UI {
 				subState = 0;
 				commandNum = 4;
 			}
+		}
+	}
+	
+	public void drawGameOverScreen() {
+		g2.setColor(new Color(0, 0, 0, 150));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		
+		int x;
+		int y;
+		String text;
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
+		text = "Game Over";
+		
+		// SHADOW
+		g2.setColor(Color.black);
+		x = getXforCenteredObject(text);
+		y = gp.tileSize * 4;
+		g2.drawString(text, x, y);
+		
+		// MAIN
+		g2.setColor(Color.white);
+		g2.drawString(text, x-4, y-4);
+		
+		// OPTION 1: RETRY
+		g2.setFont(g2.getFont().deriveFont(50f));
+		text = "Retry";
+		x = getXforCenteredObject(text);
+		y += gp.tileSize * 4; 
+		g2.drawString(text, x, y);
+		if (commandNum == 0) {
+			g2.drawString(">", x-40, y);
+		}
+		
+		// OPTION 2: BACK TO TITLE SCREEN
+		text = "Quit";
+		x = getXforCenteredObject(text);
+		y += 55;
+		g2.drawString(text, x, y);
+		if (commandNum == 1) {
+			g2.drawString(">", x-40, y);
 		}
 	}
 }

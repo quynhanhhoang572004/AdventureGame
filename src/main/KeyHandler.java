@@ -94,7 +94,38 @@ public class KeyHandler  implements KeyListener, MouseListener {
 		else if(gp.gameState == gp.optionsState){
 			optionsState(code);
 		}    
+		//GAMEOVER STATE
+		else if(gp.gameState == gp.gameOverState){
+			gameOverState(code);
+		}    
 	}
+    
+    public void gameOverState(int code) {
+    	if (code == KeyEvent.VK_W) {
+    		gp.ui.commandNum--;
+    		if (gp.ui.commandNum < 0) {
+    			gp.ui.commandNum = 1;
+    		}
+    		gp.playSE(9);
+    	} 
+    	if (code == KeyEvent.VK_S) {
+    		gp.ui.commandNum++;
+    		if (gp.ui.commandNum > 1) {
+    			gp.ui.commandNum = 0;
+    		}
+    		gp.playSE(9);
+    	}
+    	if (code == KeyEvent.VK_ENTER) {
+    		if (gp.ui.commandNum == 0) {
+    			gp.gameState = gp.playState;
+    			gp.retry();
+    			gp.playMusic(0);
+    		} else if (gp.ui.commandNum == 1) {
+    			gp.gameState = gp.titleState;
+    			gp.restart();
+    		}
+    	}
+    }
     
 	public void titleState(int code){      
 	    if(gp.ui.titleScreenState  ==  0){
@@ -204,7 +235,10 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	        }           
 	    }
 		if(code  ==  KeyEvent.VK_N){
-			gp.tileM.loadMap("maps/worldV2.txt");
+			switch (gp.currentMap) { 
+			case 0: gp.tileM.loadMap("maps/worldV2.txt", 0); break;
+			case 1: gp.tileM.loadMap("maps/interior01.txt", 1); break;
+			}
 		}
 	}
 	public void pauseState(int code){

@@ -16,14 +16,17 @@ import main.UtilityTool;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[10];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        tile = new Tile[50];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/worldV2.txt");
+        loadMap("maps/worldV2.txt", 0);
+        						 // 0: map number (order of the map)
+        loadMap("maps/interior01.txt", 1);
+        						 // this map is for the test case for the code as mentioned (this map is from the author)
     }
 
     public void getTileImage(){
@@ -35,6 +38,13 @@ public class TileManager {
         setup(3, "wall", true);
         setup(4, "pinetree_snowpath", true);
         setup(5, "rock1", true);
+        
+        // TEST CASE (I USE AUTHOR'S TILE FOR THIS, WILL CHANGE IN THE FUTURE FOR OUR MAP)
+        // SAMPLE TEST CASE MAP: interior01.txt
+        setup(6, "033", false);		// Hut.png (033.png)
+        setup(7, "034", false);		// Floor01.png (034.png)
+        setup(8, "035", true);		// Table01.png (035.png)
+        
     }
 
     public void setup(int index, String imagePath, boolean collision) {
@@ -50,18 +60,20 @@ public class TileManager {
         }
     }
     
-    public void loadMap(String filePath){
+    public void loadMap(String filePath, int map){
         try{
             InputStream is = new FileInputStream(new File(filePath));
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            
             int col = 0;
             int row = 0;
+            
             while(col < gp.maxWorldCol && row < gp.maxWorldRow){
                 String line = br.readLine();
                 String  numbers[] = line.split(" ");
                 while(col < gp.maxWorldCol){
                     int num = Integer.parseInt(numbers[col]);
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if(col == gp.maxWorldCol){
@@ -70,7 +82,7 @@ public class TileManager {
                 }
             }
             br.close();
-        }catch(Exception e){
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
@@ -79,7 +91,7 @@ public class TileManager {
         int worldRow = 0;
 
         while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;

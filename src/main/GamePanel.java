@@ -39,6 +39,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     // WORLD MAP SETTING
     public final int maxWorldCol = 50; // Map width (equals to the X coordinate of the matrix in worldV2.txt)
     public final int maxWorldRow = 50; // Map height (equals to the Y coordinate of the matrix in worldV2.txt)
+    public final int maxMap = 10;
+    public int currentMap = 0;
 
     // FULLSCREEN MODIFICATIONS
     int screenWidth2 = screenWidth;
@@ -63,13 +65,13 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     // ENTITY AND OBJECTS
     public Player player = new Player(this, keyH);
     // Set objects' default positions (the inventory bar)
-    public Entity obj[] = new Entity[20]; 
+    public Entity obj[][] = new Entity[maxMap][20]; 
     // Set the NPC 
-    public Entity npc[] = new Entity[10];
+    public Entity npc[][] = new Entity[maxMap][10];
     //Set the monster
-    public Entity monster[] = new Entity[20];
+    public Entity monster[][] = new Entity[maxMap][20];
     //InteractiveTile List
-    public InteractiveTile iTile[] = new InteractiveTile[50];
+    public InteractiveTile iTile[][] = new InteractiveTile[maxMap][50];
     //Projectile List
     public ArrayList<Entity> projectileList = new ArrayList<>();     
     //Entity List
@@ -85,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public final int dialogueState = 3;
     public final int characterState = 4;
     public final int optionsState = 5;
+    public final int gameOverState = 6;
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight)); // set the size for the class (JPanel)
@@ -108,7 +111,25 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         setFullScreen();
      }
 }
-
+    
+    public void retry() {
+    	player.setDefaultPositions();
+    	player.restoreLifeAndMana();
+    	aSetter.setNPC();
+    	aSetter.setMonster();
+    }
+    
+    public void restart() {
+    	player.setDefaultValues();
+    	player.setDefaultPositions();
+    	player.restoreLifeAndMana();
+    	player.setItems();
+    	aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setMonster();
+        aSetter.setInteractiveTile();
+    }
+    
     public void setFullScreen() {
     	// GET LOCAL SCREEN DEVICE
     	GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -153,21 +174,21 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             player.update();
             
             // NPC
-            for (int i = 0; i < npc.length; i++) {
-            	if(npc[i] != null) {
-            		npc[i].update();
+            for (int i = 0; i < npc[1].length; i++) {
+            	if(npc[currentMap][i] != null) {
+            		npc[currentMap][i].update();
             	}
             }
             
             // MONSTER
-            for(int i = 0; i < monster.length; i++){
-                if(monster[i] != null){
-                    if(monster[i].alive == true && monster[i].dying == false){
-                        monster[i].update();
+            for(int i = 0; i < monster[1].length; i++){
+                if(monster[currentMap][i] != null){
+                    if(monster[currentMap][i].alive == true && monster[currentMap][i].dying == false){
+                        monster[currentMap][i].update();
                     }
-                    if(monster[i].alive == false){
-                    	monster[i].checkDrop();
-                        monster[i] = null;
+                    if(monster[currentMap][i].alive == false){
+                    	monster[currentMap][i].checkDrop();
+                        monster[currentMap][i] = null;
                     }
                 }
             }
@@ -194,9 +215,9 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
                 }
             }
             
-            for (int i = 0; i < iTile.length; i++) {
-           	 if(iTile[i] != null) {
-           		 iTile[i].update();
+            for (int i = 0; i < iTile[1].length; i++) {
+           	 if(iTile[currentMap][i] != null) {
+           		 iTile[currentMap][i].update();
            	 }
            }
         }        
@@ -222,30 +243,30 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             tileM.draw(g2);
             
             // INTERACTIVE TILE
-            for(int i = 0; i < iTile.length; i++) {
-            	if(iTile[i] != null) {
-            		iTile[i].draw(g2);
+            for(int i = 0; i < iTile[1].length; i++) {
+            	if(iTile[currentMap][i] != null) {
+            		iTile[currentMap][i].draw(g2);
             	}
             }
             
             // ADD ENTITY TO THE LIST
             entityList.add(player);
             //for entity of npc
-            for(int i = 0; i < npc.length; i++){
-                if(npc[i] != null){
-                    entityList.add(npc[i]);
+            for(int i = 0; i < npc[1].length; i++){
+                if(npc[currentMap][i] != null){
+                    entityList.add(npc[currentMap][i]);
                 }
             }
             //for object
-            for(int i = 0; i < obj.length; i++){
-                if(obj[i] != null){
-                    entityList.add(obj[i]);
+            for(int i = 0; i < obj[1].length; i++){
+                if(obj[currentMap][i] != null){
+                    entityList.add(obj[currentMap][i]);
                 }
             }
             //for monster
-            for(int i = 0; i < monster.length; i++){
-                if(monster[i] != null){
-                    entityList.add(monster[i]);
+            for(int i = 0; i < monster[1].length; i++){
+                if(monster[currentMap][i] != null){
+                    entityList.add(monster[currentMap][i]);
                 }
             }
             //for projectile
@@ -295,16 +316,16 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             int y = 100;
             int lineHeight = 20;
 
-            g2.drawString("World X " + player.worldX, x, y);
+            g2.drawString("World X: " + player.worldX, x, y);
             y += lineHeight;
 
-            g2.drawString("World Y " + player.worldY, x, y);
+            g2.drawString("World Y: " + player.worldY, x, y);
             y += lineHeight;
 
-            g2.drawString("Col " + (player.worldX + player.solidArea.x)/tileSize, x, y);
+            g2.drawString("Col(y): " + (player.worldX + player.solidArea.x)/tileSize, x, y);
             y += lineHeight;
 
-            g2.drawString("Row " + (player.worldY + player.solidArea.y)/tileSize, x, y);
+            g2.drawString("Row(x): " + (player.worldY + player.solidArea.y)/tileSize, x, y);
             y += lineHeight;
 
             g2.drawString("Draw Time: " + passed, x, y);        
