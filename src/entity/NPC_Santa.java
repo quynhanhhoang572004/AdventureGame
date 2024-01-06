@@ -9,7 +9,7 @@ public class NPC_Santa extends Entity {
 		super(gp);
 		
 		direction = "down" ;
-		speed = 1;
+		speed = 2;
 		solidArea.x = 8;
         solidArea.y = 10;
         solidArea.width = 32;
@@ -19,8 +19,7 @@ public class NPC_Santa extends Entity {
 		getImage();
 		setDialogue();
 	}
-	
-	
+		
 	// Get the sprite of the NPC
     public void getImage() {
         up1 = setup("res/npc/santa_up1", gp.tileSize, gp.tileSize);
@@ -42,29 +41,39 @@ public class NPC_Santa extends Entity {
     }
     
     public void setAction () {
-    	actionLockCounter++;
-    	if (actionLockCounter == 120) {
-	    	Random random = new Random();
-	    	int i = random.nextInt(100)+1;
-	    	// Pick up a number from 1 to 100
-	    	if (i <= 25) {
-	    		direction = "up";
-	    	}
-	    	if (i > 25 && i <= 50) {
-	    		direction = "down";
-	    	}
-	    	if (i > 50 && i <= 75) {
-	    		direction = "left";
-	    	}
-	    	if (i > 75 && i <= 100) {
-	    		direction = "right";
-	    	}
-	    	actionLockCounter = 0;
-	    }
+    	if (onPath == true) {
+//    		int goalCol = 30;	// Default location (col) for the NPC to find the way back after interacting with the character
+//    		int goalRow = 10;	// Default location (row) for the NPC to find the way back after interacting with the character
+    		// When we want the NPC follows the character:
+    		int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+    		int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+    		searchPath(goalCol, goalRow);    		    		
+    	} else {
+        	actionLockCounter++;
+        	if (actionLockCounter == 120) {
+    	    	Random random = new Random();
+    	    	int i = random.nextInt(100)+1;
+    	    	// Pick up a number from 1 to 100
+    	    	if (i <= 25) {
+    	    		direction = "up";
+    	    	}
+    	    	if (i > 25 && i <= 50) {
+    	    		direction = "down";
+    	    	}
+    	    	if (i > 50 && i <= 75) {
+    	    		direction = "left";
+    	    	}
+    	    	if (i > 75 && i <= 100) {
+    	    		direction = "right";
+    	    	}
+    	    	actionLockCounter = 0;
+    	    }	
+    	}    	    	    	
 	}
     
     public void speak () {
     	// Specific stuff
     	super.speak();
+    	onPath = true;
     }
 }

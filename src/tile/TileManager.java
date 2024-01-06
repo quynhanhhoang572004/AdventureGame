@@ -1,5 +1,6 @@
 package tile;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -12,11 +13,13 @@ import javax.imageio.ImageIO;
 
 import main.GamePanel;
 import main.UtilityTool;
+import entity.Entity;
 
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][][];
+    boolean drawPath = true;
 
     public TileManager(GamePanel gp){
         this.gp = gp;
@@ -108,9 +111,34 @@ public class TileManager {
         
             if(worldCol == gp.maxWorldCol){
                 worldCol = 0;                
-                worldRow++;
-                
+                worldRow++;                
             }
         }
-    }
+        if (drawPath == true) {
+        	g2.setColor(new Color(255, 0, 0, 70));
+        	for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
+                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
+                int screenX = worldX - gp.player.worldX + gp.player.screenX;
+                int screenY = worldY - gp.player.worldY + gp.player.screenY;
+                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+        	}
+        }
+        
+        // If the entity is not the NPC, then we will not draw the fillRect line
+//        Entity entity = new Entity(gp);
+//        int type = 0;
+//        if (type == 1) {
+//            if (drawPath) {
+//                g2.setColor(new Color(255, 0, 0, 70));
+//                for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
+//                    int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+//                    int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
+//                    int screenX = worldX - gp.player.worldX + gp.player.screenX;
+//                    int screenY = worldY - gp.player.worldY + gp.player.screenY;
+//                    g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+//                }
+//            }
+//        }
+    }    
 }

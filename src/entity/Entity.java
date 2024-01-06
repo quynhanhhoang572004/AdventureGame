@@ -36,6 +36,7 @@ public class Entity {
 	public boolean alive = true;
 	public boolean dying = false;
 	public boolean hpBarOn = false;
+	public boolean onPath = false;
 	
 	//COUNTER
 	public int spriteCounter = 0;
@@ -169,23 +170,13 @@ public class Entity {
 
 	}
 	
-	public void use(Entity entity) {		
+	public void use(Entity entity) {	
+		
 	}
 	
     public void update () {
     	setAction();
-    	collisionOn = false;
-    	gp.cChecker.checkTile(this);
-    	gp.cChecker.checkObject(this, false);
-		gp.cChecker.checkEntity(this, gp.npc);
-		gp.cChecker.checkEntity(this, gp.monster);
-		gp.cChecker.checkEntity(this, gp.iTile);
-    	boolean contactPlayer = gp.cChecker.checkPlayer(this);
-
-		if(this.type == type_monster && contactPlayer == true){
-			damagePlayer(attack);
-		}
-    	
+    	checkCollision();    	
         // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
         if(collisionOn == false){
             switch(direction){
@@ -364,5 +355,90 @@ public class Entity {
 	        e.printStackTrace();
 	    }
 	    return image;
+	}
+	
+	public void checkCollision() {
+    	collisionOn = false;
+    	gp.cChecker.checkTile(this);
+    	gp.cChecker.checkObject(this, false);
+		gp.cChecker.checkEntity(this, gp.npc);
+		gp.cChecker.checkEntity(this, gp.monster);
+		gp.cChecker.checkEntity(this, gp.iTile);
+    	boolean contactPlayer = gp.cChecker.checkPlayer(this);
+		if(this.type == type_monster && contactPlayer == true){
+			damagePlayer(attack);
+		}
+	}
+	
+	public void searchPath(int goalCol, int goalRow) {
+		int startCol = (worldX + solidArea.x) / gp.tileSize;
+		int startRow = (worldY + solidArea.y) / gp.tileSize;
+		gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow, this);
+		if (gp.pFinder.search() == true) {
+			// Next worldX and worldY
+			int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
+			int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
+			// Entity's solidArea position
+			int enLeftX = worldX + solidArea.x;
+			int enRightX = worldX + solidArea.x + solidArea.width;
+			int enTopY = worldY + solidArea.y;
+			int enBottomY = worldY + solidArea.y + solidArea.height;
+			
+			if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+				direction = "up";
+			}
+			else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+				direction = "down";
+			}
+			else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
+				// The entity can go either left or right
+				if (enLeftX > nextX) {
+					direction = "left";
+				}
+				if (enLeftX < nextX) {
+					direction = "right";
+				}				
+			}
+			else if (enTopY > nextY && enLeftX > nextX) {
+				// The entity can go either up or left
+				direction = "up";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "left";					
+				}
+			}
+			else if (enTopY > nextY && enLeftX < nextX) {
+				// The entity can go either up or right
+				direction = "up";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "right";					
+				}				
+			}
+			else if (enTopY < nextY && enLeftX > nextX) {
+				// The entity can go either down or left
+				direction = "down";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "left";					
+				}	
+			}
+			else if (enTopY < nextY && enLeftX < nextX) {
+				// The entity can go either down or right
+				direction = "down";
+				checkCollision();
+				if (collisionOn == true) {
+					direction = "right";					
+				}	
+			}	
+			
+			// If the entity reaches the goal, stop the search
+			// (When we want the NPC follows the character, we will disable this case)
+//			int nextCol = gp.pFinder.pathList.get(0).col;
+//			int nextRow = gp.pFinder.pathList.get(0).row;
+//			if (nextCol == goalCol && nextRow == goalRow) {
+//				onPath = false;
+//			}
+		}
 	}
 }

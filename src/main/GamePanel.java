@@ -21,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
+import ai.PathFinder;
+
 // @SuppressWarnings("serial"): This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
    @SuppressWarnings("serial")
 
@@ -51,7 +53,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     
     //FPS: Frame per second
     int FPS = 60;
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
@@ -61,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
     Config config = new Config(this);    
+    public PathFinder pFinder = new PathFinder(this);
 
     // ENTITY AND OBJECTS
     public Player player = new Player(this, keyH);
