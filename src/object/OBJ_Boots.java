@@ -12,6 +12,8 @@ public class OBJ_Boots extends Entity{
         name = "Boots";
         down1 = setup("res/objects/items/socks", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nA Pair of X-mas Boots";
+        
+        price = 10;
     }
 }
 

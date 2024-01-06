@@ -1,6 +1,6 @@
 package main;
 
-import entity.NPC_Santa;
+import entity.*;
 import monster.MON_PolarBear;
 import object.OBJ_Axe;
 import object.OBJ_Coin_Gold;
@@ -66,11 +66,19 @@ public class AssetSetter {
     }
     
     public void setNPC () {
+    	// MAP 1
     	int mapNum = 0;
     	int i = 0;
     	gp.npc[mapNum][i] = new NPC_Santa(gp);
     	gp.npc[mapNum][i].worldX = gp.tileSize * 21;
     	gp.npc[mapNum][i].worldY = gp.tileSize * 21;
+    	
+    	// MAP 2
+    	mapNum = 1;
+    	i = 0;
+    	gp.npc[mapNum][i] = new NPC_Merchant(gp);
+    	gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+    	gp.npc[mapNum][i].worldY = gp.tileSize * 7;
     }
 
     public void setMonster(){

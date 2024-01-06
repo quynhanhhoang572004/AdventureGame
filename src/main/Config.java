@@ -27,11 +27,11 @@ public class Config {
 			bw.newLine();
 			
 			// MUSIC VOLUME
-			bw.write("Music Volume: " + String.valueOf(gp.music.volumeScale));
+			bw.write(String.valueOf(gp.music.volumeScale));
 			bw.newLine();
 			
 			// SFX VOLUME
-			bw.write("SFX Volume: " +String.valueOf(gp.se.volumeScale));
+			bw.write(String.valueOf(gp.se.volumeScale));
 			bw.newLine();
 			
 			bw.close();

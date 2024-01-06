@@ -11,7 +11,9 @@ public class OBJ_Shield_Metal extends Entity {
         name = "Metal Shield";
         down1 = setup("res/objects/shield/shield_metal_test", gp.tileSize, gp.tileSize);
         defenseValue = 2;
-        description = "[" + name + "]\nA Metal Shield with better\nDefense";
+        description = "[" + name + "]\nA Metal Shield with \nbetter Defense";
+        
+        price = 10;
     }
     
 }

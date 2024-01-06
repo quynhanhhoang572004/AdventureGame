@@ -1,10 +1,13 @@
 package main;
 
+import entity.*;
+
 public class EventHandler {
 	GamePanel gp;
 	EventRect eventRect[][][];
 	int previousEventX, previousEventY;
 	boolean canTouchEvent = true;
+	int tempMap, tempCol, tempRow;
 
 	public EventHandler (GamePanel gp) {
 		this.gp = gp;
@@ -49,7 +52,7 @@ public class EventHandler {
 			if (hit(0, 28, 21, "any") == true) {
 				damagePit(gp.dialogueState);
 			}
-			 // (x,y): Coordinate corresponds to the coordinate in worldV2.txt
+			 // (x,y): (col,row): Coordinate corresponds to the coordinate in worldV2.txt
 			else if (hit(0, 36, 15, "any") == true) {
 				healingPool(gp.dialogueState);
 			}
@@ -62,7 +65,10 @@ public class EventHandler {
 			else if (hit(1, 12, 13, "any") == true) {
 				teleport(0, 37, 18);
 			}
-		}						
+			else if (hit(1, 12, 9, "up") == true) {
+				speak(gp.npc[1][0]);
+			}
+		}
 	}
 	
 	public boolean hit(int map, int col, int row, String reqDirection) {
@@ -89,13 +95,25 @@ public class EventHandler {
 	}
 
 	public void teleport(int map, int col, int row){
-		gp.currentMap = map;
-		gp.player.worldX = gp.tileSize * col;
-		gp.player.worldY = gp.tileSize * row;
-		previousEventX = gp.player.worldX;
-		previousEventY = gp.player.worldY;
+		gp.gameState = gp.transitionState;
+		tempMap = map;
+		tempCol = col;
+		tempRow = row;		
+//		gp.currentMap = map;
+//		gp.player.worldX = gp.tileSize * col;
+//		gp.player.worldY = gp.tileSize * row;
+//		previousEventX = gp.player.worldX;
+//		previousEventY = gp.player.worldY;
 		canTouchEvent = false;
 		gp.playSE(17);
+	}
+	
+	public void speak(Entity entity) {
+		if (gp.keyH.enterPressed == true) {
+			gp.gameState = gp.dialogueState;
+			entity.speak();
+			gp.player.attacking = false;			
+		}
 	}
 	
 	public void damagePit(int gameState) {

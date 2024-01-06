@@ -23,8 +23,6 @@ public class Player extends Entity {
     public final int screenY;
     public String hasKey;
     int standCounter = 0;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH){
     	super(gp);
@@ -67,7 +65,8 @@ public class Player extends Entity {
         dexterity = 1;//the more dexterity player has, the more damage he can knock the dmg from mobs
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+//       coin = 0;
+        coin = 500;
      	currentWeapon = new OBJ_Sword_Normal(gp);
 //      currentWeapon = new OBJ_Axe(gp);
         currentShield = new OBJ_Shield_Wood(gp);
@@ -254,7 +253,7 @@ public class Player extends Entity {
     //Showing attacking image 
     public void attacking(){
         spriteCounter++;
-        if(spriteCounter <=5){
+        if(spriteCounter <= 5){
             spriteNum = 1;
         }
         if(spriteCounter > 5 && spriteCounter <= 25){
@@ -298,8 +297,7 @@ public class Player extends Entity {
     }
     
     public void pickupObject(int i) {
-        if (i != 999) {  
-        	
+        if (i != 999) {      
         	// PICKUP-ONLY ITEMS
         	if (gp.obj[gp.currentMap][i].type == type_pickupOnly) {
         		gp.obj[gp.currentMap][i].use(this);
@@ -338,9 +336,9 @@ public class Player extends Entity {
         if(gp.keyH.leftMouse == true){
             gp.playSE(5);
             attacking = true;
-        }
-        	
+        }        	
     }
+    
     public void contactMonster(int i){
     	if (i != 999) {
     		if (invincible == false && gp.monster[gp.currentMap][i].dying == false) {
@@ -415,7 +413,7 @@ public class Player extends Entity {
 }
     
     public void selectItem(){
-        int itemIndex = gp.ui.getItemIndexOnSlot();
+        int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
             if(selectedItem.type == type_sword || selectedItem.type == type_axe){
@@ -434,6 +432,7 @@ public class Player extends Entity {
             }
         }
     }
+    
     public void draw (Graphics2D g2){
         //g2.setColor(Color.white); 				// Sets a color to use for drawing object
         //g2.fillRect(x,y,gp.tileSize,gp.tileSize); // This method draw a rectangle on the screen

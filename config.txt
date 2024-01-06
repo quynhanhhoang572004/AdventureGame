@@ -1,3 +1,3 @@
 FullScreen Status: Off
-Music Volume: 0
-SFX Volume: 5
+0
+5
