@@ -76,7 +76,7 @@ public class MON_PolarBear extends Entity {
     			//gp.projectileList.add(projectile);
 
 				//CHECK VANCACY
-				for (int ii=0;ii<gp.projectile[1].length; i++){
+				for (int ii=0;ii<gp.projectile[1].length; ii++){
 					if(gp.projectile[gp.currentMap] [ii] == null){
 						gp.projectile[gp.currentMap][ii]=projectile;
 						break;
