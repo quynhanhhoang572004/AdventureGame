@@ -260,7 +260,7 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
-        if(shotAvailableCounter < 30){
+        if(shotAvailableCounter < 20){ //range shot for monster
             shotAvailableCounter++;
         }
     }

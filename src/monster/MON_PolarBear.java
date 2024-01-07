@@ -60,7 +60,7 @@ public class MON_PolarBear extends Entity {
     		}    		
     	}
     	// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
-    	if (onPath == true && tileDistance > 20) {
+    	if (onPath == true && tileDistance > 8) {
     		onPath = false;
     	}
     }
@@ -71,13 +71,13 @@ public class MON_PolarBear extends Entity {
     		int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
     		searchPath(goalCol, goalRow);    		    		
     		int i = new Random().nextInt(200)+1;
-    		if (i < 197 && projectile.alive == false && shotAvailableCounter == 30) {
+    		if (i < 197 && projectile.alive == false && shotAvailableCounter == 20) { //shotAvailableCounter is the range of monster shot
     			projectile.set(worldX, worldY, direction, true, this);
     			//gp.projectileList.add(projectile);
 
 				//CHECK VANCACY
-				for (int ii=0;ii<gp.projectile[1].length; i++){
-					if(gp.projectile[gp.currentMap] [ii] == null){
+				for (int ii=0; ii<gp.projectile[1].length; ii++){
+					if(gp.projectile[gp.currentMap][ii] == null){
 						gp.projectile[gp.currentMap][ii]=projectile;
 						break;
 					}
