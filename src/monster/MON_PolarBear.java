@@ -85,11 +85,11 @@ public class MON_PolarBear extends Entity {
 				
     			shotAvailableCounter = 0;
     		}
-			speed = 2;
+			speed = 2; // when the bear is near to the player (Path == true), its speed increases by 1 (1+1 = 2)
 			
     	} 
     	else {
-			speed = 1;
+			speed = 1; //when the bear is outrange the player, its speed is back to normal
         	actionLockCounter++;
         	if (actionLockCounter == 120) {
     	    	Random random = new Random();
