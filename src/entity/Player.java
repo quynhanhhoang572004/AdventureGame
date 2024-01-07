@@ -72,8 +72,8 @@ public class Player extends Entity {
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Splash_Poison(gp);
 //      projectile = new OBJ_Rock(gp);
-        attack = getAttack(); //the total attack value is decided by strength + weapon
-        defense = getDefense();//the total def value is decided by dexterity + shield
+        attack = getAttack(); 		//the total attack value is decided by strength + weapon
+        defense = getDefense();		//the total def value is decided by dexterity + shield
         maxMana = 4;
         mana = maxMana;
         ammo = 10;
@@ -131,7 +131,6 @@ public class Player extends Entity {
     }
 
     public void update(){ 
-
         if(attacking == true){
             attacking();
         }
@@ -150,7 +149,7 @@ public class Player extends Entity {
             }
             else if (keyH.rightPressed == true){
                 direction = "right";
-                }
+            }
 
             // CHECK TILE COLLISION
             collisionOn = false;
@@ -303,7 +302,6 @@ public class Player extends Entity {
         		gp.obj[gp.currentMap][i].use(this);
         		gp.obj[gp.currentMap][i] = null;
         	}
-        	
         	// INVENTORY ITEMS
         	else {
 	            String text;
@@ -404,8 +402,7 @@ public class Player extends Entity {
     		gp.iTile[gp.currentMap][i].playSE();
     		gp.iTile[gp.currentMap][i].invincible = true;
     		// Generate particle
-    		generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);
-    		
+    		generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);    		
     		if(gp.iTile[gp.currentMap][i].life == 0) {
     		gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
     	}    	    	
@@ -422,7 +419,6 @@ public class Player extends Entity {
                 getPlayerAttackImage();
             }
             if(selectedItem.type == type_shield){
-
                 currentShield = selectedItem;
                 defense = getDefense();
             }

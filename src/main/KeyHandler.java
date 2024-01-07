@@ -72,8 +72,7 @@ public class KeyHandler  implements KeyListener, MouseListener {
 		// PLAY STATE
 		else if(gp.gameState == gp.playState){
 			playState(code);
-		}
-	        
+		}	        
 	        
 	    // PAUSE STATE
 	    else if (gp.gameState == gp.pauseState) {
@@ -263,7 +262,7 @@ public class KeyHandler  implements KeyListener, MouseListener {
 			gp.gameState = gp.optionsState;
 		}
 	            
-	    // Debug
+	    // DEBUG
 	    if(code  ==  KeyEvent.VK_T){
 	        if (showDebugText  ==  false) {
 	        	showDebugText = true;
