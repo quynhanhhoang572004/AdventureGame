@@ -61,9 +61,10 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
+    public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
     Config config = new Config(this);    
-    public PathFinder pFinder = new PathFinder(this);
+    
 
     // ENTITY AND OBJECTS
     public Player player = new Player(this, keyH);

@@ -48,13 +48,30 @@ public class MON_PolarBear extends Entity {
        right2 = setup("res/monster/Bear_right2", gp.tileSize, gp.tileSize);
     }
 
+	public void update() {
+    	super.update();
+    	int xDistance = Math.abs(worldX - gp.player.worldX);
+    	int yDistance = Math.abs(worldY - gp.player.worldY);
+    	int tileDistance = (xDistance + yDistance) / gp.tileSize;
+    	if (onPath == false && tileDistance < 5) {
+    		int i = new Random().nextInt(100)+1;
+    		if (i > 50) {
+    			onPath = true;
+    		}    		
+    	}
+    	// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
+    	if (onPath == true && tileDistance > 8) {
+    		onPath = false;
+    	}
+    }
+
     public void setAction() {
     	if (onPath == true) {
     		int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
     		int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
     		searchPath(goalCol, goalRow);    		    		
     		int i = new Random().nextInt(200)+1;
-    		if (i < 199 && projectile.alive == false && shotAvailableCounter == 30) {
+    		if (i < 197 && projectile.alive == false && shotAvailableCounter == 30) {
     			projectile.set(worldX, worldY, direction, true, this);
     			//gp.projectileList.add(projectile);
 
@@ -115,20 +132,5 @@ public class MON_PolarBear extends Entity {
     	}
     }
     
-    public void update() {
-    	super.update();
-    	int xDistance = Math.abs(worldX - gp.player.worldX);
-    	int yDistance = Math.abs(worldY - gp.player.worldY);
-    	int tileDistance = (xDistance + yDistance) / gp.tileSize;
-    	if (onPath == false && tileDistance < 5) {
-    		int i = new Random().nextInt(100)+1;
-    		if (i > 50) {
-    			onPath = true;
-    		}    		
-    	}
-    	// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
-    	if (onPath == true && tileDistance > 8) {
-    		onPath = false;
-    	}
-    }
+    
 }
