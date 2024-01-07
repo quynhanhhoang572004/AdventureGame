@@ -1,0 +1,35 @@
+@startuml tile_full
+
+class Tile {
+    +image: BufferedImage
+    +collision: boolean
+    +setImage(scaledImage: BufferedImage): void
+}
+
+class TileManager {
+    -gp: GamePanel
+    -tile: Tile[]
+    -mapTileNum: int[][]
+
+    +TileManager(gp: GamePanel)
+    +getTileImage(): void
+    +setup(index: int, imagePath: String, collision: boolean): void
+    +loadMap(filePath: String): void
+    +draw(g2: Graphics2D): void
+}
+
+class GamePanel {
+  // Assuming GamePanel class exists
+}
+
+class UtilityTool {
+  // Assuming UtilityTool class exists
+}
+
+BufferedImage --|> Object
+
+TileManager -- GamePanel
+TileManager -- UtilityTool
+TileManager -- Tile
+
+@enduml
