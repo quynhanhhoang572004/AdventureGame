@@ -60,7 +60,7 @@ public class MON_PolarBear extends Entity {
     		}    		
     	}
     	// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
-    	if (onPath == true && tileDistance > 8) {
+    	if (onPath == true && tileDistance > 20) {
     		onPath = false;
     	}
     }

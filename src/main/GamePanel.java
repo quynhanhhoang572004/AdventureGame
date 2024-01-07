@@ -61,9 +61,10 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public EventHandler eHandler = new EventHandler(this);
+    Config config = new Config(this);    
     public PathFinder pFinder = new PathFinder(this);
     Thread gameThread;
-    Config config = new Config(this);    
+    
     
 
     // ENTITY AND OBJECTS
@@ -136,6 +137,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         aSetter.setMonster();
         aSetter.setInteractiveTile();
         ui.titleScreenState = 0; //I added this in order to fix the gameover
+        ui.commandNum = -1; //I added this in order to fix the gameover
     }
     
     public void setFullScreen() {
@@ -157,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     // GAME LOOP
     @Override
     public void run() {
-        double drawInterval = 1_000_000_000 / FPS;
+        double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
