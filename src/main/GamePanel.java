@@ -134,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
-        ui.titleScreenState = 0;
+        ui.titleScreenState = 0; //I added this in order to fix the gameover
     }
     
     public void setFullScreen() {

@@ -128,7 +128,9 @@ public class EventHandler {
 	public void healingPool(int gameState) {
 		if(gp.keyH.enterPressed == true) {
 			gp.gameState = gameState;
-			gp.player.attackCanceled = true;
+
+
+			sws
 			gp.ui.currentDialogue = "You drink the water. \n Your life and mana has been recovered.";
 			if(gp.player.life < gp.player.maxLife){
 				gp.player.life += 1 ;
