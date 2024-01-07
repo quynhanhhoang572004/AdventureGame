@@ -72,21 +72,24 @@ public class MON_PolarBear extends Entity {
     		searchPath(goalCol, goalRow);    		    		
     		int i = new Random().nextInt(200)+1;
     		if (i < 197 && projectile.alive == false && shotAvailableCounter == 20) { //shotAvailableCounter is the range of monster shot
-    			projectile.set(worldX, worldY, direction, true, this);
+				projectile.set(worldX, worldY, direction, true, this);
     			//gp.projectileList.add(projectile);
 
 				//CHECK VANCACY
-				for (int ii=0;ii<gp.projectile[1].length; i++){
+				for (int ii=0;ii<gp.projectile[1].length; ii++){
 					if(gp.projectile[gp.currentMap] [ii] == null){
 						gp.projectile[gp.currentMap][ii]=projectile;
 						break;
 					}
 				}
-
+				
     			shotAvailableCounter = 0;
     		}
+			speed = 2;
+			
     	} 
     	else {
+			speed = 1;
         	actionLockCounter++;
         	if (actionLockCounter == 120) {
     	    	Random random = new Random();
