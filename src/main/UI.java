@@ -395,8 +395,8 @@ public class UI {
 			x = getXforCenteredObject(text);
 			y  +=  gp.tileSize;
 			g2.drawString(text, x, y);
-			
-			if(commandNum  ==  1){
+			 
+			if(commandNum  ==  1) { 
 				g2.drawString(">",x - gp.tileSize,y); 	// we can use drawImage instead of draw String if we want
 			}
 			text = "QUIT";
@@ -404,8 +404,8 @@ public class UI {
 			y  +=  gp.tileSize;
 			g2.drawString(text, x, y);
 			
-			if(commandNum  ==  2){
-				g2.drawString(">",x - gp.tileSize,y); // we can use drawImage instead of draw String if we want
+			if(commandNum  ==  2) {
+				g2.drawString(">",x - gp.tileSize,y); 	// we can use drawImage instead of draw String if we want
 			}
 		}
 		
