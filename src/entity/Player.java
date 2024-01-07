@@ -218,8 +218,14 @@ public class Player extends Entity {
             // SUBSTRACT THE COST (MANA, AMMO,....)
             projectile.substractResource(this);
 
-            // ADD THIS TO THE LIST
-            gp.projectileList.add(projectile);
+          
+                //CHECK VANCANCY
+            for (int i=0; i<gp.projectile[1].length; i++){
+                if(gp.projectile[gp.currentMap][i]==null){
+                    gp.projectile[gp.currentMap][i]=projectile;
+                    break;
+                }
+            }
             shotAvailableCounter = 0;
             gp.playSE(13);
             }
@@ -252,6 +258,8 @@ public class Player extends Entity {
     
     //Showing attacking image 
     public void attacking(){
+
+
         spriteCounter++;
         if(spriteCounter <= 5){
             spriteNum = 1;
@@ -282,6 +290,9 @@ public class Player extends Entity {
             
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
+
+            int projectileIndex=gp.cChecker.checkEntity(this, gp.projectile);
+            damageProjectile(projectileIndex);
             
             //after checking the collison, restore the original data
             worldX = currentWorldX;
@@ -379,6 +390,15 @@ public class Player extends Entity {
                 }
             }
         }
+    }
+    public void damageProjectile(int i){
+        if(i!=999){
+            Entity projectile = gp.projectile[gp.currentMap][i];
+            projectile.alive=false;
+            generateParticle(projectile, projectile);
+        }
+
+        // When the weapon hit the projectile the projectile die
     }
     
     public void checkLevelUp(){

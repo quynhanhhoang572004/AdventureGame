@@ -54,7 +54,16 @@ public class MON_PolarBear extends Entity {
     		int i = new Random().nextInt(200)+1;
     		if (i < 199 && projectile.alive == false && shotAvailableCounter == 30) {
     			projectile.set(worldX, worldY, direction, true, this);
-    			gp.projectileList.add(projectile);
+    			//gp.projectileList.add(projectile);
+
+				//CHECK VANCACY
+				for (int ii=0;ii<gp.projectile[1].length; i++){
+					if(gp.projectile[gp.currentMap] [ii] == null){
+						gp.projectile[gp.currentMap][ii]=projectile;
+						break;
+					}
+				}
+
     			shotAvailableCounter = 0;
     		}
     	} 
