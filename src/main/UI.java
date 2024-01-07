@@ -860,21 +860,24 @@ public class UI {
 		textY += gp.tileSize;
 		g2.drawString("Move", textX, textY);
 		textY += gp.tileSize;
-		g2.drawString("Confirm/Attack", textX, textY);
+		g2.drawString("Confirm", textX, textY);
+		textY += gp.tileSize;
+		g2.drawString("Attack", textX, textY);
 		textY += gp.tileSize;
 		g2.drawString("Shoot/Cast", textX, textY);
 		textY += gp.tileSize;
-		g2.drawString("Character Screen", textX, textY);
+		g2.drawString("Inventory", textX, textY);
 		textY += gp.tileSize;
 		g2.drawString("Pause", textX, textY);
 		textY += gp.tileSize;
 		g2.drawString("Options", textX, textY);
 		textY += gp.tileSize;		
 		
-		textX = frameX + gp.tileSize * 6;
+		textX = frameX + (int)(gp.tileSize * 5.5);
 		textY = frameY + gp.tileSize * 2;
 		g2.drawString("WASD", textX, textY); textY += gp.tileSize;	
 		g2.drawString("ENTER", textX, textY); textY += gp.tileSize;	
+		g2.drawString("LMOUSE", textX, textY); textY += gp.tileSize;	
 		g2.drawString("E", textX, textY); textY += gp.tileSize;	
 		g2.drawString("G", textX, textY); textY += gp.tileSize;	
 		g2.drawString("P", textX, textY); textY += gp.tileSize;	
