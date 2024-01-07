@@ -911,7 +911,10 @@ public class UI {
 			g2.drawString(">", textX-25, textY);
 			if (gp.keyH.enterPressed == true) {
 				subState = 0;
-				commandNum = 4;
+				gp.gameState = gp.titleState;
+				titleScreenState = 0;
+				gp.stopMusic();
+				
 			}
 		}
 		

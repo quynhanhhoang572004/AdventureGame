@@ -69,14 +69,6 @@ public class PathFinder {
 			if (gp.tileM.tile[tileNum].collision == true) {
 				node[col][row].solid = true;
 			}
-			// CHECK INTERACTIVE TILES
-			for (int i = 0; i < gp.iTile[1].length; i++) {
-				if (gp.iTile[gp.currentMap][i] != null && gp.iTile[gp.currentMap][i].destructible == true) {
-					int itCol = gp.iTile[gp.currentMap][i].worldX / gp.tileSize;
-					int itRow = gp.iTile[gp.currentMap][i].worldY / gp.tileSize;
-					node[itCol][itRow].solid = true;
-				}
-			}
 			// SET COST
 			getCost(node[col][row]);
 			col++;
@@ -85,6 +77,15 @@ public class PathFinder {
 				row++;				
 			}
 		}
+		// CHECK INTERACTIVE TILES
+		for (int i = 0; i < gp.iTile[1].length; i++) {
+			if (gp.iTile[gp.currentMap][i] != null && gp.iTile[gp.currentMap][i].destructible == true) {
+				int itCol = gp.iTile[gp.currentMap][i].worldX / gp.tileSize;
+				int itRow = gp.iTile[gp.currentMap][i].worldY / gp.tileSize;
+				node[itCol][itRow].solid = true;
+			}
+		}
+		
 	}
 	
 	public void getCost(Node node) {
