@@ -17,6 +17,8 @@ public class MON_PolarBear extends Entity {
         this.gp = gp;
         type = type_monster;
         name = "Polar Bear";
+		defaultSpeed=1;
+		speed=defaultSpeed;
         getImage();
         speed = 1;
         maxLife = 12;

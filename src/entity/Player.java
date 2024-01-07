@@ -51,8 +51,9 @@ public class Player extends Entity {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 22;
 //	    worldX = gp.tileSize * 12;
-//	    worldY = gp.tileSize * 13;        
-        speed = 4;
+//	    worldY = gp.tileSize * 13;  
+        defaultSpeed=4;
+        speed =defaultSpeed;
         direction = "down";
         
         // PLAYER STATUS
@@ -369,6 +370,8 @@ public class Player extends Entity {
             if(gp.monster[gp.currentMap][i].invincible == false){
                 gp.playSE(7);
 
+                knockBack(gp.monster[gp.currentMap][i]);
+
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if(damage < 0){
                     damage = 0;
@@ -415,6 +418,11 @@ public class Player extends Entity {
             gp.gameState =  gp.dialogueState;
             gp.ui.currentDialogue = "Level up: " + level +"\n You feel stronger";
         }
+    }
+    public void knockBack(Entity entity){
+        entity.direction= direction;
+        entity.speed+=10;
+        entity.knowBack=true;
     }
 
     public void damageInteractiveTile(int i) {

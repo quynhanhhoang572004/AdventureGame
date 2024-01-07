@@ -37,6 +37,7 @@ public class Entity {
 	public boolean dying = false;
 	public boolean hpBarOn = false;
 	public boolean onPath = false;
+	public boolean knowBack=false;
 	
 	//COUNTER
 	public int spriteCounter = 0;
@@ -45,9 +46,11 @@ public class Entity {
 	public int shotAvailableCounter = 0;
 	public int dyingCounter = 0;
 	public int hpBarcounter = 0;
+	public int knockBackCounter=0;
 	
 	//CHARACTER ATTRIBUTES
 	public String name;
+	public int defaultSpeed;
 	public int speed;
 	public int maxLife;
     public int life;
@@ -175,7 +178,38 @@ public class Entity {
 	}
 	
     public void update () {
-    	setAction();
+		if(knowBack == true){
+			checkCollision();
+			if(collisionOn==true){
+				knockBackCounter=0;
+				knowBack=false;
+				speed = defaultSpeed;
+			}
+			else if(collisionOn == false){
+				switch(gp.player.direction){
+					  case "up":
+                    worldY -= speed; // X values increases to the right; Y values increases as they go down
+                    break;
+                case "down":
+                    worldY+= speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+				}
+			}
+			knockBackCounter++;
+			if(knockBackCounter == 10){// the more we increase this number the more the knockback distance increase
+				knockBackCounter=0;
+				knowBack=false;
+				speed=defaultSpeed;
+			}
+		}
+		else{
+			setAction();
     	checkCollision();    	
         // IF COLLISION IS FALSE, THE PLAYER CAN MOVE
         if(collisionOn == false){
@@ -194,6 +228,8 @@ public class Entity {
                     break;
             }
         }
+		}
+    	
         spriteCounter++;
         if(spriteCounter > 24){
             if (spriteNum == 1){
