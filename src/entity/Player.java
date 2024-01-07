@@ -23,6 +23,7 @@ public class Player extends Entity {
     public final int screenY;
     public String hasKey;
     int standCounter = 0;
+    //public boolean attackCanceled = false;
 
     public Player(GamePanel gp, KeyHandler keyH){
     	super(gp);
@@ -192,7 +193,9 @@ public class Player extends Entity {
                         break;
                 }
             }
+            
 
+            //attackCanceled = false;
             gp.keyH.enterPressed = false;
             gp.keyH.leftMouse = false;
             gp.keyH.FPressed = false;

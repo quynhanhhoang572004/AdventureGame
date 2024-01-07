@@ -123,6 +123,7 @@ public class PathFinder {
 			if (col + 1 < gp.maxWorldCol) {
 				openNode(node[col+1][row]);	
 			}
+			
 			// Find the best node
 			int bestNodeIndex = 0;
 			int bestNodefCost = 999;
