@@ -130,7 +130,7 @@ public class EventHandler {
 			gp.gameState = gameState;
 
 
-			sws
+			
 			gp.ui.currentDialogue = "You drink the water. \n Your life and mana has been recovered.";
 			if(gp.player.life < gp.player.maxLife){
 				gp.player.life += 1 ;
