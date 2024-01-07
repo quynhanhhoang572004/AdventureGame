@@ -78,7 +78,7 @@ public class Entity {
 	public String description = "";
 	public int useCost;
 	public int price;
-	
+	public int knockBackPower=0;
 	//TYPE
 	public int type; 
 // 0 for player, 1 for npc, 2 for monster (for example), so that we can make classifications for each type

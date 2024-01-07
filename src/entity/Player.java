@@ -287,7 +287,7 @@ public class Player extends Entity {
             solidArea.height = attackArea.height;
             //check monster collision with the updated worldX, Y, solidArea
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, attack);
+            damageMonster(monsterIndex, attack,currentWeapon.knockBackPower);
             
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
@@ -365,12 +365,14 @@ public class Player extends Entity {
     	}
     }
 
-    public void damageMonster(int i, int attack){
+    public void damageMonster(int i, int attack, int knockBackPower){
         if(i != 999){
             if(gp.monster[gp.currentMap][i].invincible == false){
                 gp.playSE(7);
 
-                knockBack(gp.monster[gp.currentMap][i]);
+                if(knockBackPower>0){
+                    knockBack(gp.monster[gp.currentMap][i], knockBackPower);
+                }
 
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if(damage < 0){
@@ -419,9 +421,9 @@ public class Player extends Entity {
             gp.ui.currentDialogue = "Level up: " + level +"\n You feel stronger";
         }
     }
-    public void knockBack(Entity entity){
+    public void knockBack(Entity entity, int knockBackPower){
         entity.direction= direction;
-        entity.speed+=10;
+        entity.speed+=knockBackPower;
         entity.knowBack=true;
     }
 
