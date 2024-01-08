@@ -646,7 +646,16 @@ public class UI {
 				g2.setFont(g2.getFont().deriveFont(32f));
 				int amountX;
 				int amountY;
-			
+				String s =" " + entity.inventory.get(i).amount;
+				amountX = getXforAlignToRightText(s, slotX + 44);
+				amountY= slotY + gp.tileSize;
+
+				//SHADOW
+				g2.setColor(new Color(60,60,60));
+				g2.drawString(s,amountX,amountY);
+				//Number
+				g2.setColor(Color.white);
+				g2.drawString(s,amountX-3,amountY-3);
 			}
 
 
