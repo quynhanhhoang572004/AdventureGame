@@ -23,7 +23,7 @@ public class Player extends Entity {
     public final int screenY;
     public String hasKey;
     int standCounter = 0;
-    //public boolean attackCanceled = false;
+    public boolean attackCanceled = false;
 
     public Player(GamePanel gp, KeyHandler keyH){
     	super(gp);
@@ -317,6 +317,16 @@ public class Player extends Entity {
         		gp.obj[gp.currentMap][i].use(this);
         		gp.obj[gp.currentMap][i] = null;
         	}
+            
+            //Obstance
+            else if(gp.obj[gp.currentMap][i].type==type_pickupOnly){
+                if(keyH.enterPressed == true){
+                    attackCanceled = true;
+                    gp.obj[gp.currentMap][i].interact();
+                }
+            }
+
+
         	// INVENTORY ITEMS
         	else {
 	            String text;
@@ -456,8 +466,9 @@ public class Player extends Entity {
                 defense = getDefense();
             }
             if(selectedItem.type == type_consumable){
-                selectedItem.use(this);
+                if(selectedItem.use(this) == true){
                 inventory.remove(itemIndex);
+                }
             }
         }
     }
