@@ -334,8 +334,7 @@ public class Player extends Entity {
              
 	
 	            if(canObtainItem(gp.obj[gp.currentMap][i]) == true){
-	                inventory.add(gp.obj[gp.currentMap][i]);
-	                gp.playSE(1);
+	                gp.playSE(3);
 	                text = "Got a " + gp.obj[gp.currentMap][i].name + "!";	
 	            }   
 	            else {
@@ -492,9 +491,9 @@ public class Player extends Entity {
         if(item.stackable == true){
             int index = searchItemInInventory(item.name);
 
-            if(index !=999){// it mean that we already have the same item in inventory
+            if(index != 999){// it mean that we already have the same item in inventory
             inventory.get(index).amount++;
-            canObtain= true;
+            canObtain = true;
             }
             else{// new item so need to check vacancy
                 if(inventory.size() != maxInventorySize){
