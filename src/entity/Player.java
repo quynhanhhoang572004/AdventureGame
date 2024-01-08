@@ -318,9 +318,9 @@ public class Player extends Entity {
         		gp.obj[gp.currentMap][i] = null;
         	}
             
-            //Obstance
-            else if(gp.obj[gp.currentMap][i].type==type_pickupOnly){
-                if(keyH.enterPressed == true){
+            //OBSTACLE
+            else if(gp.obj[gp.currentMap][i].type==type_obstacle){
+                if(keyH.enterPressed == true || keyH.FPressed == true){
                     attackCanceled = true;
                     gp.obj[gp.currentMap][i].interact();
                 }
