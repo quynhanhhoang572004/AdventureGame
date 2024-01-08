@@ -28,10 +28,10 @@ public class MON_PolarBear extends Entity {
         exp = 2;
         projectile = new OBJ_Rock(gp);	
         
-        solidArea.x = 6;
-        solidArea.y = 6;
-        solidArea.width = 6*2;
-        solidArea.height = 6;
+        solidArea.x = 12;
+        solidArea.y = 12;
+        solidArea.width = 12*2;
+        solidArea.height = 12;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
