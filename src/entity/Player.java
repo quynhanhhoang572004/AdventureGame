@@ -334,7 +334,7 @@ public class Player extends Entity {
              
 	
 	            if(canObtainItem(gp.obj[gp.currentMap][i]) == true){
-	                gp.playSE(3);
+	                gp.playSE(1);
 	                text = "Got a " + gp.obj[gp.currentMap][i].name + "!";	
 	            }   
 	            else {
@@ -468,7 +468,11 @@ public class Player extends Entity {
             }
             if(selectedItem.type == type_consumable){
                 if(selectedItem.use(this) == true){
-                    inventory.remove(itemIndex);
+                    if(selectedItem.amount >1){
+                        selectedItem.amount--;
+                    }
+                    else{
+                    inventory.remove(itemIndex);}
                 }
             }
         }
