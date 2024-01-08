@@ -330,8 +330,10 @@ public class Player extends Entity {
         	// INVENTORY ITEMS
         	else {
 	            String text;
+
+             
 	
-	            if(inventory.size() != maxInventorySize){
+	            if(canObtainItem(gp.obj[gp.currentMap][i]) == true){
 	                inventory.add(gp.obj[gp.currentMap][i]);
 	                gp.playSE(1);
 	                text = "Got a " + gp.obj[gp.currentMap][i].name + "!";	
@@ -472,6 +474,43 @@ public class Player extends Entity {
             }
         }
     }
+    // whenever we got new item , we call this method, and pass the item name the it return the index of the item 
+    public int searchItemInInventory(String itemName){
+        int itemIndex=999;
+        for (int i= 0; i<inventory.size();i++){
+            if(inventory.get(i).name.equals(itemName)){
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+        
+    }
+    public boolean canObtainItem(Entity item){
+        boolean canObtain = false;
+        // Check if stackable
+        if(item.stackable == true){
+            int index = searchItemInInventory(item.name);
+
+            if(index !=999){// it mean that we already have the same item in inventory
+            inventory.get(index).amount++;
+            canObtain= true;
+            }
+            else{// new item so need to check vacancy
+                if(inventory.size() != maxInventorySize){
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+        else{ // NOT STACKABLE so check vacacy
+              if(inventory.size() != maxInventorySize){
+                    inventory.add(item);
+                    canObtain = true;
+                }
+        }
+        return canObtain;
+    } 
     
     public void draw (Graphics2D g2){
         //g2.setColor(Color.white); 				// Sets a color to use for drawing object
