@@ -40,7 +40,6 @@ public class OBJ_Chest extends Entity{
            }
            else{
             sb.append("\n You obtain the "+loot.name+"!");
-            gp.player.inventory.add(loot);
             down1=image2;
             opened=true;
            }
