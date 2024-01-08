@@ -15,7 +15,7 @@ public class Sound {
 	
 	public Sound() {
 		// getClass().getResource will cause errors since this structure is old
-		soundFile[0] = new File("res/sound/BackgroundMusic/Cats.wav");	
+		soundFile[0] = new File("res/sound/BackgroundMusic/Path_to_Lakeland.wav");	
 		soundFile[1] = new File("res/sound/coin.wav");
 		soundFile[2] = new File("res/sound/powerup.wav");
 		soundFile[3] = new File("res/sound/unlock.wav");

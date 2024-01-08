@@ -467,7 +467,7 @@ public class Player extends Entity {
             }
             if(selectedItem.type == type_consumable){
                 if(selectedItem.use(this) == true){
-                inventory.remove(itemIndex);
+                    inventory.remove(itemIndex);
                 }
             }
         }

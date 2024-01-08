@@ -100,7 +100,7 @@ public class Entity {
 		return worldX + solidArea.x;
 	}
 	public int getRightX(){
-		return worldX + solidArea.width;
+		return worldX + solidArea.x + solidArea.width;
 	}
 	public int getTopY(){
 		return worldY + solidArea.y;
@@ -109,7 +109,7 @@ public class Entity {
 		return worldY+ solidArea.y + solidArea.height;
 	}
 	public int getCol(){
-		return (worldY + solidArea.y)/gp.tileSize;
+		return (worldX + solidArea.x)/gp.tileSize;
 	}
     public int getRow(){
 		return (worldY + solidArea.y)/gp.tileSize;
@@ -504,7 +504,7 @@ public class Entity {
 	public int getDetected(Entity user, Entity target[][], String targetName){
 
 		int index=999;
-// use to check the surrounding object 
+		// use to check the surrounding object 
 		int nextWorldX = user.getLeftX();
 		int nextWorldY=user.getTopY();
 
@@ -525,9 +525,9 @@ public class Entity {
 	//if there are any subject that has same col and row and if the name is also match, so that we can use 
 	// door to detach the key  
 
-	for(int i =0; i< target[1].length;i++){
-		if(target[gp.currentMap][i]!=null){
-			if(target[gp.currentMap][i].getCol()== col && target[gp.currentMap][i].getRow()== row
+	for(int i = 0; i < target[1].length; i++){
+		if(target[gp.currentMap][i] != null){
+			if(target[gp.currentMap][i].getCol() == col && target[gp.currentMap][i].getRow() == row
 			&& target[gp.currentMap][i].name.equals(targetName)){
 				index =i;
 				break;

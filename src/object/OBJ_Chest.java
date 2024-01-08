@@ -6,7 +6,7 @@ import main.GamePanel;
 public class OBJ_Chest extends Entity{
     GamePanel gp;
     Entity loot;
-    boolean opended = false;
+    boolean opened = false;
     public OBJ_Chest (GamePanel gp, Entity loot) {
         super(gp);
         this.loot=loot;
@@ -29,7 +29,7 @@ public class OBJ_Chest extends Entity{
     public void interact(){
         gp.gameState = gp.dialogueState;
 
-        if(opended == false){
+        if(opened == false){
           gp.playSE(3);  
 
            StringBuilder sb = new StringBuilder();
@@ -42,7 +42,7 @@ public class OBJ_Chest extends Entity{
             sb.append("\n You obtain the "+loot.name+"!");
             gp.player.inventory.add(loot);
             down1=image2;
-            opended=true;
+            opened=true;
            }
            gp.ui.currentDialogue = sb.toString();
         }
