@@ -3,6 +3,7 @@ package main;
 import entity.Entity;
 
 import entity.Player;
+import environment.EnvironmentManager;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
@@ -63,6 +64,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public EventHandler eHandler = new EventHandler(this);
     Config config = new Config(this);    
     public PathFinder pFinder = new PathFinder(this);
+    EnvironmentManager eManager= new EnvironmentManager(this);
     Thread gameThread;
     
     
@@ -111,6 +113,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
+        eManager.setup();
 //      playMusic(0);
         gameState = titleState;
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
@@ -309,6 +312,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             for(int i = 0; i < entityList.size(); i++){
                 entityList.clear();
             }
+            //ENVIROMENT
+            eManager.draw(g2); // need to behind ui since ui as always behind the darkness filter 
             //UI
             ui.draw(g2);
                     
