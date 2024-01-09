@@ -13,6 +13,7 @@ import object.OBJ_ManaCrystal;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Diamond;
 import object.OBJ_Shield_Metal;
+import object.OBJ_Sword_LV2;
 import object.OBJ_Lantern;
 import tile_interactive.IT_DryTree;
 
@@ -84,6 +85,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize*24;
         i++;
 
+        gp.obj[mapNum][i] = new OBJ_Sword_LV2(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize*30;
+        gp.obj[mapNum][i].worldY = gp.tileSize*23;
+        i++;
 
     }
     
