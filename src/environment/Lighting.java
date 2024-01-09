@@ -27,7 +27,7 @@ public class Lighting {
         Graphics2D g2 =(Graphics2D)darknessFilter.getGraphics();
 
         if(gp.player.currentLight == null){
-            g2.setColor(new Color(0,0,0,0.98f));
+            g2.setColor(new Color(0,0,0,0.85f));
         }
         else{
                // Get the center x and center y of the light circle 
