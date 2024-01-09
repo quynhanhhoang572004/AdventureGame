@@ -15,12 +15,22 @@ public class Lighting {
     GamePanel gp;
     BufferedImage darknessFilter;
 
-    public Lighting ( GamePanel gp, int circleSize){
-        //create buffered image
+    public Lighting ( GamePanel gp){
+      
+        this.gp=gp;
+        setLightSources();
+    }
+    // when the lightsources get update we update darkness filter 
+    public void setLightSources(){
+           //create buffered image
         darknessFilter = new BufferedImage(gp.screenWidth, gp.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 =(Graphics2D)darknessFilter.getGraphics();
 
-        // Get the center x and center y of the light circle 
+        if(gp.player.currentLight == null){
+            g2.setColor(new Color(0,0,0,0.98f));
+        }
+        else{
+               // Get the center x and center y of the light circle 
         int centerX=gp.player.screenX + (gp.tileSize)/2;
         int centerY=gp.player.screenY+(gp.tileSize)/2;
 
@@ -60,13 +70,24 @@ public class Lighting {
 
         // Create a gradiation paint setting 
 
-        RadialGradientPaint gPaint = new RadialGradientPaint(centerX,centerY,(circleSize/2),fraction,color);
+        RadialGradientPaint gPaint = new RadialGradientPaint(centerX,centerY,gp.player.currentLight.lightRadius,fraction,color);
 
         //set the gradient data on g2
         g2.setPaint(gPaint);
+
+        }
+
+
         g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
 
         g2.dispose();
+
+    }
+    public void update(){
+        if (gp.player.lightUpdated == true){
+            setLightSources();
+            gp.player.lightUpdated = false;
+        }
     }
     public void draw ( Graphics2D g2){
         g2.drawImage(darknessFilter,0,0,null);

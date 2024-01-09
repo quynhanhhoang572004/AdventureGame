@@ -475,6 +475,7 @@ public class Player extends Entity {
                     currentLight = selectedItem;
                 }
                 lightUpdated=true;
+                // whenever we unequip the lantern we set the light update is true 
             }
             if(selectedItem.type == type_consumable){
                 if(selectedItem.use(this) == true){
