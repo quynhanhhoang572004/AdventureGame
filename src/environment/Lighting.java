@@ -20,25 +20,9 @@ public class Lighting {
         darknessFilter = new BufferedImage(gp.screenWidth, gp.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 =(Graphics2D)darknessFilter.getGraphics();
 
-        // create a screen-sized rectangle area
-        Area screenArea = new Area(new Rectangle2D.Double(0,0,gp.screenWidth, gp.screenHeight));
-
         // Get the center x and center y of the light circle 
         int centerX=gp.player.screenX + (gp.tileSize)/2;
         int centerY=gp.player.screenY+(gp.tileSize)/2;
-
-        // get the top-left and the top light circle
-        double x= centerX - (circleSize/2);
-        double y = centerY - (circleSize/2);
-
-        //create light circle shape
-        Shape circleShape = new Ellipse2D.Double(x,y,circleSize,circleSize);
-
-        // create a light circle area 
-        Area lightArea = new Area (circleShape);
-
-        // subtract the light circle from the screen rectangle 
-        screenArea.subtract(lightArea);
 
         // create a gradation effect within the light circle 
         Color color[] = new Color[12]; 
@@ -80,12 +64,8 @@ public class Lighting {
 
         //set the gradient data on g2
         g2.setPaint(gPaint);
+        g2.fillRect(0,0,gp.screenWidth,gp.screenHeight);
 
-        //Draw the light circle
-        g2.fill(lightArea);
-
-        // Draw the screen rectangle without the light circle area
-        g2.fill(screenArea);
         g2.dispose();
     }
     public void draw ( Graphics2D g2){
