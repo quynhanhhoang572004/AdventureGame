@@ -15,6 +15,7 @@ import object.OBJ_Shield_Diamond;
 import object.OBJ_Shield_Metal;
 import object.OBJ_Sword_LV2;
 import object.OBJ_Lantern;
+import object.OBJ_Tent;
 import tile_interactive.IT_DryTree;
 
 public class AssetSetter {
@@ -82,6 +83,11 @@ public class AssetSetter {
 
         gp.obj[mapNum][i] = new OBJ_Lantern(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize*25;
+        gp.obj[mapNum][i].worldY = gp.tileSize*24;
+        i++;
+
+        gp.obj[mapNum][i] = new OBJ_Tent(gp);        
+        gp.obj[mapNum][i].worldX = gp.tileSize*23;
         gp.obj[mapNum][i].worldY = gp.tileSize*24;
         i++;
 

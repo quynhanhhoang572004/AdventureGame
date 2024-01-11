@@ -16,6 +16,7 @@ import object.OBJ_Rock;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Splash_Poison;
 import object.OBJ_Sword_Normal;
+import object.OBJ_Tent;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -108,6 +109,17 @@ public class Player extends Entity {
             left2 = setup("res/player/FroGi_left2", gp.tileSize, gp.tileSize);
             right1 = setup("res/player/FroGi_right3", gp.tileSize, gp.tileSize);
             right2 = setup("res/player/FroGi_right2", gp.tileSize, gp.tileSize);
+    }
+
+    public void getSleepingImage(BufferedImage image) {
+            up1 = image;
+            up2 = image;
+            down1 = image;
+            down2 = image;
+            left1 = image;
+            left2 = image;
+            right1 = image;
+            right2 = image;
     }
 
     public void getPlayerAttackImage(){
