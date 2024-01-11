@@ -124,24 +124,24 @@ public class Player extends Entity {
 
     public void getPlayerAttackImage(){
         if(currentWeapon.type == type_sword){
-            attackUp1 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackUp2 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackDown1 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackDown2 = setup("res/player/FroGi_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackLeft1 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
-            attackLeft2 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
-            attackRight1 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
-            attackRight2 = setup("res/player/FroGi_attack_up1", gp.tileSize*2, gp.tileSize);
+            attackUp1 = setup("res/player/attack/FroGi_axe_back", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("res/player/attack/FroGi_axe_back", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("res/player/attack/FroGi_axe_front", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("res/player/attack/FroGi_axe_front", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setup("res/player/attack/Frogi_sword_left", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("res/player/attack/Frogi_sword_left", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setup("res/player/attack/Frogi_sword_right", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("res/player/attack/Frogi_sword_right", gp.tileSize*2, gp.tileSize);
         }
         if(currentWeapon.type == type_axe){
-            attackUp1 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackUp2 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackDown1 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackDown2 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize, gp.tileSize*2);
-            attackLeft1 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize*2, gp.tileSize);
-            attackLeft2 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize*2, gp.tileSize);
-            attackRight1 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize*2, gp.tileSize);
-            attackRight2 = setup("res/player/FroGi_axe_attack_up1", gp.tileSize*2, gp.tileSize);
+            attackUp1 = setup("res/player/attack/FroGi_axe_back", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("res/player/attack/FroGi_axe_back", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("res/player/attack/FroGi_axe_front", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("res/player/attack/FroGi_axe_front", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setup("res/player/attack/FroGi_axe_left", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("res/player/attack/FroGi_axe_left", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setup("res/player/attack/FroGi_axe_right", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("res/player/attack/FroGi_axe_right", gp.tileSize*2, gp.tileSize);
         }        
     }
 
