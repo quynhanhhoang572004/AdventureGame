@@ -1,0 +1,31 @@
+@startuml environment_full
+
+package environment {
+    class EnvironmentManager {
+        - Lighting lighting
+        + EnvironmentManager(GamePanel)
+        + setup()
+        + update()
+        + draw(Graphics2D)
+    }
+
+    class Lighting {
+        - BufferedImage darknessFilter
+        - int dayCounter
+        - float filterAlpha
+        - final int day
+        - final int dusk
+        - final int night
+        - final int dawn
+        - int dayState
+        + Lighting(GamePanel)
+        + setLightSources()
+        + update()
+        + draw(Graphics2D)
+    }
+}
+
+EnvironmentManager -- Lighting : Aggregates
+Lighting -- GamePanel : Aggregates
+
+@enduml

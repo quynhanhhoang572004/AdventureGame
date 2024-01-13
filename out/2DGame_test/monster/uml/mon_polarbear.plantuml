@@ -1,0 +1,25 @@
+@startuml MON_PolarBear
+
+package monster {
+    class MON_PolarBear {
+        - gp: GamePanel
+        - onPath: boolean
+        - speed: int
+        - defaultSpeed: int
+        - projectile: OBJ_Rock
+        - solidArea: Rectangle
+        - actionLockCounter: int
+        - shotAvailableCounter: int
+
+        + MON_PolarBear(gp: GamePanel)
+        + getImage(): void
+        + update(): void
+        + setAction(): void
+        + damageReaction(): void
+        + checkDrop(): void
+    }
+}
+
+MON_PolarBear --|> Entity
+
+@enduml

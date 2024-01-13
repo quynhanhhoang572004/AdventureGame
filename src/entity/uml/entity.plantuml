@@ -1,0 +1,110 @@
+@startuml entity
+
+package entity {
+    class Entity {
+    - GamePanel gp
+    - BufferedImage up1, up2, down1, down2, left1, left2, right1, right2
+    - BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2
+    - BufferedImage image, image2, image3
+    - boolean collision
+    - Rectangle solidArea
+    - Rectangle attackArea
+    - int solidAreaDefaultX
+    - int solidAreaDefaultY
+    - String[] dialogues
+    - int worldX
+    - int worldY
+    - String direction
+    - int spriteNum
+    - int dialogueIndex
+    - boolean collisionOn
+    - boolean invincible
+    - boolean attacking
+    - boolean alive
+    - boolean dying
+    - boolean hpBarOn
+    - boolean onPath
+    - boolean knowBack
+    - int spriteCounter
+    - int actionLockCounter
+    - int invincibleCounter
+    - int shotAvailableCounter
+    - int dyingCounter
+    - int hpBarcounter
+    - int knockBackCounter
+    - String name
+    - int defaultSpeed
+    - int speed
+    - int maxLife
+    - int life
+    - int maxMana
+    - int mana
+    - int ammo
+    - int level
+    - int strength
+    - int dexterity
+    - int attack
+    - int defense
+    - int exp
+    - int nextLevelExp
+    - int coin
+    - Entity currentWeapon
+    - Entity currentShield
+    - Entity currentLight
+    - Projectile projectile
+    - ArrayList<Entity> inventory
+    - final int maxInventorySize
+    - int value
+    - int attackValue
+    - int defenseValue
+    - String description
+    - int useCost
+    - int price
+    - int knockBackPower
+    - boolean stackable
+    - int amount
+    - int lightRadius
+    - int type
+    - final int type_player
+    - final int type_npc
+    - final int type_monster
+    - final int type_sword
+    - final int type_axe
+    - final int type_shield
+    - final int type_consumable
+    - final int type_pickupOnly
+    - final int type_obstacle
+    - final int type_light
+
+    + Entity(GamePanel)
+    + getLeftX()
+    + getRightX()
+    + getTopY()
+    + getBottomY()
+    + getCol()
+    + getRow()
+    + setAction()
+    + damageReaction()
+    + speak()
+    + checkDrop()
+    + dropItem(Entity)
+    + getParticleColor()
+    + getParticleSize()
+    + getParticleSpeed()
+    + getParticleMaxLife()
+    + generateParticle(Entity, Entity)
+    + interact()
+    + use(Entity)
+    + checkCollision()
+    + update()
+    + damagePlayer(int)
+    + draw(Graphics2D)
+    + dyingAnimation(Graphics2D)
+    + changeAlpha(Graphics2D, float)
+    + setup(String, int, int)
+    + searchPath(int, int)
+    + getDetected(Entity, Entity[][], String)
+    }
+}
+
+@enduml

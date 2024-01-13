@@ -1,0 +1,295 @@
+@startuml main_full
+
+package main {
+    class AssetSetter {
+        - gp: GamePanel
+
+        + AssetSetter(gp: GamePanel)
+        + setObject(): void
+        + setNPC(): void
+        + setMonster(): void
+        + setInteractiveTile(): void
+    }
+
+    class CollisionChecker {
+        - gp: GamePanel
+
+        + CollisionChecker(gp: GamePanel)
+        + checkTile(entity: Entity): void
+        + checkObject(entity: Entity, player: boolean): int
+        + checkEntity(entity: Entity, target: Entity[][]): int
+        + checkPlayer(entity: Entity): boolean
+    }
+
+    class Config {
+        - gp: GamePanel
+
+        + Config(gp: GamePanel)
+        + saveConfig(): void
+        + loadConfig(): void
+    }
+
+    class EventHandler {
+        - gp: GamePanel
+        - eventRect: EventRect[][][]
+        - previousEventX: int
+        - previousEventY: int
+        - canTouchEvent: boolean
+        - tempMap: int
+        - tempCol: int
+        - tempRow: int
+
+        + EventHandler(gp: GamePanel)
+        + checkEvent(): void
+        + hit(map: int, col: int, row: int, reqDirection: String): boolean
+        + teleport(map: int, col: int, row: int): void
+        + speak(entity: Entity): void
+        + damagePit(gameState: int): void
+        + healingPool(gameState: int): void
+    }
+
+    class EventRect {
+        - eventRectDefaultX: int
+        - eventRectDefaultY: int
+        - eventDone: boolean
+
+        + EventRect()
+    }
+
+    class GamePanel {
+        - originalTileSize: int
+        - scale: int
+        - tileSize: int
+        - maxScreenCol: int
+        - maxScreenRow: int
+        - screenWidth: int
+        - screenHeight: int
+        - maxWorldCol: int
+        - maxWorldRow: int
+        - maxMap: int
+        - currentMap: int
+        - screenWidth2: int
+        - screenHeight2: int
+        - tempScreen: BufferedImage
+        - g2: Graphics2D
+        - fullScreenOn: boolean
+        - FPS: int
+        - tileM: TileManager
+        - keyH: KeyHandler
+        - music: Sound
+        - se: Sound
+        - cChecker: CollisionChecker
+        - aSetter: AssetSetter
+        - ui: UI
+        - eHandler: EventHandler
+        - config: Config
+        - pFinder: PathFinder
+        - eManager: EnvironmentManager
+        - gameThread: Thread
+        - player: Player
+        - obj: Entity[][]
+        - npc: Entity[][]
+        - monster: Entity[][]
+        - iTile: InteractiveTile[][]
+        - projectile: Entity[][]
+        - entityList: ArrayList<Entity>
+        - particleList: ArrayList<Entity>
+        - gameState: int
+        - titleState: final int
+        - playState: final int
+        - pauseState: final int
+        - dialogueState: final int
+        - characterState: final int
+        - optionsState: final int
+        - gameOverState: final int
+        - transitionState: final int
+        - tradeState: final int
+        - sleepState: final int
+        
+        + GamePanel()
+        + setupGame(): void
+        + retry(): void
+        + restart(): void
+        + setFullScreen(): void
+        + startGameThread(): void
+        + run(): void
+        + update(): void
+        + drawToTempScreen(): void
+        + drawToScreen(): void
+        + playMusic(i: int): void
+        + stopMusic(): void
+        + playSE(i: int): void
+    }
+
+    class KeyHandler {
+        - gp: GamePanel
+        - upPressed: boolean
+        - downPressed: boolean
+        - leftPressed: boolean
+        - rightPressed: boolean
+        - enterPressed: boolean
+        - FPressed: boolean
+        - shotKeyPressed: boolean
+        - leftMouse: boolean
+        - showDebugText: boolean
+
+        + KeyHandler(gp: GamePanel)
+        + mousePressed(e: MouseEvent): void
+        + mouseClicked(e: MouseEvent): void
+        + mouseReleased(e: MouseEvent): void
+        + mouseEntered(e: MouseEvent): void
+        + mouseExited(e: MouseEvent): void
+        + keyTyped(e: KeyEvent): void
+        + keyPressed(e: KeyEvent): void
+        + keyReleased(e: KeyEvent): void
+        + playerInventory(code: int): void
+        + npcInventory(code: int): void
+        - titleState(code: int): void
+        - playState(code: int): void
+        - pauseState(code: int): void
+        - dialogueState(code: int): void
+        - characterState(code: int): void
+        - optionsState(code: int): void
+        - tradeState(code: int): void
+        - gameOverState(code: int): void
+    }
+
+    class Sound {
+        - clip: Clip
+        - soundFile: File[]
+        - fc: FloatControl
+        - volumeScale: int
+        - volume: float
+        + Sound()
+        + setFile(i: int): void
+        + play(): void
+        + loop(): void
+        + stop(): void
+        + checkVolume(): void
+    }
+
+    class UI {
+        + UI(GamePanel)
+        + options_fullScreenNotification(int, int): void
+        + drawTitleScreen()
+        + draw(Graphics2D)
+        + drawDialogueScreen()
+        + getXforAlignToRightText(String, int)
+        + drawOptionsScreen()
+        + drawMessage()
+        + drawPauseScreen()
+        + drawCharacterScreen()
+        + options_top(int, int)
+        + drawGameOverScreen()
+        + drawPlayerLife()
+        + drawTradeScreen()
+        + drawMonsterLife()
+        + options_endGameConfirmation(int, int)
+        + trade_select()
+        + addMessage(String)
+        + trade_buy()
+        + trade_sell()
+        + getItemIndexOnSlot(int, int)
+        + getXforCenteredObject(String)
+        + drawInventory(Entity, boolean)
+        + options_control(int, int)
+        + drawSubWindow(int, int, int, int)
+    }
+
+    class UtilityTool {
+        + scaleImage(original: BufferedImage, width: int, height: int): BufferedImage
+    }
+}
+
+package object {
+    class OBJ_Door
+    class OBJ_Key
+    class OBJ_Shield_Metal
+    class OBJ_Shield_Diamond
+    class OBJ_Axe
+    class OBJ_Potion_Red
+    class OBJ_Coin_Gold
+    class OBJ_Heart
+    class OBJ_ManaCrystal
+    class OBJ_Chest
+    class OBJ_Lantern
+    class OBJ_Tent
+    class OBJ_Sword_LV2
+}
+
+package tile_interactive {
+    class IT_DryTree
+}
+
+package monster {
+    class MON_PolarBear
+}
+
+package entity {
+    class GamePanel
+    class Entity
+    class NPC_Santa
+    class NPC_Merchant
+}
+
+package java.io {
+    class BufferedReader
+    class BufferedWriter
+    class FileReader
+    class FileWriter
+}
+
+package java.nio.file {
+    class Path
+}
+
+GamePanel --|> AssetSetter
+AssetSetter --|> GamePanel
+
+AssetSetter --|> OBJ_Door
+AssetSetter --|> OBJ_Key
+AssetSetter --|> OBJ_Shield_Metal
+AssetSetter --|> OBJ_Shield_Diamond
+AssetSetter --|> OBJ_Axe
+AssetSetter --|> OBJ_Potion_Red
+AssetSetter --|> OBJ_Coin_Gold
+AssetSetter --|> OBJ_Heart
+AssetSetter --|> OBJ_ManaCrystal
+AssetSetter --|> OBJ_Chest
+AssetSetter --|> OBJ_Lantern
+AssetSetter --|> OBJ_Tent
+AssetSetter --|> OBJ_Sword_LV2
+
+AssetSetter --|> IT_DryTree
+
+AssetSetter --|> MON_PolarBear
+
+AssetSetter --|> Entity
+AssetSetter --|> NPC_Santa
+AssetSetter --|> NPC_Merchant
+
+Entity --|> CollisionChecker
+GamePanel --|> CollisionChecker
+
+Config --|> BufferedReader
+Config --|> BufferedWriter
+Config --|> FileReader
+Config --|> FileWriter
+Config --|> Path
+
+GamePanel --|> Config
+
+EventHandler --|> Entity
+GamePanel --|> EventHandler
+
+KeyHandler *-down-> KeyEvent
+KeyHandler *-down-> MouseEvent
+
+Sound --|> Object
+Sound --|> Line
+
+UI --> GamePanel
+UI --> Entity
+UI --> Player
+
+@enduml

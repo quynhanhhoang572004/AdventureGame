@@ -1,0 +1,15 @@
+@startuml EventRect
+
+package main {
+    class EventRect {
+        - eventRectDefaultX: int
+        - eventRectDefaultY: int
+        - eventDone: boolean
+
+        + EventRect()
+    }
+}
+
+EventRect --|> Rectangle
+
+@enduml

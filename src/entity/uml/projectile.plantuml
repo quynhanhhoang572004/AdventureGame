@@ -1,0 +1,18 @@
+@startuml Projectile
+
+package entity {
+  class Projectile {
+    - Entity user
+    + Projectile(GamePanel)
+    + set(int, int, String, boolean, Entity)
+    + update()
+    + haveResource(Entity): boolean
+    + substractResource(Entity)
+  }
+}
+
+Projectile --> Entity
+Projectile --> GamePanel
+Projectile --|> Entity
+
+@enduml

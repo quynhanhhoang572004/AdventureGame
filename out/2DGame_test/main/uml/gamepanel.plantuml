@@ -1,0 +1,88 @@
+@startuml GamePanel
+
+package main {
+    class GamePanel {
+        - originalTileSize: int
+        - scale: int
+        - tileSize: int
+        - maxScreenCol: int
+        - maxScreenRow: int
+        - screenWidth: int
+        - screenHeight: int
+        - maxWorldCol: int
+        - maxWorldRow: int
+        - maxMap: int
+        - currentMap: int
+        - screenWidth2: int
+        - screenHeight2: int
+        - tempScreen: BufferedImage
+        - g2: Graphics2D
+        - fullScreenOn: boolean
+        - FPS: int
+        - tileM: TileManager
+        - keyH: KeyHandler
+        - music: Sound
+        - se: Sound
+        - cChecker: CollisionChecker
+        - aSetter: AssetSetter
+        - ui: UI
+        - eHandler: EventHandler
+        - config: Config
+        - pFinder: PathFinder
+        - eManager: EnvironmentManager
+        - gameThread: Thread
+        - player: Player
+        - obj: Entity[][]
+        - npc: Entity[][]
+        - monster: Entity[][]
+        - iTile: InteractiveTile[][]
+        - projectile: Entity[][]
+        - entityList: ArrayList<Entity>
+        - particleList: ArrayList<Entity>
+        - gameState: int
+        - titleState: int
+        - playState: int
+        - pauseState: int
+        - dialogueState: int
+        - characterState: int
+        - optionsState: int
+        - gameOverState: int
+        - transitionState: int
+        - tradeState: int
+        - sleepState: int
+
+        + GamePanel()
+        + setupGame()
+        + retry()
+        + restart()
+        + setFullScreen()
+        + startGameThread()
+        + run()
+        + update()
+        + drawToTempScreen()
+        + drawToScreen()
+        + playMusic(i: int)
+        + stopMusic()
+        + playSE(i: int)
+    }
+}
+
+GamePanel --|> JPanel
+GamePanel *--> BufferedImage
+GamePanel *--> Graphics2D
+GamePanel *--> Thread
+GamePanel *--> Player
+GamePanel *--> Entity
+GamePanel *--> TileManager
+GamePanel *--> KeyHandler
+GamePanel *--> Sound
+GamePanel *--> CollisionChecker
+GamePanel *--> AssetSetter
+GamePanel *--> UI
+GamePanel *--> EventHandler
+GamePanel *--> Config
+GamePanel *--> PathFinder
+GamePanel *--> EnvironmentManager
+GamePanel *--> InteractiveTile
+
+@enduml

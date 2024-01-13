@@ -1,0 +1,13 @@
+@startuml IT_Trunk
+
+package tile_interactive {
+    class IT_Trunk {
+        - gp: GamePanel
+        
+        + IT_Trunk(gp: GamePanel, col: int, row: int)
+    }
+}
+
+IT_Trunk --|> InteractiveTile
+
+@enduml

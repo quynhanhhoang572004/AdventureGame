@@ -1,0 +1,20 @@
+@startuml Particle
+
+package entity {
+    class Particle {
+    - Entity generator
+    - Color color
+    - int size
+    - int xd
+    - int yd
+
+    + Particle(GamePanel, Entity, Color, int, int, int, int, int)
+    + update()
+    + draw(Graphics2D)
+    }
+}
+
+Particle --> Entity
+Particle --> GamePanel
+
+@enduml

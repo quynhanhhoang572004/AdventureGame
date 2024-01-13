@@ -1,0 +1,43 @@
+@startuml player
+
+package entity {
+  class Player {
+    - KeyHandler keyH
+    - int screenX
+    - int screenY
+    - String hasKey
+    - int standCounter
+    - boolean attackCanceled
+    - boolean lightUpdated
+
+    + Player(GamePanel, KeyHandler)
+    + setDefaultValues()
+    + setItems()
+    + getAttack(): int
+    + getDefense(): int
+    + getPlayerImage()
+    + getSleepingImage(BufferedImage)
+    + getPlayerAttackImage()
+    + update()
+    + attacking()
+    + pickupObject(int)
+    + interactNPC(int)
+    + contactMonster(int)
+    + damageMonster(int, int, int)
+    + damageProjectile(int)
+    + checkLevelUp()
+    + knockBack(Entity, int)
+    + damageInteractiveTile(int)
+    + selectItem()
+    + searchItemInInventory(String): int
+    + canObtainItem(Entity): boolean
+    + draw(Graphics2D)
+    + setDefaultPositions()
+    + restoreLifeAndMana()
+  }
+}
+
+Player --> Entity
+Player --> GamePanel
+
+@enduml

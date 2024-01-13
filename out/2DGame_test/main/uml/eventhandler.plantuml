@@ -1,0 +1,27 @@
+@startuml EventHandler
+
+package main {
+    class EventHandler {
+        - eventRect: EventRect[][][]
+        - previousEventX: int
+        - previousEventY: int
+        - canTouchEvent: boolean
+        - tempMap: int
+        - tempCol: int
+        - tempRow: int
+
+        + EventHandler(gp: GamePanel)
+        + checkEvent(): void
+        + hit(map: int, col: int, row: int, reqDirection: String): boolean
+        + teleport(map: int, col: int, row: int): void
+        + speak(entity: Entity): void
+        + damagePit(gameState: int): void
+        + healingPool(gameState: int): void
+    }
+}
+
+EventHandler --|> GamePanel
+EventHandler -[hidden]-> EventRect
+EventHandler --|> Entity
+
+@enduml

@@ -133,7 +133,5 @@ public class MON_PolarBear extends Entity {
     	if (i >= 75 && i < 100) {
     		dropItem(new OBJ_ManaCrystal(gp));
     	}
-    }
-    
-    
+    }        
 }

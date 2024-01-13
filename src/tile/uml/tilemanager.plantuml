@@ -1,0 +1,16 @@
+@startuml TileManager
+
+class TileManager {
+    - gp: GamePanel
+    - tile: Tile[]
+    - mapTileNum: int[][][]
+    - drawPath: boolean
+    
+    + TileManager(gp: GamePanel)
+    + getTileImage(): void
+    + setup(index: int, imagePath: String, collision: boolean): void
+    + loadMap(filePath: String, map: int): void
+    + draw(g2: Graphics2D): void
+}
+
+@enduml

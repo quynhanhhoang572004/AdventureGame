@@ -1,0 +1,49 @@
+@startuml AssetSetter
+
+package main {
+    class AssetSetter {
+        + AssetSetter(gp: GamePanel)
+        + setObject(): void
+        + setNPC(): void
+        + setMonster(): void
+        + setInteractiveTile(): void
+    }
+}
+
+package object {
+    class OBJ_Axe
+    class OBJ_Coin_Gold
+    class OBJ_Heart
+    class OBJ_ManaCrystal
+    class OBJ_Rock
+    class OBJ_Door
+    class OBJ_Potion_Red
+    class OBJ_Shield_Diamond
+    class OBJ_Shield_Metal
+    class OBJ_Sword_LV2
+    class OBJ_Lantern
+    class OBJ_Tent
+    class OBJ_Key
+    class OBJ_Chest
+}
+
+package entity {
+    class Entity
+    class NPC_Santa
+    class NPC_Merchant
+}
+
+package monster {
+    class MON_PolarBear
+}
+
+package tile_interactive {
+    class IT_DryTree
+}
+
+AssetSetter --|> Object
+AssetSetter --|> Entity
+AssetSetter --|> Monster
+AssetSetter --|> Tile_Interactive
+
+@enduml

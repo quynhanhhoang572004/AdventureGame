@@ -1,0 +1,42 @@
+@startuml intertile_full
+
+package tile_interactive {
+    class InteractiveTile {
+        - gp: GamePanel
+        - destructible: boolean
+        # invincible: boolean
+        # invincibleCounter: int
+        # down1: BufferedImage
+        
+        + InteractiveTile(gp: GamePanel, col: int, row: int)
+        + isCorrectItem(entity: Entity): boolean
+        + playSE(): void
+        + getDestroyedForm(): InteractiveTile
+        + update(): void
+        + draw(g2: Graphics2D): void
+    }
+
+    class IT_DryTree {
+        - gp: GamePanel
+        
+        + IT_DryTree(gp: GamePanel, col: int, row: int)
+        + isCorrectItem(entity: Entity): boolean
+        + playSE(): void
+        + getDestroyedForm(): InteractiveTile
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+    }
+
+    class IT_Trunk {
+        - gp: GamePanel
+        
+        + IT_Trunk(gp: GamePanel, col: int, row: int)
+    }
+}
+
+IT_DryTree --|> InteractiveTile
+IT_Trunk --|> InteractiveTile
+
+@enduml

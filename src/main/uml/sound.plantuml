@@ -1,0 +1,25 @@
+@startuml Sound
+
+package main {
+    class Sound {
+        - clip: Clip
+        - soundFile: File[]
+        - fc: FloatControl
+        - volumeScale: int
+        - volume: float
+        
+        + Sound()
+        + setFile(i: int): void
+        + play(): void
+        + loop(): void
+        + stop(): void
+        + checkVolume(): void
+    }
+}
+
+Sound --|> Object
+Sound --> Clip
+Sound --> File
+Sound --> FloatControl
+
+@enduml

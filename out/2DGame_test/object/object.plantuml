@@ -1,67 +1,129 @@
 @startuml object
 
-class SuperObject {
-    +image: BufferedImage
-    +name: String
-    +collision: boolean
-    +worldX: int
-    +worldY: int
-    +solidArea: Rectangle
-    +solidAreaDefaultX: int
-    +solidAreaDefaultY: int
-    +uTool: UtilityTool
-    +draw(g2: Graphics2D, gp: GamePanel): void
+package object {
+    class SuperObject {
+        + image: BufferedImage
+        + name: String
+        + collision: boolean
+        + worldX: int
+        + worldY: int
+        + solidArea: Rectangle
+        + solidAreaDefaultX: int
+        + solidAreaDefaultY: int
+        + uTool: UtilityTool
+        + draw(g2: Graphics2D, gp: GamePanel): void
+    }
+
+    class OBJ_Axe {
+        + OBJ_Axe(gp: GamePanel)
+    }
+ 
+    class OBJ_Boots {
+        + OBJ_Boots(gp: GamePanel)
+    }
+
+    class OBJ_Chest {
+        + OBJ_Chest(gp: GamePanel)
+    }
+
+     class OBJ_Coin_Gold {
+        + use(): boolean
+        + OBJ_Coin_Gold(gp: GamePanel)
+    }
+
+    class OBJ_Door {
+        + interact(): void
+        + OBJ_Door(gp: GamePanel)
+    }
+
+    class OBJ_Heart {
+        + use(): boolean
+        + OBJ_Heart(gp: GamePanel)
+    }
+
+    class OBJ_Key {
+        + use(): boolean 
+        + OBJ_Key(gp: GamePanel)     
+    }
+
+    class OBJ_Lantern {
+        + OBJ_Lantern(gp: GamePanel)
+    }
+
+    class OBJ_ManaCrystal {
+        + use(): boolean 
+        + OBJ_ManaCrystal(gp: GamePanel)    
+    }
+
+    class OBJ_Potion_Red {
+        + use(): boolean
+        + OBJ_Potion_Red(gp: GamePanel)
+    }
+
+    class OBJ_Rock {
+        + getImage(): void
+        + haveResource(): void
+        + substractResource(): void
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+        + OBJ_Rock(gp: GamePanel)
+    }
+
+    class OBJ_Shield_Diamond {
+        + OBJ_Shield_Diamond(gp: GamePanel)
+    }
+
+    class OBJ_Shield_Metal {
+        + OBJ_Shield_Metal(gp: GamePanel)
+    }
+
+    class OBJ_Shield_Wood {
+        + OBJ_Shield_Wood(gp: GamePanel)
+    }
+
+    class OBJ_Splash_Potion {
+        + getImage(): void
+        + haveResource(): void
+        + substractResource(): void
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+        + OBJ_Splash_Potion(gp: GamePanel)
+    }
+
+    class OBJ_Sword_LV2 {
+        + OBJ_Sword_LV2(gp: GamePanel)
+    }
+
+    class OBJ_Sword_Normal {
+        + OBJ_Sword_Normal(gp: GamePanel)
+    }
+
+    class OBJ_Tent {
+        + use(): boolean
+        + OBJ_Potion_Tent(gp: GamePanel)
+    }    
 }
 
-class OBJ_Boots {
-    -gp: GamePanel
-    -uTool: UtilityTool
-    +OBJ_Boots(gp: GamePanel)
-}
-
-class OBJ_Chest {
-    -gp: GamePanel
-    -uTool: UtilityTool
-    +OBJ_Chest(gp: GamePanel)
-}
-
-class OBJ_Door {
-    -gp: GamePanel
-    -uTool: UtilityTool
-    +OBJ_Door(gp: GamePanel)
-}
-
-class OBJ_Key {
-    -gp: GamePanel
-    -uTool: UtilityTool
-    +OBJ_Key(gp: GamePanel)
-}
-
-class GamePanel {
-  // Assuming GamePanel class exists
-}
-
-class UtilityTool {
-  // Assuming UtilityTool class exists
-}
-
-BufferedImage --|> Object
-
-OBJ_Boots --|> SuperObject
-OBJ_Chest --|> SuperObject
-OBJ_Door --|> SuperObject
-OBJ_Key --|> SuperObject
-
-OBJ_Boots -- GamePanel
-OBJ_Boots -- UtilityTool
-
-OBJ_Chest -- GamePanel
-OBJ_Chest -- UtilityTool
-
-OBJ_Door -- GamePanel
-OBJ_Door -- UtilityTool
-
-OBJ_Key -- GamePanel
-OBJ_Key -- UtilityTool
+OBJ_Axe --|> Entity
+OBJ_Boots --|> Entity
+OBJ_Chest --|> Entity
+OBJ_Coin_Gold --|> Entity
+OBJ_Door --|> Entity
+OBJ_Heart --|> Entity
+OBJ_Lantern --|> Entity
+OBJ_ManaCrystal --|> Entity
+OBJ_Potion_Red --|> Entity
+OBJ_Rock --|> Entity
+OBJ_Shield_Diamond --|> Entity
+OBJ_Shield_Metal --|> Entity
+OBJ_Shield_Wood --|> Entity
+OBJ_Splash_Potion --|> Entity
+OBJ_Sword_LV2 --|> Entity
+OBJ_Sword_Normal --|> Entity
+OBJ_Tent --|> Entity
 
 @enduml

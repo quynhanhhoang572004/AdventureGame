@@ -1,0 +1,19 @@
+@startuml CollisionChecker
+
+package main {
+    class CollisionChecker {
+        + CollisionChecker(gp: GamePanel)
+        + checkTile(entity: Entity): void
+        + checkObject(entity: Entity, player: boolean): int
+        + checkEntity(entity: Entity, target: Entity[][]): int
+        + checkPlayer(entity: Entity): boolean
+    }
+}
+
+package entity {
+    class Entity
+}
+
+CollisionChecker --|> Entity
+
+@enduml

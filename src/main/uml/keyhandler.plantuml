@@ -1,0 +1,39 @@
+@startuml KeyHandler
+
+package main {
+    class KeyHandler {
+        - upPressed: boolean
+        - downPressed: boolean
+        - leftPressed: boolean
+        - rightPressed: boolean
+        - enterPressed: boolean
+        - FPressed: boolean
+        - shotKeyPressed: boolean
+        - leftMouse: boolean
+        - showDebugText: boolean
+
+        + KeyHandler(gp: GamePanel)
+        + mousePressed(e: MouseEvent): void
+        + mouseClicked(e: MouseEvent): void
+        + mouseReleased(e: MouseEvent): void
+        + keyTyped(e: KeyEvent): void
+        + keyPressed(e: KeyEvent): void
+        + keyReleased(e: KeyEvent): void
+        + tradeState(code: int): void
+        + gameOverState(code: int): void
+        + titleState(code: int): void
+        + playState(code: int): void
+        + pauseState(code: int): void
+        + dialogueState(code: int): void
+        + characterState(code: int): void
+        + optionsState(code: int): void
+        + playerInventory(code: int): void
+        + npcInventory(code: int): void
+    }
+}
+
+KeyHandler --|> KeyListener
+KeyHandler --|> MouseListener
+KeyHandler *--> GamePanel
+
+@enduml

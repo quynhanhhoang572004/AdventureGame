@@ -1,0 +1,13 @@
+@startuml Main
+
+package main {
+    class Main {
+        + window: JFrame
+        + main(args: String[]): void
+    }
+}
+
+Main --|> JFrame
+Main *--> GamePanel
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml ui
+
+package main {
+  class UI {
+    + UI(GamePanel)
+    + options_fullScreenNotification(int, int) 
+    + drawTitleScreen()
+    + draw(Graphics2D)
+    + drawDialogueScreen()
+    + getXforAlignToRightText(String, int)
+    + drawOptionsScreen()
+    + drawMessage()
+    + drawPauseScreen()
+    + drawCharacterScreen()
+    + options_top(int, int)
+    + drawGameOverScreen()
+    + drawPlayerLife()
+    + drawTradeScreen()
+    + drawMonsterLife()
+    + options_endGameConfirmation(int, int)
+    + trade_select()
+    + addMessage(String)
+    + trade_buy()
+    + trade_sell()
+    + getItemIndexOnSlot(int, int)
+    + getXforCenteredObject(String)
+    + drawInventory(Entity, boolean)
+    + options_control(int, int)
+    + drawSubWindow(int, int, int, int)
+  }
+}
+
+UI --> GamePanel
+UI --> Entity
+UI --> Player
+
+@enduml

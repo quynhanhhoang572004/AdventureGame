@@ -59,9 +59,7 @@ public class UI {
 		crystal_full = crystal.image;
 		crystal_blank = crystal.image2;
 		Entity goldCoin = new OBJ_Coin_Gold(gp);
-		coin = goldCoin.down1;
-		
-		
+		coin = goldCoin.down1;				
 	}
 
 	public void addMessage(String text) {
@@ -128,6 +126,7 @@ public class UI {
 		}
 		gp.keyH.enterPressed = false;
 	}
+	
 	public void trade_select() {
 		drawDialogueScreen();
 		// DRAW SELECTION WINDOW
@@ -276,6 +275,7 @@ public class UI {
  			}
 		}
 	}	
+
 	public void drawSleepScreen() {
 		counter++;
 

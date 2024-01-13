@@ -1,0 +1,13 @@
+@startuml Config
+
+package main {
+    class Config {
+        + Config(gp: GamePanel)
+        + saveConfig(): void
+        + loadConfig(): void
+    }
+}
+
+Config --|> GamePanel
+
+@enduml

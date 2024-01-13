@@ -1,0 +1,729 @@
+@startuml uml_full
+
+package ai {
+    class Node {
+    - Node parent
+    - int col
+    - int row
+    - int gCost
+    - int hCost
+    - int fCost
+    - boolean solid
+    - boolean open
+    - boolean checked
+
+    + Node(int, int)
+  }
+
+  class PathFinder {
+    - Node[][] node
+    - ArrayList<Node> openList
+    - ArrayList<Node> pathList
+    - Node startNode
+    - Node goalNode
+    - Node currentNode
+    - boolean goalReached
+    - int step
+    + PathFinder(GamePanel)
+    + instantiateNodes()
+    + resetNodes()
+    + setNodes(int, int, int, int, Entity)
+    + getCost(Node)
+    + search(): boolean
+    + openNode(Node)
+    + trackThePath()
+  }
+}
+
+package entity {
+    class Entity {
+        - BufferedImage up1, up2, down1, down2, left1, left2, right1, right2
+        - BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2
+        - BufferedImage image, image2, image3
+        - boolean collision
+        - Rectangle solidArea
+        - Rectangle attackArea
+        - int solidAreaDefaultX
+        - int solidAreaDefaultY
+        - String[] dialogues
+        - int worldX
+        - int worldY
+        - String direction
+        - int spriteNum
+        - int dialogueIndex
+        - boolean collisionOn
+        - boolean invincible
+        - boolean attacking
+        - boolean alive
+        - boolean dying
+        - boolean hpBarOn
+        - boolean onPath
+        - boolean knowBack
+        - int spriteCounter
+        - int actionLockCounter
+        - int invincibleCounter
+        - int shotAvailableCounter
+        - int dyingCounter
+        - int hpBarcounter
+        - int knockBackCounter
+        - String name
+        - int defaultSpeed
+        - int speed
+        - int maxLife
+        - int life
+        - int maxMana
+        - int mana
+        - int ammo
+        - int level
+        - int strength
+        - int dexterity
+        - int attack
+        - int defense
+        - int exp
+        - int nextLevelExp
+        - int coin
+        - Entity currentWeapon
+        - Entity currentShield
+        - Entity currentLight
+        - Projectile projectile
+        - ArrayList<Entity> inventory
+        - final int maxInventorySize
+        - int value
+        - int attackValue
+        - int defenseValue
+        - String description
+        - int useCost
+        - int price
+        - int knockBackPower
+        - boolean stackable
+        - int amount
+        - int lightRadius
+        - int type
+        - final int type_player
+        - final int type_npc
+        - final int type_monster
+        - final int type_sword
+        - final int type_axe
+        - final int type_shield
+        - final int type_consumable
+        - final int type_pickupOnly
+        - final int type_obstacle
+        - final int type_light
+
+        + Entity(GamePanel)
+        + getLeftX()
+        + getRightX()
+        + getTopY()
+        + getBottomY()
+        + getCol()
+        + getRow()
+        + setAction()
+        + damageReaction()
+        + speak()
+        + checkDrop()
+        + dropItem(Entity)
+        + getParticleColor()
+        + getParticleSize()
+        + getParticleSpeed()
+        + getParticleMaxLife()
+        + generateParticle(Entity, Entity)
+        + interact()
+        + use(Entity)
+        + checkCollision()
+        + update()
+        + damagePlayer(int)
+        + draw(Graphics2D)
+        + dyingAnimation(Graphics2D)
+        + changeAlpha(Graphics2D, float)
+        + setup(String, int, int)
+        + searchPath(int, int)
+        + getDetected(Entity, Entity[][], String)
+    }
+
+    class NPC_Merchant {
+        - String[] dialogues
+        - ArrayList<Entity> inventory
+
+        + NPC_Merchant(GamePanel)
+        + getImage()
+        + setDialogue()
+        + setItems()
+        + speak()
+    }
+
+    class NPC_Santa {
+        - int actionLockCounter
+        - boolean onPath
+
+        + NPC_Santa(GamePanel)
+        + getImage()
+        + setDialogue()
+        + setAction()
+        + speak()
+    }
+
+    class Particle {
+        - Entity generator
+        - Color color
+        - int size
+        - int xd
+        - int yd
+
+        + Particle(GamePanel, Entity, Color, int, int, int, int, int)
+        + update()
+        + draw(Graphics2D)
+    }
+
+    class Player {
+        - KeyHandler keyH
+        - int screenX
+        - int screenY
+        - String hasKey
+        - int standCounter
+        - boolean attackCanceled
+        - boolean lightUpdated
+
+        + Player(GamePanel, KeyHandler)
+        + setDefaultValues()
+        + setItems()
+        + getAttack(): int
+        + getDefense(): int
+        + getPlayerImage()
+        + getSleepingImage(BufferedImage)
+        + getPlayerAttackImage()
+        + update()
+        + attacking()
+        + pickupObject(int)
+        + interactNPC(int)
+        + contactMonster(int)
+        + damageMonster(int, int, int)
+        + damageProjectile(int)
+        + checkLevelUp()
+        + knockBack(Entity, int)
+        + damageInteractiveTile(int)
+        + selectItem()
+        + searchItemInInventory(String): int
+        + canObtainItem(Entity): boolean
+        + draw(Graphics2D)
+        + setDefaultPositions()
+        + restoreLifeAndMana()
+   }
+
+    class Projectile {
+        - Entity user
+        + Projectile(GamePanel)
+        + set(int, int, String, boolean, Entity)
+        + update()
+        + haveResource(Entity): boolean
+        + substractResource(Entity)
+    }
+}
+
+
+package environment {
+    class EnvironmentManager {
+        - Lighting lighting
+        + EnvironmentManager(GamePanel)
+        + setup()
+        + update()
+        + draw(Graphics2D)
+    }
+
+    class Lighting {
+        - BufferedImage darknessFilter
+        - int dayCounter
+        - float filterAlpha
+        - final int day
+        - final int dusk
+        - final int night
+        - final int dawn
+        - int dayState
+        + Lighting(GamePanel)
+        + setLightSources()
+        + update()
+        + draw(Graphics2D)
+    }
+}
+
+EnvironmentManager -- Lighting : Aggregates
+Lighting -- GamePanel : Aggregates
+
+package main {
+    class AssetSetter {
+        - gp: GamePanel
+
+        + AssetSetter(gp: GamePanel)
+        + setObject(): void
+        + setNPC(): void
+        + setMonster(): void
+        + setInteractiveTile(): void
+    }
+
+    class CollisionChecker {
+        + CollisionChecker(gp: GamePanel)
+        + checkTile(entity: Entity): void
+        + checkObject(entity: Entity, player: boolean): int
+        + checkEntity(entity: Entity, target: Entity[][]): int
+        + checkPlayer(entity: Entity): boolean
+    }
+
+    class Config {
+        - gp: GamePanel
+
+        + Config(gp: GamePanel)
+        + saveConfig(): void
+        + loadConfig(): void
+    }
+
+    class EventHandler {
+        - eventRect: EventRect[][][]
+        - previousEventX: int
+        - previousEventY: int
+        - canTouchEvent: boolean
+        - tempMap: int
+        - tempCol: int
+        - tempRow: int
+
+        + EventHandler(gp: GamePanel)
+        + checkEvent(): void
+        + hit(map: int, col: int, row: int, reqDirection: String): boolean
+        + teleport(map: int, col: int, row: int): void
+        + speak(entity: Entity): void
+        + damagePit(gameState: int): void
+        + healingPool(gameState: int): void
+    }
+
+    class EventRect {
+        - eventRectDefaultX: int
+        - eventRectDefaultY: int
+        - eventDone: boolean
+
+        + EventRect()
+    }
+
+    class GamePanel {
+        - originalTileSize: int
+        - scale: int
+        - tileSize: int
+        - maxScreenCol: int
+        - maxScreenRow: int
+        - screenWidth: int
+        - screenHeight: int
+        - maxWorldCol: int
+        - maxWorldRow: int
+        - maxMap: int
+        - currentMap: int
+        - screenWidth2: int
+        - screenHeight2: int
+        - tempScreen: BufferedImage
+        - g2: Graphics2D
+        - fullScreenOn: boolean
+        - FPS: int
+        - tileM: TileManager
+        - keyH: KeyHandler
+        - music: Sound
+        - se: Sound
+        - cChecker: CollisionChecker
+        - aSetter: AssetSetter
+        - ui: UI
+        - eHandler: EventHandler
+        - config: Config
+        - pFinder: PathFinder
+        - eManager: EnvironmentManager
+        - gameThread: Thread
+        - player: Player
+        - obj: Entity[][]
+        - npc: Entity[][]
+        - monster: Entity[][]
+        - iTile: InteractiveTile[][]
+        - projectile: Entity[][]
+        - entityList: ArrayList<Entity>
+        - particleList: ArrayList<Entity>
+        - gameState: int
+        - titleState: final int
+        - playState: final int
+        - pauseState: final int
+        - dialogueState: final int
+        - characterState: final int
+        - optionsState: final int
+        - gameOverState: final int
+        - transitionState: final int
+        - tradeState: final int
+        - sleepState: final int
+        
+        + GamePanel()
+        + setupGame(): void
+        + retry(): void
+        + restart(): void
+        + setFullScreen(): void
+        + startGameThread(): void
+        + run(): void
+        + update(): void
+        + drawToTempScreen(): void
+        + drawToScreen(): void
+        + playMusic(i: int): void
+        + stopMusic(): void
+        + playSE(i: int): void
+    }
+
+    class KeyHandler {
+        - upPressed: boolean
+        - downPressed: boolean
+        - leftPressed: boolean
+        - rightPressed: boolean
+        - enterPressed: boolean
+        - FPressed: boolean
+        - shotKeyPressed: boolean
+        - leftMouse: boolean
+        - showDebugText: boolean
+
+        + KeyHandler(gp: GamePanel)
+        + mousePressed(e: MouseEvent): void
+        + mouseClicked(e: MouseEvent): void
+        + mouseReleased(e: MouseEvent): void
+        + mouseEntered(e: MouseEvent): void
+        + mouseExited(e: MouseEvent): void
+        + keyTyped(e: KeyEvent): void
+        + keyPressed(e: KeyEvent): void
+        + keyReleased(e: KeyEvent): void
+        + playerInventory(code: int): void
+        + npcInventory(code: int): void
+        - titleState(code: int): void
+        - playState(code: int): void
+        - pauseState(code: int): void
+        - dialogueState(code: int): void
+        - characterState(code: int): void
+        - optionsState(code: int): void
+        - tradeState(code: int): void
+        - gameOverState(code: int): void
+    }
+
+    class Sound {
+        - clip: Clip
+        - soundFile: File[]
+        - fc: FloatControl
+        - volumeScale: int
+        - volume: float
+        + Sound()
+        + setFile(i: int): void
+        + play(): void
+        + loop(): void
+        + stop(): void
+        + checkVolume(): void
+    }
+
+    class UI {
+        + UI(GamePanel)
+        + options_fullScreenNotification(int, int): void
+        + drawTitleScreen()
+        + draw(Graphics2D)
+        + drawDialogueScreen()
+        + getXforAlignToRightText(String, int)
+        + drawOptionsScreen()
+        + drawMessage()
+        + drawPauseScreen()
+        + drawCharacterScreen()
+        + options_top(int, int)
+        + drawGameOverScreen()
+        + drawPlayerLife()
+        + drawTradeScreen()
+        + drawMonsterLife()
+        + options_endGameConfirmation(int, int)
+        + trade_select()
+        + addMessage(String)
+        + trade_buy()
+        + trade_sell()
+        + getItemIndexOnSlot(int, int)
+        + getXforCenteredObject(String)
+        + drawInventory(Entity, boolean)
+        + options_control(int, int)
+        + drawSubWindow(int, int, int, int)
+    }
+
+    class UtilityTool {
+        + scaleImage(original: BufferedImage, width: int, height: int): BufferedImage
+    }
+}
+
+package monster {
+    class MON_PolarBear {
+        - onPath: boolean
+        - speed: int
+        - defaultSpeed: int
+        - projectile: OBJ_Rock
+        - solidArea: Rectangle
+        - actionLockCounter: int
+        - shotAvailableCounter: int
+
+        + MON_PolarBear(gp: GamePanel)
+        + getImage(): void
+        + update(): void
+        + setAction(): void
+        + damageReaction(): void
+        + checkDrop(): void
+    }
+}
+
+package object {
+    class SuperObject {
+        + image: BufferedImage
+        + name: String
+        + collision: boolean
+        + worldX: int
+        + worldY: int
+        + solidArea: Rectangle
+        + solidAreaDefaultX: int
+        + solidAreaDefaultY: int
+        + uTool: UtilityTool
+        + draw(g2: Graphics2D, gp: GamePanel): void
+    }
+
+    class OBJ_Axe {
+        + OBJ_Axe(gp: GamePanel)
+    }
+ 
+    class OBJ_Boots {
+        + OBJ_Boots(gp: GamePanel)
+    }
+
+    class OBJ_Chest {
+        + OBJ_Chest(gp: GamePanel)
+    }
+
+     class OBJ_Coin_Gold {
+        + use(): boolean
+        + OBJ_Coin_Gold(gp: GamePanel)
+    }
+
+    class OBJ_Door {
+        + interact(): void
+        + OBJ_Door(gp: GamePanel)
+    }
+
+    class OBJ_Heart {
+        + use(): boolean
+        + OBJ_Heart(gp: GamePanel)
+    }
+
+    class OBJ_Key {
+        + use(): boolean 
+        + OBJ_Key(gp: GamePanel)     
+    }
+
+    class OBJ_Lantern {
+        + OBJ_Lantern(gp: GamePanel)
+    }
+
+    class OBJ_ManaCrystal {
+        + use(): boolean 
+        + OBJ_ManaCrystal(gp: GamePanel)    
+    }
+
+    class OBJ_Potion_Red {
+        + use(): boolean
+        + OBJ_Potion_Red(gp: GamePanel)
+    }
+
+    class OBJ_Rock {
+        + getImage(): void
+        + haveResource(): void
+        + substractResource(): void
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+        + OBJ_Rock(gp: GamePanel)
+    }
+
+    class OBJ_Shield_Diamond {
+        + OBJ_Shield_Diamond(gp: GamePanel)
+    }
+
+    class OBJ_Shield_Metal {
+        + OBJ_Shield_Metal(gp: GamePanel)
+    }
+
+    class OBJ_Shield_Wood {
+        + OBJ_Shield_Wood(gp: GamePanel)
+    }
+
+    class OBJ_Splash_Potion {
+        + getImage(): void
+        + haveResource(): void
+        + substractResource(): void
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+        + OBJ_Splash_Potion(gp: GamePanel)
+    }
+
+    class OBJ_Sword_LV2 {
+        + OBJ_Sword_LV2(gp: GamePanel)
+    }
+
+    class OBJ_Sword_Normal {
+        + OBJ_Sword_Normal(gp: GamePanel)
+    }
+
+    class OBJ_Tent {
+        + use(): boolean
+        + OBJ_Potion_Tent(gp: GamePanel)
+    }    
+}
+
+package tile {
+  class Tile {
+      + image: BufferedImage
+      + collision: boolean
+      + setImage(scaledImage: BufferedImage): void
+  }
+
+  class TileManager {
+      - tile: Tile[]
+      - mapTileNum: int[][][]
+      - drawPath: boolean
+      
+      + TileManager(gp: GamePanel)
+      + getTileImage(): void
+      + setup(index: int, imagePath: String, collision: boolean): void
+      + loadMap(filePath: String, map: int): void
+      + draw(g2: Graphics2D): void
+  }
+}
+
+package tile_interactive {
+    class InteractiveTile {
+        - destructible: boolean
+        # invincible: boolean
+        # invincibleCounter: int
+        # down1: BufferedImage
+        
+        + InteractiveTile(gp: GamePanel, col: int, row: int)
+        + isCorrectItem(entity: Entity): boolean
+        + playSE(): void
+        + getDestroyedForm(): InteractiveTile
+        + update(): void
+        + draw(g2: Graphics2D): void
+    }
+
+    class IT_DryTree {        
+        + IT_DryTree(gp: GamePanel, col: int, row: int)
+        + isCorrectItem(entity: Entity): boolean
+        + playSE(): void
+        + getDestroyedForm(): InteractiveTile
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+    }
+
+    class IT_Trunk {
+        + IT_Trunk(gp: GamePanel, col: int, row: int)
+    }
+}
+
+PathFinder --|> Node : Aggregates
+PathFinder --|> GamePanel : Aggregates
+
+NPC_Merchant --> Entity
+NPC_Merchant --> GamePanel
+NPC_Merchant --|> OBJ_Potion_Red  
+NPC_Merchant --|> OBJ_Shield_Diamond  
+NPC_Merchant --|> OBJ_Sword_Normal  
+NPC_Merchant --|> OBJ_Axe  
+
+NPC_Santa --> Entity
+NPC_Santa --> GamePanel
+
+Particle --> Entity
+Particle --> GamePanel
+
+Player --> Entity
+Player --> GamePanel
+
+Projectile --|> Entity  
+Projectile --> GamePanel  
+
+EnvironmentManager --|> Lighting : Aggregates
+Lighting --|> GamePanel : Aggregates
+
+GamePanel --|> AssetSetter  
+GamePanel --|> CollisionChecker  
+GamePanel --|> EventHandler  
+GamePanel --|> Config  
+
+AssetSetter --|> GamePanel  
+AssetSetter --|> OBJ_Door  
+AssetSetter --|> OBJ_Key  
+AssetSetter --|> OBJ_Shield_Metal  
+AssetSetter --|> OBJ_Shield_Diamond  
+AssetSetter --|> OBJ_Axe  
+AssetSetter --|> OBJ_Potion_Red  
+AssetSetter --|> OBJ_Coin_Gold  
+AssetSetter --|> OBJ_Heart  
+AssetSetter --|> OBJ_ManaCrystal  
+AssetSetter --|> OBJ_Chest  
+AssetSetter --|> OBJ_Lantern  
+AssetSetter --|> OBJ_Tent  
+AssetSetter --|> OBJ_Sword_LV2  
+AssetSetter --|> IT_DryTree  
+AssetSetter --|> MON_PolarBear  
+AssetSetter --|> Entity  
+AssetSetter --|> NPC_Santa  
+AssetSetter --|> NPC_Merchant  
+
+Entity --|> CollisionChecker  
+
+Config --|> BufferedReader  
+Config --|> BufferedWriter  
+Config --|> FileReader  
+Config --|> FileWriter  
+Config --|> Path  
+
+EventHandler --|> Entity  
+
+KeyHandler *-down-> KeyEvent  
+KeyHandler *-down-> MouseEvent  
+
+Sound --|> Object  
+Sound --|> Line  
+
+UI --|> GamePanel  
+UI --|> Entity  
+UI --|> Player  
+
+MON_PolarBear --|> Entity  
+
+OBJ_Axe --|> Entity  
+OBJ_Boots --|> Entity  
+OBJ_Chest --|> Entity  
+OBJ_Coin_Gold --|> Entity  
+OBJ_Door --|> Entity  
+OBJ_Heart --|> Entity  
+OBJ_Lantern --|> Entity  
+OBJ_ManaCrystal --|> Entity  
+OBJ_Potion_Red --|> Entity  
+OBJ_Rock --|> Entity  
+OBJ_Shield_Diamond --|> Entity  
+OBJ_Shield_Metal --|> Entity  
+OBJ_Shield_Wood --|> Entity  
+OBJ_Splash_Potion --|> Entity  
+OBJ_Sword_LV2 --|> Entity  
+OBJ_Sword_Normal --|> Entity  
+OBJ_Tent --|> Entity  
+
+IT_DryTree --|> InteractiveTile  
+IT_Trunk --|> InteractiveTile  
+
+
+skinparam arrow {
+  FontStyle bold
+  LineStyle dashed
+}
+
+skinparam backgroundColor transparent
+skinparam linetype ortho    
+' "skinparam linetype ortho" : Make the lines more cleaner and straight
+@enduml
+

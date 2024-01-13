@@ -1,0 +1,19 @@
+@startuml NPC_Santa
+
+package entity {
+    class NPC_Santa {
+    - int actionLockCounter
+    - boolean onPath
+
+    + NPC_Santa(GamePanel)
+    + getImage()
+    + setDialogue()
+    + setAction()
+    + speak()
+    }
+}
+
+NPC_Santa --> Entity
+NPC_Santa --> GamePanel
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml InteractiveTile
+
+package tile_interactive {
+    class InteractiveTile {
+        - gp: GamePanel
+        - destructible: boolean
+        # invincible: boolean
+        # invincibleCounter: int
+        # down1: BufferedImage
+        
+        + InteractiveTile(gp: GamePanel, col: int, row: int)
+        + isCorrectItem(entity: Entity): boolean
+        + playSE(): void
+        + getDestroyedForm(): InteractiveTile
+        + update(): void
+        + draw(g2: Graphics2D): void
+    }
+}
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml IT_DryTree
+
+package tile_interactive {
+    class IT_DryTree {
+        - gp: GamePanel
+        
+        + IT_DryTree(gp: GamePanel, col: int, row: int)
+        + isCorrectItem(entity: Entity): boolean
+        + playSE(): void
+        + getDestroyedForm(): InteractiveTile
+        + getParticleColor(): Color
+        + getParticleSize(): int
+        + getParticleSpeed(): int
+        + getParticleMaxLife(): int
+    }
+}
+
+IT_DryTree --|> InteractiveTile
+
+@enduml

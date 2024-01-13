@@ -1,0 +1,31 @@
+@startuml Tile
+
+package tile {
+  class Tile {
+      + image: BufferedImage
+      + collision: boolean
+      + setImage(scaledImage: BufferedImage): void
+  }
+
+  class TileManager {
+      - gp: GamePanel
+      - tile: Tile[]
+      - mapTileNum: int[][][]
+      - drawPath: boolean
+      
+      + TileManager(gp: GamePanel)
+      + getTileImage(): void
+      + setup(index: int, imagePath: String, collision: boolean): void
+      + loadMap(filePath: String, map: int): void
+      + draw(g2: Graphics2D): void
+  }
+}
+
+package object {
+  class Object 
+}
+
+Tile --|> Object
+TileManager --|> Object
+
+@enduml

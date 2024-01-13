@@ -1,0 +1,9 @@
+@startuml UtilityTool
+
+package main {
+  class UtilityTool {
+    + scaleImage(BufferedImage, int, int): BufferedImage
+  }
+}
+
+@enduml

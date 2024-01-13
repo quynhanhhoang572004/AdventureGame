@@ -1,0 +1,28 @@
+@startuml PathFinder
+
+package ai {
+  class PathFinder {
+    - GamePanel gp
+    - Node[][] node
+    - ArrayList<Node> openList
+    - ArrayList<Node> pathList
+    - Node startNode
+    - Node goalNode
+    - Node currentNode
+    - boolean goalReached
+    - int step
+    + PathFinder(GamePanel)
+    + instantiateNodes()
+    + resetNodes()
+    + setNodes(int, int, int, int, Entity)
+    + getCost(Node)
+    + search(): boolean
+    + openNode(Node)
+    + trackThePath()
+  }
+}
+
+PathFinder -- Node : Aggregates
+PathFinder -- GamePanel : Aggregates
+
+@enduml

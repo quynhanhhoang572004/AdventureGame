@@ -1,0 +1,23 @@
+@startuml NPC_Merchant
+
+package entity {
+    class NPC_Merchant {
+    - String[] dialogues
+    - ArrayList<Entity> inventory
+
+    + NPC_Merchant(GamePanel)
+    + getImage()
+    + setDialogue()
+    + setItems()
+    + speak()
+    }
+}
+
+NPC_Merchant --> Entity
+NPC_Merchant --> GamePanel
+NPC_Merchant --> OBJ_Potion_Red
+NPC_Merchant --> OBJ_Shield_Diamond
+NPC_Merchant --> OBJ_Sword_Normal
+NPC_Merchant --> OBJ_Axe
+
+@enduml

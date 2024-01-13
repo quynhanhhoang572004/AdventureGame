@@ -1,0 +1,9 @@
+@startuml Tile
+
+class Tile {
+    + image: BufferedImage
+    + collision: boolean
+    + setImage(scaledImage: BufferedImage): void
+}
+
+@enduml
