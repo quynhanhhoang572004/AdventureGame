@@ -24,6 +24,7 @@ package ai {
     - Node currentNode
     - boolean goalReached
     - int step
+    
     + PathFinder(GamePanel)
     + instantiateNodes()
     + resetNodes()
@@ -219,7 +220,6 @@ package entity {
     }
 }
 
-
 package environment {
     class EnvironmentManager {
         - Lighting lighting
@@ -247,8 +247,6 @@ package environment {
 
 package main {
     class AssetSetter {
-        - gp: GamePanel
-
         + AssetSetter(gp: GamePanel)
         + setObject(): void
         + setNPC(): void
@@ -265,8 +263,6 @@ package main {
     }
 
     class Config {
-        - gp: GamePanel
-
         + Config(gp: GamePanel)
         + saveConfig(): void
         + loadConfig(): void
