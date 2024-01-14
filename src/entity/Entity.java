@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -37,7 +38,7 @@ public class Entity {
 	public boolean dying = false;
 	public boolean hpBarOn = false;
 	public boolean onPath = false;
-	public boolean knowBack=false;
+	public boolean knowBack = false;
 	
 	//COUNTER
 	public int spriteCounter = 0;
@@ -46,7 +47,7 @@ public class Entity {
 	public int shotAvailableCounter = 0;
 	public int dyingCounter = 0;
 	public int hpBarcounter = 0;
-	public int knockBackCounter=0;
+	public int knockBackCounter = 0;
 	
 	//CHARACTER ATTRIBUTES
 	public String name;
@@ -121,6 +122,27 @@ public class Entity {
     public int getRow(){
 		return (worldY + solidArea.y)/gp.tileSize;
 	}
+	public int getXdistance(Entity target) {
+		int xDistance = Math.abs(worldX - target.worldX);
+		return xDistance;		
+	}
+	public int getYdistance(Entity target) {
+		int yDistance = Math.abs(worldY - target.worldY);
+		return yDistance;
+	}
+	public int getTileDistance(Entity target) {
+		int tileDistance = (getXdistance(target) + getYdistance(target)) / gp.tileSize;
+		return tileDistance;
+	}	
+	public int getGoalCol(Entity target) {
+		int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
+		return goalCol;
+	}
+	public int getGoalRow(Entity target) {
+		int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
+		return goalRow;
+	}
+
     public void setAction () {}
 	public void damageReaction(){		
 	}
@@ -293,7 +315,63 @@ public class Entity {
             shotAvailableCounter++;
         }
     }
-        
+	public void checkShootOrNot(int rate, int shotInterval) { 	
+		//Check if 	it shoots a projectile	
+		int i = new Random().nextInt(rate)+1;
+		if (i == 0 && projectile.alive == false && shotAvailableCounter == shotInterval) { //shotAvailableCounter is the range of monster shot
+		projectile.set(worldX, worldY, direction, true, this);
+		//gp.projectileList.add(projectile);
+		
+			//CHECK VANCACY
+			for (int ii=0;ii<gp.projectile[1].length; ii++){
+				if(gp.projectile[gp.currentMap] [ii] == null){
+					gp.projectile[gp.currentMap][ii]=projectile;
+					break;
+				}
+			}
+						
+		shotAvailableCounter = 0;
+		}
+		speed = 2;
+	}
+	public void checkStartChasingOrNot(Entity target, int distance, int rate) {
+		if (getTileDistance(target) < distance) {
+			int i = new Random().nextInt(rate);
+			if (i == 0) {
+				onPath = true;
+			}
+		}
+	}
+    public void checkStopChasingOrNot(Entity target, int distance, int rate) {
+		if (getTileDistance(target) > distance) {
+			int i = new Random().nextInt(rate);
+			if (i == 0) {
+				onPath = false;
+			}
+		}
+	}
+	public void getRandomDirection() {
+		actionLockCounter++;
+		if (actionLockCounter == 120) {
+			Random random = new Random();
+			int i = random.nextInt(100)+1;
+			// Pick up a number from 1 to 100
+			if (i <= 25) {
+				direction = "up";
+			}
+			if (i > 25 && i <= 50) {
+				direction = "down";
+			}
+			if (i > 50 && i <= 75) {
+				direction = "left";
+			}
+			if (i > 75 && i <= 100) {
+				direction = "right";
+			}
+			actionLockCounter = 0;
+		}	
+	}
+
     public void damagePlayer(int attack) {
 		if(gp.player.invincible == false){
 			//damage can be taken
