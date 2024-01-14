@@ -722,7 +722,7 @@ skinparam arrow {
   LineStyle dashed
 }
 
-skinparam backgroundColor transparent
+skinparam backgroundColor white 
 skinparam linetype ortho    
 ' "skinparam linetype ortho" : Make the lines more cleaner and straight
 @enduml
