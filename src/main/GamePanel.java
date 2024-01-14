@@ -263,7 +263,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             		iTile[currentMap][i].draw(g2);
             	}
             }
-            
+                                                                    
             // ADD ENTITY TO THE LIST
             entityList.add(player);
             //for entity of npc

@@ -40,13 +40,17 @@ public class TileManager {
         setup(2, "water01", true);
         setup(3, "wall", true);
         setup(4, "pinetree_snowpath", true);
+        
         setup(5, "rock1", true);
         
         // TEST CASE (I USE AUTHOR'S TILE FOR THIS, WILL CHANGE IN THE FUTURE FOR OUR MAP)
         // SAMPLE TEST CASE MAP: interior01.txt
+
         setup(6, "033", false);		// Hut.png (033.png)
         setup(7, "034", false);		// Floor01.png (034.png)
         setup(8, "035", true);		// Table01.png (035.png)
+
+
         
     }
 
