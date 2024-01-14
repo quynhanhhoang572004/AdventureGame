@@ -245,9 +245,6 @@ package environment {
     }
 }
 
-EnvironmentManager -- Lighting : Aggregates
-Lighting -- GamePanel : Aggregates
-
 package main {
     class AssetSetter {
         - gp: GamePanel
@@ -623,8 +620,8 @@ package tile_interactive {
     }
 }
 
-PathFinder --|> Node : Aggregates
-PathFinder --|> GamePanel : Aggregates
+PathFinder --|> Node 
+PathFinder --|> GamePanel 
 
 NPC_Merchant --> Entity
 NPC_Merchant --> GamePanel
@@ -645,8 +642,8 @@ Player --> GamePanel
 Projectile --|> Entity  
 Projectile --> GamePanel  
 
-EnvironmentManager --|> Lighting : Aggregates
-Lighting --|> GamePanel : Aggregates
+EnvironmentManager --|> Lighting 
+Lighting --|> GamePanel 
 
 GamePanel --|> AssetSetter  
 GamePanel --|> CollisionChecker  
@@ -682,12 +679,6 @@ Config --|> FileWriter
 Config --|> Path  
 
 EventHandler --|> Entity  
-
-KeyHandler *-down-> KeyEvent  
-KeyHandler *-down-> MouseEvent  
-
-Sound --|> Object  
-Sound --|> Line  
 
 UI --|> GamePanel  
 UI --|> Entity  
