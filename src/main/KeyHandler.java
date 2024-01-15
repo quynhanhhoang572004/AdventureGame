@@ -155,11 +155,11 @@ public class KeyHandler  implements KeyListener, MouseListener {
     	if (code == KeyEvent.VK_ENTER) {
     		if (gp.ui.commandNum == 0) {
     			gp.gameState = gp.playState;
-    			gp.retry();
+    			gp.resetGame(false);
     			gp.playMusic(0);
     		} else if (gp.ui.commandNum == 1) {
     			gp.gameState = gp.titleState;
-    			gp.restart();
+    			gp.resetGame(true);
     		}
     	}
     }

@@ -45,9 +45,6 @@ public class Player extends Entity {
         //attackArea.height = 36;
 
         setDefaultValues();
-        getPlayerImage();
-        getPlayerAttackImage();
-        setItems();
     }
     
     public void setDefaultValues(){
@@ -81,6 +78,10 @@ public class Player extends Entity {
         maxMana = 4;
         mana = maxMana;
         ammo = 10;
+
+        getPlayerImage();
+        getPlayerAttackImage();
+        setItems();
     }
     
     public void setItems(){

@@ -125,24 +125,16 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         setFullScreen();
      }
 }    
-    public void retry() {
-    	player.setDefaultPositions();
+    public void resetGame(boolean restart) {
+        player.setDefaultPositions();
     	player.restoreLifeAndMana();
     	aSetter.setNPC();
     	aSetter.setMonster();
-    }
-    
-    public void restart() {
-    	player.setDefaultValues();
-    	player.setDefaultPositions();
-    	player.restoreLifeAndMana();
-    	player.setItems();
-    	aSetter.setObject();
-        aSetter.setNPC();
-        aSetter.setMonster();
-        aSetter.setInteractiveTile();
-        ui.titleScreenState = 0; //I added this in order to fix the gameover
-        ui.commandNum = -1; //I added this in order to fix the gameover
+        if (restart == true) {
+            player.setDefaultValues();
+            aSetter.setObject();
+            aSetter.setInteractiveTile();
+        }
     }
     
     public void setFullScreen() {
