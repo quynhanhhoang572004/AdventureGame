@@ -388,12 +388,12 @@ public class UI {
 	}
 	public void drawTitleScreen() {
 		if(titleScreenState  ==  0){
-			g2.setColor(new Color(0, 0, 0));
+			g2.setColor(new Color(0, 0, 63));
 			g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
 			// TITLE NAME
 			g2.setFont(g2.getFont().deriveFont(Font.BOLD, 55F));	// NOT FINISH YET SINCE WE ARE NOT IMPORT FONT YET
-			String text = "Frost King Adventure"; 					// GAME TITLE
+			String text = "Frost King's tale"; 					// GAME TITLE
 			int x = getXforCenteredObject(text);
 			int y = gp.tileSize * 3;
 	
