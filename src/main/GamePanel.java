@@ -124,8 +124,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         if (fullScreenOn == true) {
         setFullScreen();
      }
-}
-    
+}    
     public void retry() {
     	player.setDefaultPositions();
     	player.restoreLifeAndMana();
