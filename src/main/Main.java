@@ -8,7 +8,7 @@ public class Main {
         window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	// This let the windows close when user clicks "x"
         window.setResizable(false);
-        window.setTitle("2D Adventure");
+        window.setTitle("Frost King's tale");
 //      window.setUndecorated(true);	// Turn off the navigation bar of the JPanel window                
         
         GamePanel gamePanel = new GamePanel();
