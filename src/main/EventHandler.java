@@ -138,6 +138,7 @@ public class EventHandler {
 			gp.player.mana = gp.player.maxMana;
 			gp.aSetter.setMonster();			
 	        gp.playSE(12);  
+			gp.saveLoad.save();
 		}
 	}
 }

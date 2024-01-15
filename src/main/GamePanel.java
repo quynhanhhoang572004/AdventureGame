@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 
 
 import ai.PathFinder;
+import data.SaveLoad;
 
 // @SuppressWarnings("serial"): This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
    @SuppressWarnings("serial")
@@ -67,6 +68,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     Config config = new Config(this);    
     public PathFinder pFinder = new PathFinder(this);
     EnvironmentManager eManager= new EnvironmentManager(this);
+    SaveLoad saveLoad = new SaveLoad(this);
     Thread gameThread;
     
     

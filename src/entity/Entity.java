@@ -39,6 +39,8 @@ public class Entity {
 	public boolean hpBarOn = false;
 	public boolean onPath = false;
 	public boolean knowBack = false;
+	public Entity loot;
+	public boolean opened = false;
 	
 	//COUNTER
 	public int spriteCounter = 0;
@@ -142,7 +144,7 @@ public class Entity {
 		int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
 		return goalRow;
 	}
-
+	public void setLoot(Entity loot) {}
     public void setAction () {}
 	public void damageReaction(){		
 	}
