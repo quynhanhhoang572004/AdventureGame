@@ -26,13 +26,14 @@ public class Entity {
 	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
 	//creating invincible time
-    String dialogues[] = new String[20];
+    String dialogues[][] = new String[20][20];
 	
 
 	//STATE
     public int worldX, worldY;
 	public String direction = "down";
 	public int spriteNum = 1;
+	int dialogueSet = 0;
 	int dialogueIndex = 0;
 	public boolean collisionOn = false;
 	public boolean invincible = false;
