@@ -506,6 +506,12 @@ public class UI {
 	    y += gp.tileSize;
 		if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
 			currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+			if(gp.keyH.enterPressed == true){
+				if(gp.gameState == gp.dialogueState){
+					npc.dialogueIndex++;
+					gp.keyH.enterPressed = false;
+				}
+			}
 		} else {//If no text is in the array
 			npc.dialogueIndex = 0;
 			If(gp.gameState == gp.dialogueState) {
