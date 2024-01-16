@@ -509,9 +509,9 @@ public class UI {
 					gp.keyH.enterPressed = false;
 				}
 			}
-		} else {//If no text is in the array
+		} else {		//If no text is in the array
 			npc.dialogueIndex = 0;
-			If(gp.gameState == gp.dialogueState) {
+			if(gp.gameState == gp.dialogueState) {
 				gp.gameState = gp.playState;
 			}
 		}

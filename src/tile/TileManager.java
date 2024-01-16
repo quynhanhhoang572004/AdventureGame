@@ -32,7 +32,7 @@ public class TileManager {
         loadMap("maps/world_map1.txt", 0);
         						 // 0: map number (order of the map)
         loadMap("maps/interior01.txt", 1);
-        						 // this map is for the test case for the code as mentioned (this map is from the author)
+        					
     }
 
     public void getTileImage(){
