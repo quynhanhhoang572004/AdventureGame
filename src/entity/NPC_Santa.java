@@ -34,10 +34,10 @@ public class NPC_Santa extends Entity {
     
     public void setDialogue() {
     	// Input the dialogue between the quotes
-    	dialogues[0] = "Hello.";	
-    	dialogues[1] = "So you've come to this snowy land to find the treasure.";
-    	dialogues[2] = "I am Great Santa, who will guide you and give you quests in order to achieve the treasure.";
-    	dialogues[3] = "Good luck to you, that's the end for now.";    	
+    	dialogues[0][0] = "Hello.";	
+    	dialogues[0][1] = "So you've come to this snowy land to find the treasure.";
+    	dialogues[0][2] = "I am Great Santa, who will guide you and give you quests in order to achieve the treasure.";
+    	dialogues[0][3] = "Good luck to you, that's the end for now.";    	
     }
     
     public void setAction () {
