@@ -668,12 +668,6 @@ AssetSetter --|> NPC_Merchant
 
 Entity --|> CollisionChecker  
 
-Config --|> BufferedReader  
-Config --|> BufferedWriter  
-Config --|> FileReader  
-Config --|> FileWriter  
-Config --|> Path  
-
 EventHandler --|> Entity  
 
 UI --|> GamePanel  

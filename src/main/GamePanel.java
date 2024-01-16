@@ -25,8 +25,7 @@ import javax.swing.JPanel;
 
 import ai.PathFinder;
 
-// @SuppressWarnings("serial"): This line is modified to remove the warning when opening this file with Eclipse, can delete if not needed
-   @SuppressWarnings("serial")
+@SuppressWarnings("serial")
 
 public class GamePanel extends JPanel implements Runnable {  // JPanel is the subclass of GamePanel	
 	// SCREEN SETTING
@@ -123,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         g2 = (Graphics2D)tempScreen.getGraphics();
         if (fullScreenOn == true) {
         setFullScreen();
-     }
+    }
 }    
     public void resetGame(boolean restart) {
         player.setDefaultPositions();
