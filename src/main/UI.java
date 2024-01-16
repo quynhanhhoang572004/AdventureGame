@@ -504,6 +504,10 @@ public class UI {
 	    // SETTING FOR THE DIALOGUE  
 	    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
 	    y += gp.tileSize;
+		if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) (
+			
+		)
+
 	    FontMetrics fontMetrics = g2.getFontMetrics();
 	    String[] words = currentDialogue.split("\\s+");
 	    StringBuilder line = new StringBuilder();

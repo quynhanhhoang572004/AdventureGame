@@ -33,8 +33,8 @@ public class Entity {
     public int worldX, worldY;
 	public String direction = "down";
 	public int spriteNum = 1;
-	int dialogueSet = 0;
-	int dialogueIndex = 0;
+	public int dialogueSet = 0;
+	public int dialogueIndex = 0;
 	public boolean collisionOn = false;
 	public boolean invincible = false;
 	public boolean attacking = false;
