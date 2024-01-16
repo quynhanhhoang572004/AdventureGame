@@ -16,20 +16,26 @@ public class OBJ_Key extends Entity {
         description = "[" + name + "]\nA Key";
         price=100;
         stackable = true;
+
+        setDialogue();
+    }
+    public void setDialogue(){
+        dialogues[0][0] = " You use the " + name + " and open the door";
+        dialogues[1][0] = " ???:D";
+
     }
     public boolean use(Entity entity){
-        gp.gameState=gp.dialogueState;
 
         int objIndex=getDetected(entity, gp.obj, "Door");
         
         if(objIndex != 999){
-            gp.ui.currentDialogue=" You use the " + name + " and open the door";
+            startDialogue(this,0);
             gp.playSE(3);
             gp.obj[gp.currentMap][objIndex] = null;
             return true;
         }
         else {
-            gp.ui.currentDialogue ="???:D ";
+            startDialogue(this,1);
             return false;
         }
       
