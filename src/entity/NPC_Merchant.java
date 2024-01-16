@@ -34,7 +34,7 @@ public class NPC_Merchant extends Entity {
     
     public void setDialogue() {
     	// Input the dialogue between the quotes
-    	dialogues[0][0]] = "Oh hey. Is that the Frost King? \nFinally you have found me.\nI have some good stuff.\nDo you want to trade?";	
+    	dialogues[0][0] = "Oh hey. Is that the Frost King? \nFinally you have found me.\nI have some good stuff.\nDo you want to trade?";	
     }
     
     public void setItems() {
