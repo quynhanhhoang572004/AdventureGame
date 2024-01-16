@@ -1,7 +1,10 @@
 // This entity will be the parent class
 package entity;
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -143,6 +146,15 @@ public class Entity {
 	public int getGoalRow(Entity target) {
 		int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
 		return goalRow;
+	}
+	public void resetCounter(){
+	spriteCounter = 0;
+	actionLockCounter = 0;
+	invincibleCounter = 0;
+	shotAvailableCounter = 0;
+	dyingCounter = 0;
+	hpBarcounter = 0;
+	knockBackCounter = 0;
 	}
 	public void setLoot(Entity loot) {}
     public void setAction () {}
