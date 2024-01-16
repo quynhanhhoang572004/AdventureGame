@@ -1,9 +1,5 @@
 package main;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,6 +8,10 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 import entity.Entity;
 import object.OBJ_Coin_Gold;
@@ -504,9 +504,14 @@ public class UI {
 	    // SETTING FOR THE DIALOGUE  
 	    g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
 	    y += gp.tileSize;
-		if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) (
-			
-		)
+		if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
+			currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+		} else {//If no text is in the array
+			npc.dialogueIndex = 0;
+			If(gp.gameState == gp.dialogueState) {
+				gp.gameState = gp.playState;
+			}
+		}
 
 	    FontMetrics fontMetrics = g2.getFontMetrics();
 	    String[] words = currentDialogue.split("\\s+");
