@@ -3,20 +3,15 @@ package entity;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Axe;
 import object.OBJ_Boots;
 import object.OBJ_Key;
-import object.OBJ_Rock;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Splash_Poison;
 import object.OBJ_Sword_Normal;
-import object.OBJ_Tent;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -651,6 +646,7 @@ public class Player extends Entity {
     public void restoreLifeAndMana() {
     	life = maxLife;
     	mana = maxMana;
+        speed = defaultSpeed;
     	invincible = false;
     	
     }
