@@ -14,7 +14,7 @@ public class IT_DryTree extends InteractiveTile {
 		
 		this.worldX = gp.tileSize * col;
 		this.worldY = gp.tileSize * row;
-		down1 = setup("res/tiles_interactive/drytree", gp.tileSize, gp.tileSize);
+		down1 = setup("res/tiles_interactive/pinetree_chatduoc", gp.tileSize, gp.tileSize);
 		destructible = true;
 		life = 3;
 	}
