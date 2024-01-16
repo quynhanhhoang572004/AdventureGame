@@ -26,7 +26,7 @@ public class Entity {
 	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
 	//creating invincible time
-    String dialogues[][] = new String[20][20];
+    public String dialogues[][] = new String[20][20];
 	
 
 	//STATE
