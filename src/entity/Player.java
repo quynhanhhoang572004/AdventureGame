@@ -438,7 +438,9 @@ public class Player extends Entity {
 
             gp.playSE(8);
             gp.gameState =  gp.dialogueState;
-            gp.ui.currentDialogue = "Level up: " + level +"\n You feel stronger";
+            dialogues[0][0] = "Level up: " + level +"\n You feel stronger";
+            startDialogue(this,dialogueSet);
+
         }
     }
     public void knockBack(Entity entity, int knockBackPower){
