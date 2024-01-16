@@ -77,6 +77,7 @@ public class Player extends Entity {
         getPlayerImage();
         getPlayerAttackImage();
         setItems();
+        setDialogue();
     }
     
     public void setItems(){
@@ -438,9 +439,7 @@ public class Player extends Entity {
 
             gp.playSE(8);
             gp.gameState =  gp.dialogueState;
-            dialogues[0][0] = "Level up: " + level +"\n You feel stronger";
-            startDialogue(this,dialogueSet);
-
+            startDialogue(this,0);
         }
     }
     public void knockBack(Entity entity, int knockBackPower){
@@ -643,7 +642,9 @@ public class Player extends Entity {
         worldY = gp.tileSize * 22;
         direction = "down";
     }
-    
+    public void setDialogue(){
+        dialogues[0][0] = "Level up: " + level +"\n You feel stronger";
+    }
     public void restoreLifeAndMana() {
     	life = maxLife;
     	mana = maxMana;
