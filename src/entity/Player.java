@@ -29,7 +29,7 @@ public class Player extends Entity {
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         //SOLID AREA
         solidArea = new Rectangle();
-        solidArea.x = 8;
+        solidArea.x = 16;
         solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -43,8 +43,8 @@ public class Player extends Entity {
     }
     
     public void setDefaultValues(){
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 22;
+        worldX = gp.tileSize * 25;
+        worldY = gp.tileSize * 18;
 //	    worldX = gp.tileSize * 12;
 //	    worldY = gp.tileSize * 13;  
         defaultSpeed=4;

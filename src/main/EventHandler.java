@@ -69,11 +69,11 @@ public class EventHandler{
 //			if(hit(0, 29, 22, "any") == true) {
 //				teleport(29, 22, gp.dialogueState);
 //			}
-			else if (hit(0, 37, 18, "any") == true) {
+			else if (hit(0, 41, 7, "any") == true) {
 				teleport(1, 12, 13);
 			}
 			else if (hit(1, 12, 13, "any") == true) {
-				teleport(0, 37, 18);
+				teleport(0, 41, 7);
 			}
 			else if (hit(1, 12, 9, "up") == true) {
 				speak(gp.npc[1][0]);
