@@ -1,7 +1,10 @@
 package entity;
 
 import main.GamePanel;
-import object.*;
+import object.OBJ_Axe;
+import object.OBJ_Potion_Red;
+import object.OBJ_Shield_Diamond;
+import object.OBJ_Sword_Normal;
 
 public class NPC_Merchant extends Entity {
 	public NPC_Merchant(GamePanel gp) {
@@ -35,6 +38,9 @@ public class NPC_Merchant extends Entity {
     public void setDialogue() {
     	// Input the dialogue between the quotes
     	dialogues[0][0] = "Oh hey. Is that the Frost King? \nFinally you have found me.\nI have some good stuff.\nDo you want to trade?";	
+        dialogues[1][0] = "Come again, meow meow!";
+        dialogues[2][0] = "You need more coins to buy that!";
+        dialogues[3][0] = "You cannot sell an equipped item!";
     }
     
     public void setItems() {
