@@ -38,6 +38,7 @@ public class TileManager {
     public void getTileImage(){
         // Change your willing tile file here
         // Scale the image to improve rendering performance
+        setup(0, "pinetree", true);
         setup(1, "ice_tilemap", false);
         setup(2, "pinetree", true);
         setup(3, "rock", true);
@@ -159,16 +160,16 @@ public class TileManager {
                 worldRow++;                
             }
         }
-        if (drawPath == true) {
-        	g2.setColor(new Color(255, 0, 0, 70));
-        	for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
-                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
-                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
-                int screenX = worldX - gp.player.worldX + gp.player.screenX;
-                int screenY = worldY - gp.player.worldY + gp.player.screenY;
-                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
-        	}
-        }
+        // if (drawPath == true) {
+        // 	g2.setColor(new Color(255, 0, 0, 70));
+        // 	for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
+        //         int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+        //         int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
+        //         int screenX = worldX - gp.player.worldX + gp.player.screenX;
+        //         int screenY = worldY - gp.player.worldY + gp.player.screenY;
+        //         g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+        // 	}
+        // }
         
         // If the entity is not the NPC, then we will not draw the fillRect line
 //        Entity entity = new Entity(gp);
