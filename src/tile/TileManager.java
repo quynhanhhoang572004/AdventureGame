@@ -26,7 +26,7 @@ public class TileManager {
     ArrayList<String> collisionStatus = new ArrayList<>();
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[50];
+        tile = new Tile[100];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("maps/world_map1.txt", 0);
@@ -87,6 +87,46 @@ public class TileManager {
         setup(46, "warning_sign", true);
         setup(47, "red_wall", true);
         setup(48, "penguin", true);
+        setup(49, "49", true);
+        setup(50, "50", true);
+        setup(51, "51", true);
+        setup(52, "52", true);
+        setup(53, "53", true);
+        setup(54, "54", true);
+        setup(55, "55", false);
+        setup(56, "56", true);
+        setup(57, "57", true);
+        setup(58, "58", true);
+        setup(59, "59", true);
+        setup(60, "60", true);
+        setup(61, "61", true);
+        setup(62, "62", true);
+        setup(63, "63", true);
+        setup(64, "64", true);
+        setup(65, "65", true);
+        setup(66, "66", true);
+        setup(67, "67", true);
+        setup(68, "68", true);
+        setup(69, "69", true);
+        setup(70, "70", true);
+        setup(71, "71", true);
+        setup(72, "72", true);
+        setup(73, "73", true);
+        setup(74, "74", true);
+        setup(75, "75", true);
+        setup(76, "76", true);
+        setup(77, "77", true);
+        setup(78, "78", true);
+        setup(79, "79", true);
+        setup(80, "80", true);
+        setup(81, "81", true);
+        setup(82, "82", true);
+        setup(83, "83", true);
+        setup(84, "84", true);
+
+
+
+
 
 
 
