@@ -1,16 +1,19 @@
 package main;
 
-import entity.*;
+import entity.Entity;
 
-public class EventHandler {
+public class EventHandler{
 	GamePanel gp;
 	EventRect eventRect[][][];
+	Entity eventMaster;
+
 	int previousEventX, previousEventY;
 	boolean canTouchEvent = true;
 	int tempMap, tempCol, tempRow;
 
 	public EventHandler (GamePanel gp) {
 		this.gp = gp;
+		eventMaster = new Entity(gp);
 		eventRect = new EventRect[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 		
 		int map = 0;
@@ -35,9 +38,15 @@ public class EventHandler {
 					map++;
 				}
 			}
-		}		
+		}	
+		setDialogue();	
 	}
-		
+	public void setDialogue() {
+
+		eventMaster.dialogues[0][0] = "You fall into a pit!";
+
+		eventMaster.dialogues[1][0] = "You drink the water. \n Your life and mana has been recovered.\n";
+	}	
 	public void checkEvent () {		// This function uses data from the worldV2.txt, and is a sample, can modify later 
 		//check whether the player character is more than 1 tile away from the last event
 		int xDistance = Math.abs(gp.player.worldX - previousEventX);
@@ -118,7 +127,7 @@ public class EventHandler {
 	
 	public void damagePit(int gameState) {
 		gp.gameState = gameState;
-		gp.ui.currentDialogue = "You fall into a pit!";
+		eventMaster.startDialogue(eventMaster,0);
 		gp.player.life -= 1;
 		//eventRect[col][row].eventDone = true; // we do this in order to make the event happen once only
 		canTouchEvent = false;		
@@ -128,10 +137,7 @@ public class EventHandler {
 	public void healingPool(int gameState) {
 		if(gp.keyH.enterPressed == true) {
 			gp.gameState = gameState;
-
-
-			
-			gp.ui.currentDialogue = "You drink the water. \n Your life and mana has been recovered.";
+			eventMaster.startDialogue(eventMaster,1);
 			if(gp.player.life < gp.player.maxLife){
 				gp.player.life += 1 ;
 			}
