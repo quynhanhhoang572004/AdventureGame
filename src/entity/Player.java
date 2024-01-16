@@ -358,7 +358,6 @@ public class Player extends Entity {
     public void interactNPC(int i) {
         if(gp.keyH.enterPressed == true || gp.keyH.FPressed == true){
             if (i != 999) {  
-                gp.gameState = gp.dialogueState;
                 gp.npc[gp.currentMap][i].speak();
     		}  
             //else{
