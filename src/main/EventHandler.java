@@ -45,7 +45,8 @@ public class EventHandler{
 
 		eventMaster.dialogues[0][0] = "You fall into a pit!";
 
-		eventMaster.dialogues[1][0] = "You drink the water. \n Your life and mana has been recovered.\n";
+		eventMaster.dialogues[1][0] = "You drink the water. \n Your life and mana have been recovered.\n";
+		eventMaster.dialogues[1][1] = "This water is good!";
 	}	
 	public void checkEvent () {		// This function uses data from the worldV2.txt, and is a sample, can modify later 
 		//check whether the player character is more than 1 tile away from the last event
