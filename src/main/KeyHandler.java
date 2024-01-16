@@ -290,7 +290,7 @@ public class KeyHandler  implements KeyListener, MouseListener {
 	
 	public void dialogueState(int code){
 		if(code == KeyEvent.VK_ENTER || code == KeyEvent.VK_F) {
-	        gp.gameState = gp.playState;
+	        enterPressed = true;
 	    }
 	}
 	
