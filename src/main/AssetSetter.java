@@ -143,13 +143,6 @@ public class AssetSetter {
     public void setInteractiveTile() {
     	int mapNum = 0; 
     	int i = 0;
-    	gp.iTile[mapNum][i] = new IT_DryTree(gp, 27, 24); i++;
-	    gp.iTile[mapNum][i] = new IT_DryTree(gp, 28, 24); i++;	
-	    gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 24); i++;	 
-	    gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 24); i++;	
-	    gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 24); i++;	
-	    gp.iTile[mapNum][i] = new IT_DryTree(gp, 32, 24); i++;
-	    gp.iTile[mapNum][i] = new IT_DryTree(gp, 37, 26); i++;
 
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 4); i++;
         gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 3); i++;
