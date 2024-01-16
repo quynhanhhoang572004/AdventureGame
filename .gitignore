@@ -39,6 +39,6 @@ build/
 
 config.txt
 *.class
-config.txt
+
 out/2DGame_test/main/UI.class
-out/2DGame_test/main/UI.class
+
