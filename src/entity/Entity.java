@@ -161,30 +161,29 @@ public class Entity {
     public void setAction () {}
 	public void damageReaction(){		
 	}
-    public void speak () {
-    	if (dialogues[dialogueIndex] == null) {
-    		dialogueIndex = 0;
-    	}
-    	gp.ui.currentDialogue = dialogues[dialogueIndex];
-    	dialogueIndex++;
-    	
-    	// Switch cases to make the NPC looks toward the main character when interacting
+    public void speak () {}
+	public void facePlayer() {
+		// Switch cases to make the NPC looks toward the main character when interacting
     	switch(gp.player.direction) {
-    	case "up":
-    		direction = "down";
-    		break;
-    	case "down":
-    		direction = "up";
-    		break;
-    	case "left":
-    		direction = "right";
-    		break;
-    	case "right":
-    		direction = "left";  		
-    		break;
-    	}
-    }
-
+			case "up":
+				direction = "down";
+				break;
+			case "down":
+				direction = "up";
+				break;
+			case "left":
+				direction = "right";
+				break;
+			case "right":
+				direction = "left";  		
+				break;
+			}
+	}
+	public void startDialogue(Entity entity, int setNum) {
+		gp.gameState = gp.dialogueState;
+		gp.ui.npc = entity;
+		dialogueSet =setNum;
+	}
     public void checkDrop() {}
     public void dropItem(Entity droppedItem) {
     	for (int i = 0; i < gp.obj[1].length; i++) {
