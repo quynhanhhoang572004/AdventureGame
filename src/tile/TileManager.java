@@ -26,12 +26,12 @@ public class TileManager {
     ArrayList<String> collisionStatus = new ArrayList<>();
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[100];
+        tile = new Tile[85];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("maps/world_map1.txt", 0);
         						 // 0: map number (order of the map)
-        loadMap("maps/interior01.txt", 1);
+        loadMap("maps/worldV2.txt", 1);
         					
     }
 

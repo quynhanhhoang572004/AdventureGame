@@ -70,9 +70,9 @@ public class EventHandler{
 //				teleport(29, 22, gp.dialogueState);
 //			}
 			else if (hit(0, 41, 7, "any") == true) {
-				teleport(1, 12, 13);
+				teleport(1, 35, 45);
 			}
-			else if (hit(1, 12, 13, "any") == true) {
+			else if (hit(1, 35, 45, "any") == true) {
 				teleport(0, 41, 7);
 			}
 			else if (hit(1, 12, 9, "up") == true) {
