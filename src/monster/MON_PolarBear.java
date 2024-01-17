@@ -28,24 +28,25 @@ public class MON_PolarBear extends Entity {
         exp = 2;
         projectile = new OBJ_Rock(gp);	
         
-        solidArea.x = 40;
-        solidArea.y = 40;
-        solidArea.width = 104;
-        solidArea.height = 104;
+        int size = 3*gp.tileSize;
+        solidArea.x = 30;
+        solidArea.y = 48;
+        solidArea.width = size - 30*2;
+        solidArea.height = size - 48*2;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
     }
-
+    int i = 3;
     public void getImage(){
-       up1 = setup("res/monster/Bear_up1", 3*gp.tileSize, 3*gp.tileSize);
-       up2 = setup("res/monster/Bear_up2", 3*gp.tileSize, 3*gp.tileSize);
-       down1 = setup("res/monster/Bear_down2", 3*gp.tileSize, 3*gp.tileSize);
-       down2 = setup("res/monster/Bear_down3", 3*gp.tileSize, 3*gp.tileSize);
-       left1 = setup("res/monster/Bear_left2", 3*gp.tileSize, 3*gp.tileSize);
-       left2 = setup("res/monster/Bear_left3", 3*gp.tileSize, 3*gp.tileSize);
-       right1 = setup("res/monster/Bear_right1", 3*gp.tileSize, 3*gp.tileSize);
-       right2 = setup("res/monster/Bear_right2", 3*gp.tileSize, 3*gp.tileSize);
+       up1 = setup("res/monster/Bear_up1", i*gp.tileSize, i*gp.tileSize);
+       up2 = setup("res/monster/Bear_up2", i*gp.tileSize, i*gp.tileSize);
+       down1 = setup("res/monster/Bear_down2", i*gp.tileSize, i*gp.tileSize);
+       down2 = setup("res/monster/Bear_down3", i*gp.tileSize, i*gp.tileSize);
+       left1 = setup("res/monster/Bear_left2", i*gp.tileSize, i*gp.tileSize);
+       left2 = setup("res/monster/Bear_left3", i*gp.tileSize, i*gp.tileSize);
+       right1 = setup("res/monster/Bear_right1", i*gp.tileSize, i*gp.tileSize);
+       right2 = setup("res/monster/Bear_right2", i*gp.tileSize, i*gp.tileSize);
     }
 
     public void setAction() {
