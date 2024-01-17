@@ -32,6 +32,8 @@ public class TileManager {
         loadMap("maps/world_map1.txt", 0);
         						 // 0: map number (order of the map)
         loadMap("maps/worldV2.txt", 1);
+
+        loadMap("maps/interior01.txt", 2);
         					
     }
 
