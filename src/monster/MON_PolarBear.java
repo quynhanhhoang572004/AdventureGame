@@ -28,11 +28,11 @@ public class MON_PolarBear extends Entity {
         exp = 2;
         projectile = new OBJ_Rock(gp);	
         
-        int size = 3*gp.tileSize;
-        solidArea.x = 30;
-        solidArea.y = 48;
-        solidArea.width = size - 30*2;
-        solidArea.height = size - 48*2;
+        int size = 2*gp.tileSize;
+        solidArea.x = 20;
+        solidArea.y = 20;
+        solidArea.width = size - 20;
+        solidArea.height = size - 20;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -49,10 +49,12 @@ public class MON_PolarBear extends Entity {
        right2 = setup("res/monster/Bear_right2", i*gp.tileSize, i*gp.tileSize);
     }
 
+    
+
     public void setAction() {
 		if (onPath == true) {
 			// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
-			checkStopChasingOrNot(gp.player, 8 , 100);
+			checkStopChasingOrNot(gp.player, 20 , 100);
 			
 			//search the direction to go
     		searchPath(getGoalCol(gp.player), getGoalRow(gp.player));    
@@ -61,7 +63,7 @@ public class MON_PolarBear extends Entity {
 			checkShootOrNot(200, 30); // when the bear is near to the player (Path == true), its speed increases by 1 (1+1 = 2)
 		}else {
 			//check if it starts chasing
-			checkStartChasingOrNot(gp.player, 5, 100);
+			checkStartChasingOrNot(gp.player, 10, 100);
 			speed = 1;
 			 //when the bear is outrange the player, its speed is back to normal
 			//Get a random direction
