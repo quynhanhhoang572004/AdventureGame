@@ -70,11 +70,12 @@ public class EventHandler{
 //				teleport(29, 22, gp.dialogueState);
 //			}
 			else if (hit(0, 41, 7, "any") == true) {
-				teleport(1, 47, 44,gp.dungeon);
+				teleport(1, 38, 45,gp.dungeon);
 			}
-			else if (hit(1, 47, 44, "any") == true) {
+			else if (hit(1, 38, 45, "any") == true) {
 				teleport(0, 41, 7,gp.outside);
 			}
+			
 			else if(hit(0, 14, 9, "up") == true){
 				teleport(2, 12, 13, gp.trading);
 			}
