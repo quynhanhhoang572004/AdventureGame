@@ -42,3 +42,4 @@ config.txt
 
 out/2DGame_test/main/UI.class
 
+*.class
