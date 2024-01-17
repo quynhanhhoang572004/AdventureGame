@@ -22,7 +22,7 @@ public class Sound {
 		soundFile[4] = new File("res/sound/fanfare.wav");
 		soundFile[5] = new File("res/sound/Sword/KatanaHit.wav");
 		soundFile[6] = new File("res/sound/OOF.wav");
-		soundFile[7] = new File("res/sound/bear_polar.wav");
+		soundFile[7] = new File("res/sound/Meme/Monster_death_sound.wav");
 		soundFile[8] = new File("res/sound/Rank_up.wav");
 		soundFile[9] = new File("res/sound/Option/Hover.wav");
 		soundFile[10] = new File("res/sound/Option/StoreOpen.wav");

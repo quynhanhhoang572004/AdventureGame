@@ -389,6 +389,7 @@ public class Player extends Entity {
     public void damageMonster(int i, int attack, int knockBackPower){
         if(i != 999){
             if(gp.monster[gp.currentMap][i].invincible == false){
+                
                 gp.playSE(7);
 
                 if(knockBackPower>0){
