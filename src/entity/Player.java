@@ -29,11 +29,11 @@ public class Player extends Entity {
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         //SOLID AREA
         solidArea = new Rectangle();
-        solidArea.x = 16;
-        solidArea.y = 16;
+        solidArea.x = 10;
+        solidArea.y = 8;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 32;
+        solidArea.width = 28;
         solidArea.height = 32;
         //ATTACK AREA
         //attackArea.width = 36;
@@ -85,7 +85,7 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Boots(gp));
-        inventory.add(new OBJ_Key(gp));         
+                
     }
     
     public int getAttack(){

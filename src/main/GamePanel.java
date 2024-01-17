@@ -146,6 +146,8 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             player.setDefaultValues();
             aSetter.setObject();
             aSetter.setInteractiveTile();
+            ui.titleScreenState = 0; //I added this in order to fix the gameover
+            ui.commandNum = -1; //I added this in order to fix the gameover
         }
     }
     
