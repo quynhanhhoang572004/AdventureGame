@@ -30,17 +30,17 @@ public class MON_Orc extends Entity {
 	
         
        
-        solidArea.x = 4;
-        solidArea.y = 4;
-        solidArea.width = 40;
-        solidArea.height = 44;
+        solidArea.x = 2;
+        solidArea.y = 2;
+        solidArea.width = 20;
+        solidArea.height = 20;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        attackArea.height=40;
-        attackArea.width=40;
+        attackArea.height=20;
+        attackArea.width=20;
 
     }
-    int i = 3;
+    int i = 1;
     public void getImage(){
        up1 = setup("res/monster/orc_up_1", i*gp.tileSize, i*gp.tileSize);
        up2 = setup("res/monster/orc_up_2", i*gp.tileSize, i*gp.tileSize);

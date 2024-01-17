@@ -92,11 +92,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize*10;
         i++;
         //MAP 2
-        mapNum = 1;
-        gp.obj[mapNum][i] = new OBJ_Door(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*35;
-        gp.obj[mapNum][i].worldY = gp.tileSize*45;
-        i++;
+  
 
 
     }
@@ -140,7 +136,11 @@ public class AssetSetter {
         mapNum = 1; 
         gp.monster[mapNum][i] = new MON_Orc(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 30;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 20;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 40;
+        i++;
+        gp.monster[mapNum][i] = new MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 30;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 41;
         i++;
 
     }
