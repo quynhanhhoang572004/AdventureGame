@@ -26,7 +26,7 @@ public class TileManager {
     ArrayList<String> collisionStatus = new ArrayList<>();
     public TileManager(GamePanel gp){
         this.gp = gp;
-        tile = new Tile[85];
+        tile = new Tile[100];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("maps/world_map1.txt", 0);
@@ -123,6 +123,8 @@ public class TileManager {
         setup(82, "82", true);
         setup(83, "83", true);
         setup(84, "84", true);
+        setup(85, "85", true);
+        setup(86, "86", true);
 
 
 
@@ -158,6 +160,7 @@ public class TileManager {
             int row = 0;
             
             while(col < gp.maxWorldCol && row < gp.maxWorldRow){
+
                 String line = br.readLine();
                 String  numbers[] = line.split(" ");
                 while(col < gp.maxWorldCol){
@@ -181,6 +184,7 @@ public class TileManager {
 
         while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
             int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
+            if(tile != null && tileNum>=0 && tileNum<tile.length && tile[tileNum] != null){
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
@@ -192,14 +196,15 @@ public class TileManager {
                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY && 
                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
                     g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-                }            
+                }  
+            }          
             	worldCol++;
         
             if(worldCol == gp.maxWorldCol){
                 worldCol = 0;                
                 worldRow++;                
             }
-        }
+
         // if (drawPath == true) {
         // 	g2.setColor(new Color(255, 0, 0, 70));
         // 	for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
@@ -227,4 +232,5 @@ public class TileManager {
 //            }
 //        }
     }    
+    }
 }
