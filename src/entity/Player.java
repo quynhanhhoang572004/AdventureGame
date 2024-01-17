@@ -43,8 +43,8 @@ public class Player extends Entity {
     }
     
     public void setDefaultValues(){
-        worldX = gp.tileSize * 25;
-        worldY = gp.tileSize * 18;
+        worldX = gp.tileSize * 38;
+        worldY = gp.tileSize * 42;
 //	    worldX = gp.tileSize * 12;
 //	    worldY = gp.tileSize * 13;  
         defaultSpeed=4;
@@ -638,12 +638,12 @@ public class Player extends Entity {
     }
     
     public void setDefaultPositions() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 22;
+        worldX = gp.tileSize * 38;
+        worldY = gp.tileSize * 42;
         direction = "down";
     }
     public void setDialogue(){
-        dialogues[0][0] = "Level up: " + level+1 +"\n You feel stronger";
+        dialogues[0][0] = "Level complete: " +"\n You win";
     }
     public void restoreLifeAndMana() {
     	life = maxLife;
