@@ -93,8 +93,8 @@ public class AssetSetter {
         i++;
         //MAP 2
         gp.obj[mapNum][i] = new OBJ_Door(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*30;
-        gp.obj[mapNum][i].worldY = gp.tileSize*45;
+        gp.obj[mapNum][i].worldX = gp.tileSize*35;
+        gp.obj[mapNum][i].worldY = gp.tileSize*48;
         i++;
   
 
