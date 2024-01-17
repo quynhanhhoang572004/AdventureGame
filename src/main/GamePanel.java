@@ -102,6 +102,13 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public final int transitionState = 7;
     public final int tradeState = 8;
     public final int sleepState = 9;
+
+    //AREA 
+    public int currentArea;
+    public final int outside =50;
+    public final int dungeon =52;
+    public int nextArea;
+
     
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight)); // set the size for the class (JPanel)
@@ -120,6 +127,9 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
         eManager.setup();
 //      playMusic(0);
         gameState = titleState;
+
+        currentArea=outside;
+
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D)tempScreen.getGraphics();
         if (fullScreenOn == true) {
@@ -362,6 +372,9 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public void playSE (int i) {		// SFX
     	se.setFile(i);
     	se.play();
+    }
+    public void changeArea(){
+        currentArea=nextArea;
     }
 }
 

@@ -70,10 +70,10 @@ public class EventHandler{
 //				teleport(29, 22, gp.dialogueState);
 //			}
 			else if (hit(0, 41, 7, "any") == true) {
-				teleport(1, 35, 45);
+				teleport(1, 35, 45,gp.dungeon);
 			}
 			else if (hit(1, 35, 45, "any") == true) {
-				teleport(0, 41, 7);
+				teleport(0, 41, 7,gp.outside);
 			}
 			else if (hit(1, 12, 9, "up") == true) {
 				speak(gp.npc[1][0]);
@@ -104,8 +104,9 @@ public class EventHandler{
 		return hit;		
 	}
 
-	public void teleport(int map, int col, int row){
+	public void teleport(int map, int col, int row, int area){
 		gp.gameState = gp.transitionState;
+		gp.nextArea = area;
 		tempMap = map;
 		tempCol = col;
 		tempRow = row;		
