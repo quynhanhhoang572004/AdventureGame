@@ -28,16 +28,16 @@ public class MON_PolarBear extends Entity {
         exp = 2;
         projectile = new OBJ_Rock(gp);	
         
-        int size = 2*gp.tileSize;
-        solidArea.x = 20;
-        solidArea.y = 20;
-        solidArea.width = size - 20;
+        int size = 1*gp.tileSize;
+        solidArea.x = 0;
+        solidArea.y = 10;
+        solidArea.width = size;
         solidArea.height = size - 20;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
     }
-    int i = 3;
+    int i = 2;
     public void getImage(){
        up1 = setup("res/monster/Bear_up1", i*gp.tileSize, i*gp.tileSize);
        up2 = setup("res/monster/Bear_up2", i*gp.tileSize, i*gp.tileSize);
