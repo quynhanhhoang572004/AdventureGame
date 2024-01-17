@@ -643,7 +643,7 @@ public class Player extends Entity {
         direction = "down";
     }
     public void setDialogue(){
-        dialogues[0][0] = "Level up: " + level +"\n You feel stronger";
+        dialogues[0][0] = "Level up: " + level+1 +"\n You feel stronger";
     }
     public void restoreLifeAndMana() {
     	life = maxLife;
