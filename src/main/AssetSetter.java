@@ -1,6 +1,7 @@
 package main;
 
 import entity.*;
+import monster.MON_Orc;
 import monster.MON_PolarBear;
 import object.OBJ_Axe;
 import object.OBJ_Coin_Gold;
@@ -136,11 +137,12 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldY = gp.tileSize * 20;
         i++;
         
-//      mapNum = 1; //Spawn monster in the second map
-//      gp.monster[mapNum][i] = new MON_PolarBear(gp);
-//      gp.monster[mapNum][i].worldX = gp.tileSize * 16;
-//      gp.monster[mapNum][i].worldY = gp.tileSize * 20;
-//      i++;
+        mapNum = 1; 
+        gp.monster[mapNum][i] = new MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 30;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 20;
+        i++;
+
     }
     
     public void setInteractiveTile() {
