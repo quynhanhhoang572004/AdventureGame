@@ -107,6 +107,7 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
     public int currentArea;
     public final int outside =50;
     public final int dungeon =52;
+    public final int trading = 40;
     public int nextArea;
 
     
@@ -384,6 +385,9 @@ public class GamePanel extends JPanel implements Runnable {  // JPanel is the su
             }
             if(nextArea == dungeon){
                 playMusic(19);
+            }
+            if(nextArea == trading){
+                playMusic(20);
             }
         }
         currentArea=nextArea;

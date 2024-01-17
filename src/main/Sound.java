@@ -35,6 +35,7 @@ public class Sound {
 		soundFile[17] = new File("res/sound/stairs.wav");
 		soundFile[18] = new File("res/sound/Sleep/sleep.wav");
 		soundFile[19] = new File("res/sound/Dungeon.wav");
+		soundFile[20] = new File("res/sound/Local Forecast - Elevator.wav");
 	}
 	
 	public void setFile(int i) {
