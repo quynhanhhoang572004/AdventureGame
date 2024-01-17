@@ -638,12 +638,12 @@ public class Player extends Entity {
     }
     
     public void setDefaultPositions() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 22;
+        worldX = gp.tileSize * 35;
+        worldY = gp.tileSize * 42;
         direction = "down";
     }
     public void setDialogue(){
-        dialogues[0][0] = "Level up: " + level +"\n You feel stronger";
+        dialogues[0][0] = "Level complete: " + level +"\n You WIN!!!";
     }
     public void restoreLifeAndMana() {
     	life = maxLife;
