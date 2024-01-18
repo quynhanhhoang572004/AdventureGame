@@ -646,7 +646,8 @@ public class Player extends Entity {
     
 //    public void setDialogue(){
 //        dialogues[0][0] = "Level complete: " +"\n You win";
-    }
+//    }
+    
     public void restoreLifeAndMana() {
     	life = maxLife;
     	mana = maxMana;
