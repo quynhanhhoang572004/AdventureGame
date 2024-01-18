@@ -28,15 +28,16 @@ public class MON_OrcLord extends Entity{
         exp = 50;
 	
         
-        int size = gp.tileSize*5;
-        solidArea.x = 48;
-        solidArea.y = 48;
-        solidArea.width = size - 48*2;
-        solidArea.height = size - 48*2;
+        int size = gp.tileSize*2;
+        solidArea.x = 40;
+        solidArea.y = 40;
+        solidArea.width = size - 40;
+        solidArea.height = size - 40;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         attackArea.height= 70;
         attackArea.width= 70;
+
 
     }
     int i = 3;
@@ -65,14 +66,14 @@ public class MON_OrcLord extends Entity{
     
 
     public void setAction() {
-		if (getTileDistance(gp.player) < 10) {
-			// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
+		if (getTileDistance(gp.player) < 50) {
+			
 			checkStopChasingOrNot(gp.player, 50 , 100);
 			
-			//search the direction to go
+			
     		searchPath(getGoalCol(gp.player), getGoalRow(gp.player));    
 
-			//Check if 	it shoots a projectile	
+			
 			
 		}else {
 			//check if it starts chasing

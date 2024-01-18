@@ -26,18 +26,20 @@ public class MON_Orc extends Entity {
         life = maxLife;
         attack = 3;
         defense = 2;
-        exp = 10;
+        exp = 4;
 	
         
        
-        solidArea.x = 2;
-        solidArea.y = 2;
-        solidArea.width = 20;
-        solidArea.height = 20;
+        solidArea.x = 4;
+        solidArea.y = 4;
+        solidArea.width = 40;
+        solidArea.height = 44;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        attackArea.height=20;
-        attackArea.width=20;
+        attackArea.height = 20;
+        attackArea.width = 20;
+        motion1_duration = 40;
+        motion2_duration = 85;
 
     }
     int i = 1;
@@ -67,7 +69,7 @@ public class MON_Orc extends Entity {
     public void setAction() {
 		if (onPath == true) {
 			// If the polar bear is on a path and the player is more than 8 tiles away, the polar bear would stop following the path.
-			checkStopChasingOrNot(gp.player, 20 , 100);
+			checkStopChasingOrNot(gp.player, 10 , 100);
 			
 			//search the direction to go
     		searchPath(getGoalCol(gp.player), getGoalRow(gp.player));    
@@ -82,9 +84,13 @@ public class MON_Orc extends Entity {
 			//Get a random direction
 			getRandomDirection();
 		}
+        //check if it attacks
+        if(attacking == false){
+            checkAttackOrNot(30, gp.tileSize*4, gp.tileSize);
+        }
     }
     
-    // when bear gets dmg, it runs away
+    
     public void damageReaction(){
         actionLockCounter = 0;
 //      direction = gp.player.direction;
