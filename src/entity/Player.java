@@ -600,16 +600,13 @@ public class Player extends Entity {
         direction = "down";
     }
     
-<<<<<<< HEAD
     public void setDialogue(){
         
     }
-=======
 //    public void setDialogue(){
 //        dialogues[0][0] = "Level complete: " +"\n You win";
 //    }
     
->>>>>>> 15ed63dc4b2861a44f641cc506ba6c52702d7cd4
     public void restoreLifeAndMana() {
     	life = maxLife;
     	mana = maxMana;
