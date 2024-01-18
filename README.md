@@ -1,11 +1,11 @@
 # 2DGame_Frost King's Tale
 ## HCMIU - Semester 1 2023-2024
 **Members:**
-**Hoang Ngoc Quynh Anh - ITCSIU22256**
-**Le Hoai Bao - ITCSIU22259**
-**Tran Thanh Binh - ITCSIU22255**
-**Truong Hong Quan - ITCSIU22275**
-**Nguyen Minh Thuan - ITCSIU22269**
+**Hoang Ngoc Quynh Anh - ITCSIU22256 |**
+**Le Hoai Bao - ITCSIU22259 |**
+**Tran Thanh Binh - ITCSIU22255 |**
+**Truong Hong Quan - ITCSIU22275 |**
+**Nguyen Minh Thuan - ITCSIU22269 |**
 
 **Introduction:**
 * *Idea: We made a decision to create a top-down 2D- platformer game inspire by youtuber name ryoSnow where our character is moving around in  different levels  to find objects that need to kill some monster, to increase its blood, to light up around when night comes and also use that object to move to the next level or winning the game.*
