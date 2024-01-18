@@ -283,7 +283,7 @@ public class Entity {
 			if(knockBackCounter == 10){// the more we increase this number the more the knockback distance increase
 				knockBackCounter=0;
 				knowBack=false;
-				speed=defaultSpeed;
+				speed = defaultSpeed;
 			}
 		}
 		else{
