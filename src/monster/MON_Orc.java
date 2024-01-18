@@ -52,6 +52,7 @@ public class MON_Orc extends Entity {
        right2 = setup("res/monster/orc_right_2", i*gp.tileSize, i*gp.tileSize);
     }
     public void getAttackImage(){
+        
             attackUp1 = setup("res/monster/orc_attack_up_1", gp.tileSize, gp.tileSize*2);
             attackUp2 = setup("res/monster/orc_attack_up_2", gp.tileSize, gp.tileSize*2);
             attackDown1 = setup("res/monster/orc_attack_down_1", gp.tileSize, gp.tileSize*2);
