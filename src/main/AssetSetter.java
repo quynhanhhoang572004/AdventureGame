@@ -50,16 +50,16 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize*10;
         i++;
         gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*20;
-        gp.obj[mapNum][i].worldY = gp.tileSize*7;
+        gp.obj[mapNum][i].worldX = gp.tileSize*30;
+        gp.obj[mapNum][i].worldY = gp.tileSize*17;
         i++;
         gp.obj[mapNum][i] = new OBJ_Coin_Gold(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*22;
+        gp.obj[mapNum][i].worldX = gp.tileSize*23;
         gp.obj[mapNum][i].worldY = gp.tileSize*7;
         i++;
         gp.obj[mapNum][i] = new OBJ_Heart(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*15;
-        gp.obj[mapNum][i].worldY = gp.tileSize*7;
+        gp.obj[mapNum][i].worldX = gp.tileSize*23;
+        gp.obj[mapNum][i].worldY = gp.tileSize*8;
         i++;
 
         gp.obj[mapNum][i] = new OBJ_Door(gp);
@@ -171,37 +171,45 @@ public class AssetSetter {
     }
     
     public void setInteractiveTile() {
-    	int mapNum = 0; 
-    	int i = 0;
-
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 32, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 33, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 34, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 32, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 33, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 34, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 34, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 33, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 32, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 29, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 30, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 31, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 37, 26); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 11); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 10); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 9); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 35, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 36, 3); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 35, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 36, 4); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 35, 5); i++;
-        gp.iTile[mapNum][i] = new IT_DryTree(gp, 36, 5); i++;
+        int mapNum = 0;
+        int i = 0;
+        
+        for (int x = 9; x <= 22; x++) {
+            for (int y = 11; y <= 17; y++) {
+                gp.iTile[mapNum][i] = new IT_DryTree(gp, x, y);
+                i++;
+            }
+        }
+        for (int x = 19; x <= 22; x++) {
+            for (int y = 1; y <= 10; y++) {
+                gp.iTile[mapNum][i] = new IT_DryTree(gp, x, y);
+                i++;
+            }
+        }
+        for (int x = 37; x <= 48; x++) {
+            gp.iTile[mapNum][i] = new IT_DryTree(gp, x, 26);
+            i++;
+        }
+        for (int y = 28; y <= 34; y++) {
+            gp.iTile[mapNum][i] = new IT_DryTree(gp, 38, y);
+            i++;
+        }
+        for (int x = 38; x <= 46; x++) {
+            gp.iTile[mapNum][i] = new IT_DryTree(gp, x, 28);
+            i++;
+        }
+        for (int x = 30; x <= 36; x++) {
+            for (int y = 9; y <= 12; y++) {
+                if(x == 33 && y == 11 || x == 34 && y == 10 || x == 33 && y == 10){
+                    continue;
+                }
+                else{
+                    gp.iTile[mapNum][i] = new IT_DryTree(gp, x, y);
+                    i++;
+                }
+            }
+        }
+        
     }
 }
 
