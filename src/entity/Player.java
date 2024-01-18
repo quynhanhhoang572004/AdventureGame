@@ -77,7 +77,7 @@ public class Player extends Entity {
         getPlayerImage();
         getPlayerAttackImage();
         setItems();
-        setDialogue();
+//        setDialogue();
     }
     
     public void setItems(){
@@ -644,8 +644,8 @@ public class Player extends Entity {
         direction = "down";
     }
     
-    public void setDialogue(){
-        dialogues[0][0] = "Level complete: " +"\n You win";
+//    public void setDialogue(){
+//        dialogues[0][0] = "Level complete: " +"\n You win";
     }
     public void restoreLifeAndMana() {
     	life = maxLife;
