@@ -2,6 +2,7 @@ package main;
 
 import entity.*;
 import monster.MON_Orc;
+import monster.MON_OrcLord;
 import monster.MON_PolarBear;
 import object.OBJ_Axe;
 import object.OBJ_Coin_Gold;
@@ -98,12 +99,12 @@ public class AssetSetter {
         
         mapNum = 1;
         i = 0;
-        //MAP 2
+     /*    //MAP 2
         gp.obj[mapNum][i] = new OBJ_Door(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize*38;
         gp.obj[mapNum][i].worldY = gp.tileSize*45;
         i++;
-
+    */
 
     }
     
@@ -164,9 +165,9 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldX = gp.tileSize * 21;
         gp.monster[mapNum][i].worldY = gp.tileSize * 10;
         i++;
-        gp.monster[mapNum][i] = new MON_Orc(gp);
-        gp.monster[mapNum][i].worldX = gp.tileSize * 39;
-        gp.monster[mapNum][i].worldY = gp.tileSize * 3;
+        gp.monster[mapNum][i] = new MON_OrcLord(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 19;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5;
         i++; 
 
 

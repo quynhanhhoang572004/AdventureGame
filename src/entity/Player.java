@@ -643,6 +643,7 @@ public class Player extends Entity {
         worldY = gp.tileSize * 42;
         direction = "down";
     }
+    
     public void setDialogue(){
         dialogues[0][0] = "Level complete: " +"\n You win";
     }

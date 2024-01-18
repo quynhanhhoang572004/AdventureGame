@@ -364,9 +364,18 @@ public class Entity {
 			}
 		}
 	}
+	public void checkAttackOrNot(Entity target, int distance, int rate) {
+		if (getTileDistance(target) < distance) {
+			int i = new Random().nextInt(rate);
+			if (i == 0) {
+				attacking = true;
+			}
+		}
+	
+	}
 	public void getRandomDirection() {
 		actionLockCounter++;
-		if (actionLockCounter == 120) {
+		if (actionLockCounter > 120) {
 			Random random = new Random();
 			int i = random.nextInt(100)+1;
 			// Pick up a number from 1 to 100
@@ -385,7 +394,6 @@ public class Entity {
 			actionLockCounter = 0;
 		}	
 	}
-
     public void damagePlayer(int attack) {
 		if(gp.player.invincible == false){
 			//damage can be taken

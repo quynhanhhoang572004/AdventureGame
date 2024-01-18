@@ -29,7 +29,7 @@ public class TileManager {
         tile = new Tile[100];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/world_map1.txt", 0);
+        loadMap("maps/worldV1.txt", 0);
         						 // 0: map number (order of the map)
         loadMap("maps/worldV2.txt", 1);
 
@@ -127,6 +127,7 @@ public class TileManager {
         setup(84, "84", true);
         setup(85, "85", true);
         setup(86, "86", true);
+        setup(87, "teleport", false);
 
 
 
