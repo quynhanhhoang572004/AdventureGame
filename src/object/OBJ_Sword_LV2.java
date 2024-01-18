@@ -15,7 +15,7 @@ public class OBJ_Sword_LV2 extends Entity{
         attackArea.height = 36;
         description = "[" + name + "]\nA Big Sword";
         
-        price = 20;
+        price = 250;
         knockBackPower = 4;
     }
 }

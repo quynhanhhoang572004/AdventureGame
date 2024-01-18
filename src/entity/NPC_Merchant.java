@@ -4,6 +4,9 @@ import main.GamePanel;
 import object.OBJ_Axe;
 import object.OBJ_Potion_Red;
 import object.OBJ_Shield_Diamond;
+import object.OBJ_Shield_Metal;
+import object.OBJ_Splash_Poison;
+import object.OBJ_Sword_LV2;
 import object.OBJ_Sword_Normal;
 
 public class NPC_Merchant extends Entity {
@@ -47,7 +50,9 @@ public class NPC_Merchant extends Entity {
     	inventory.add(new OBJ_Potion_Red(gp));
     	inventory.add(new OBJ_Shield_Diamond(gp));
     	inventory.add(new OBJ_Sword_Normal(gp));
-    	inventory.add(new OBJ_Axe(gp));    	
+    	inventory.add(new OBJ_Axe(gp));   
+        inventory.add(new OBJ_Shield_Metal(gp));
+        inventory.add(new OBJ_Sword_LV2(gp));	
     }
     
     public void speak() {

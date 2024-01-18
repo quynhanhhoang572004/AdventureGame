@@ -241,7 +241,7 @@ public class UI {
 		// DRAW PRICE WINDOW
 		int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow);
 		if (itemIndex < gp.player.inventory.size()) {
-			x = (int)(gp.tileSize * 15.5);
+			x = (int)(gp.tileSize * 5.5);
 			y = (int)(gp.tileSize * 5.5);
 			width = (int)(gp.tileSize * 2.5);
 			height = gp.tileSize;
@@ -249,7 +249,7 @@ public class UI {
 			g2.drawImage(coin, x+10, y+8, 32, 32, null);
  			int price = gp.player.inventory.get(itemIndex).price/2;
  			String text = "" + price;
- 			x = getXforAlignToRightText(text, gp.tileSize * 18 - 20);
+ 			x = getXforAlignToRightText(text, gp.tileSize * 8 - 20);
  			g2.drawString(text, x, y+34);
  			
  		    // SELL AN ITEM
@@ -263,9 +263,9 @@ public class UI {
 					if(gp.player.inventory.get(itemIndex).amount>1){
 						gp.player.inventory.get(itemIndex).amount--;
 					}
-					else{
-						gp.player.inventory.remove(itemIndex);
-					}
+					// else{
+					// 	gp.player.inventory.remove(itemIndex);
+					// }
  					gp.player.inventory.remove(itemIndex);
  					gp.player.coin += price;
  				}

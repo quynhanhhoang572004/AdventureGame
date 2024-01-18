@@ -13,7 +13,7 @@ public class OBJ_Shield_Diamond extends Entity {
         defenseValue = 2;
         description = "[" + name + "]\nA Diamond Shield with \nbetter Defense";
         
-        price = 10;
+        price = 200;
     }
     
 }

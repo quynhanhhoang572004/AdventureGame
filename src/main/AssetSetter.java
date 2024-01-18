@@ -41,22 +41,22 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = gp.tileSize*34;
         gp.obj[mapNum][i].worldY = gp.tileSize*10;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Shield_Diamond(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*32;
-        gp.obj[mapNum][i].worldY = gp.tileSize*21;
-        i++;
+        // gp.obj[mapNum][i] = new OBJ_Shield_Diamond(gp);
+        // gp.obj[mapNum][i].worldX = gp.tileSize*32;
+        // gp.obj[mapNum][i].worldY = gp.tileSize*21;
+        // i++;
         gp.obj[mapNum][i] = new OBJ_Axe(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize*29;
         gp.obj[mapNum][i].worldY = gp.tileSize*10;
         i++;
-        gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*30;
-        gp.obj[mapNum][i].worldY = gp.tileSize*17;
-        i++;
-        gp.obj[mapNum][i] = new OBJ_Coin_Gold(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*23;
-        gp.obj[mapNum][i].worldY = gp.tileSize*7;
-        i++;
+        // gp.obj[mapNum][i] = new OBJ_Potion_Red(gp);
+        // gp.obj[mapNum][i].worldX = gp.tileSize*30;
+        // gp.obj[mapNum][i].worldY = gp.tileSize*17;
+        // i++;
+        // gp.obj[mapNum][i] = new OBJ_Coin_Gold(gp);
+        // gp.obj[mapNum][i].worldX = gp.tileSize*23;
+        // gp.obj[mapNum][i].worldY = gp.tileSize*7;
+        // i++;
         gp.obj[mapNum][i] = new OBJ_Heart(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize*23;
         gp.obj[mapNum][i].worldY = gp.tileSize*8;
@@ -79,20 +79,20 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldY = gp.tileSize*30;
         i++;
 
-        gp.obj[mapNum][i] = new OBJ_Lantern(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*25;
-        gp.obj[mapNum][i].worldY = gp.tileSize*24;
-        i++;
+        // gp.obj[mapNum][i] = new OBJ_Lantern(gp);
+        // gp.obj[mapNum][i].worldX = gp.tileSize*25;
+        // gp.obj[mapNum][i].worldY = gp.tileSize*24;
+        // i++;
 
-        gp.obj[mapNum][i] = new OBJ_Tent(gp);        
-        gp.obj[mapNum][i].worldX = gp.tileSize*26;
-        gp.obj[mapNum][i].worldY = gp.tileSize*24;
-        i++;
+        // gp.obj[mapNum][i] = new OBJ_Tent(gp);        
+        // gp.obj[mapNum][i].worldX = gp.tileSize*26;
+        // gp.obj[mapNum][i].worldY = gp.tileSize*24;
+        // i++;
 
-        gp.obj[mapNum][i] = new OBJ_Sword_LV2(gp);
-        gp.obj[mapNum][i].worldX = gp.tileSize*28;
-        gp.obj[mapNum][i].worldY = gp.tileSize*10;
-        i++;
+        // gp.obj[mapNum][i] = new OBJ_Sword_LV2(gp);
+        // gp.obj[mapNum][i].worldX = gp.tileSize*28;
+        // gp.obj[mapNum][i].worldY = gp.tileSize*10;
+        // i++;
         
         mapNum = 1;
         i = 0;
