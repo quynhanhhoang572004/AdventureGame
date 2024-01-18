@@ -57,7 +57,8 @@
     2.Fix conflicts and bugs
     3.Make the graphic more eye-catching
 (Framework, Multi-threading)
-  * Presentation: https://onedrive.live.com/editid=12FBFE90BC8200A8!3763&resid=12FBFE90BC8200A8!3763&ithint=file%2cpptx&authkey=!AL4Sl3gHtmmJ5uc&wdo=2&cid=12fbfe90bc8200a8
+  * Presentation:
+    
   * UML Diagram:
     ![284021886_352971583571647_7295832931427040568_n] (
 
