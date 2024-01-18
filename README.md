@@ -39,14 +39,14 @@
        
 > 2. The Design:
   - The game's scene: 
-   + Manages the visual representation of the player character .
-   + Handles sprite animations for different directions and attack actions .
-   + Implements visual effects such as invincibility .
+    + Manages the visual representation of the player character .
+    + Handles sprite animations for different directions and attack actions .
+    + Implements visual effects such as invincibility .
      
   - The Characters and Objects:
-   + Was made up and designed meticulously by our team, using Piskel .
-   + The characters have their own storylines and dialogues to interact with player.
-   + The game flow was arranged reasonably to attract the player .
+    + Was made up and designed meticulously by our team, using Piskel .
+    + The characters have their own storylines and dialogues to interact with player.
+    + The game flow was arranged reasonably to attract the player .
 
   - The sound and music:
     + Variable, set the tones of the play during the adventure .
