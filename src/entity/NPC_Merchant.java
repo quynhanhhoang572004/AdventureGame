@@ -8,6 +8,7 @@ import object.OBJ_Shield_Metal;
 import object.OBJ_Splash_Poison;
 import object.OBJ_Sword_LV2;
 import object.OBJ_Sword_Normal;
+import object.OBJ_Tent;
 
 public class NPC_Merchant extends Entity {
 	public NPC_Merchant(GamePanel gp) {
@@ -52,7 +53,8 @@ public class NPC_Merchant extends Entity {
     	inventory.add(new OBJ_Sword_Normal(gp));
     	inventory.add(new OBJ_Axe(gp));   
         inventory.add(new OBJ_Shield_Metal(gp));
-        inventory.add(new OBJ_Sword_LV2(gp));	
+        inventory.add(new OBJ_Sword_LV2(gp));
+        inventory.add(new OBJ_Tent(gp));	
     }
     
     public void speak() {
