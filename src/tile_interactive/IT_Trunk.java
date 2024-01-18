@@ -20,5 +20,6 @@ GamePanel gp;
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
 	}
+	
 }
 

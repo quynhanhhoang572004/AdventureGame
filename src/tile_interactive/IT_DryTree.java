@@ -3,10 +3,13 @@ package tile_interactive;
 import java.awt.Color;
 
 import entity.Entity;
-import main.GamePanel;  
+import main.GamePanel;
+
+
 
 public class IT_DryTree extends InteractiveTile {
 	GamePanel gp;
+	public int value = 10;
 	
 	public IT_DryTree(GamePanel gp, int col, int row) {
 		super(gp, col, row);
@@ -17,6 +20,7 @@ public class IT_DryTree extends InteractiveTile {
 		down1 = setup("res/tiles_interactive/pinetree_chatduoc", gp.tileSize, gp.tileSize);
 		destructible = true;
 		life = 3;
+		
 	}
 
 	public boolean isCorrectItem (Entity entity) {
@@ -33,6 +37,7 @@ public class IT_DryTree extends InteractiveTile {
 	
 	public InteractiveTile getDestroyedForm () {
 		InteractiveTile tile = new IT_Trunk(gp, worldX/gp.tileSize, worldY/gp.tileSize);
+		gp.player.coin += value; //I added this in order we receive money when the tree got cut down
 		return tile;
 	}
 	
@@ -55,4 +60,7 @@ public class IT_DryTree extends InteractiveTile {
 		int maxLife = 20;
 		return maxLife;
 	}
+  
+	
+	    
 }
