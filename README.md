@@ -60,8 +60,8 @@
   * Presentation:
     link
   * UML Diagram:
-    ![284021886_352971583571647_7295832931427040568_n] (![image](https://github.com/quynhanhhoang572004/AdventureGame/assets/98211917/f483ce84-c831-41b0-ab82-54cb9d1d05ca)
-)
+    ![image](https://github.com/quynhanhhoang572004/AdventureGame/assets/98211917/74c2519f-3227-46d7-a03d-dd52ed970582)
+
 
   * **Reference:**
     link
